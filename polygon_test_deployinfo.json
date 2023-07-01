@@ -1,0 +1,42 @@
+{
+  "groups": [
+    {
+      "group": "NGP",
+      "contracts": [
+        {
+          "name": "NGP",
+          "deployer": "deployer",
+          "args": [],
+          "verify": "contracts/NGP.sol:NGP"
+        },
+        {
+          "name": "ProxyAdmin",
+          "deployer": "deployer",
+          "args": [],
+          "verify": "contracts/ProxyAdmin.sol:ProxyAdmin"
+        },
+        {
+          "name": "Foundation",
+          "deployer": "deployer",
+          "args": [],
+          "verify": "contracts/Foundation.sol:Foundation"
+        }
+      ]
+    },
+    {
+      "group": "proxy",
+      "contracts": [
+        {
+          "name": "NGPProxy",
+          "deployer": "deployer",
+          "args": [
+            "0xC5a9cC1227b8454dDb94c8d12df4e35A1f7857D1",
+            "0xeB9a4997344359a083e8651edC1b04703C15Fd30",
+            "0x72483bf9000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000010000000000000000000000001c5e3cff8def2c39f244fc0daa442676d66c952a000000000000000000000000000000000000000000000000000000000000000300000000000000000000000075bc9fbd1f907695a5ab823772f78981be0bfc830000000000000000000000009868f351041a360eaec4e7371797da803ab23adb000000000000000000000000f137a6ded9585ba57f0e6f8fe82f48baa8cda172"
+          ],
+          "verify": "contracts/NGPProxy.sol:NGPProxy"
+        }
+      ]
+    }
+  ]
+}
