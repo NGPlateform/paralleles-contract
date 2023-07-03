@@ -6,9 +6,9 @@ import "@nomiclabs/hardhat-etherscan";
 import * as fs from "fs";
 
 let owners = [
-  "0xac3D7D1CeDa1c6B4f25B25991f7401D441E13340",
-  "0xc4d97570A90096e9f8e23c58A1E7F528fDAa45e7",
   "0x843076428Df85c8F7704a2Be73B0E1b1D5799D4d",
+  "0xc4d97570A90096e9f8e23c58A1E7F528fDAa45e7",
+  "0xac3D7D1CeDa1c6B4f25B25991f7401D441E13340",
 ];
 
 export module extFoundation {
