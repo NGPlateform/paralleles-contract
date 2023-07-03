@@ -122,7 +122,7 @@ contract NGP is ERC20Upgradeable {
         uint256 _apy,
         address _foundationAddr
     ) external initializer {
-        __ERC20_init("EARTH Token", "EARTH");
+        __ERC20_init("TERA Token", "TERA");
         for (uint i = 0; i < _owners.length; i++) {
             //onwer should be distinct, and non-zero
             address _owner = _owners[i];

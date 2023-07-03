@@ -6,8 +6,37 @@ import Web3 from "web3";
 import "@nomiclabs/hardhat-etherscan";
 import * as fs from "fs";
 
+let owners = [
+  "0x843076428Df85c8F7704a2Be73B0E1b1D5799D4d",
+  "0xc4d97570A90096e9f8e23c58A1E7F528fDAa45e7",
+  "0xac3D7D1CeDa1c6B4f25B25991f7401D441E13340",
+];
+let apyValue = 10;
+let foundationAddr = "0xDD120c441ED22daC885C9167eaeFFA13522b4644";
+
 export module extNGP {
   export function RegTasks() {
+    task("NGP:initialize", "initialize").setAction(async ({}, _hre) => {
+      logtools.logyellow("method == [NGP:initialize]");
+      await ContractInfo.LoadFromFile(_hre);
+
+      let contrat = await ContractInfo.getContractProxy("NGP", "NGPProxy");
+      logtools.logblue("ngpAddr = " + contrat.address);
+
+      let tran = await contrat.initialize(owners, apyValue, foundationAddr);
+      let recipt: ContractReceipt = await tran.wait();
+      logtools.loggreen("result = [");
+      logtools.loggreen("     hash = " + recipt.transactionHash);
+      logtools.loggreen("     status = " + recipt.status);
+      logtools.loggreen("]");
+      logtools.logcyan(
+        "矿工费" +
+          ethers.utils.formatUnits(
+            recipt.gasUsed.mul(5000000000),
+            BigNumber.from("18")
+          )
+      );
+    });
     task("NGP:claimMint", "claimMint").setAction(async ({}, _hre) => {
       logtools.logyellow("method == [NGP:claimMint]");
       await ContractInfo.LoadFromFile(_hre);
@@ -225,7 +254,7 @@ export module extNGP {
       let contrat = await ContractInfo.getContractProxy("NGP", "NGPProxy");
 
       let getEarthDashboard = await contrat.balanceOf(
-        "0x75bC9FBD1F907695A5ab823772F78981bE0BFC83"
+        "0x843076428Df85c8F7704a2Be73B0E1b1D5799D4d"
       );
       console.log("MeshData:", getEarthDashboard);
     });

@@ -120,8 +120,8 @@ const config: HardhatConfig = {
       live: true,
       saveDeployments: true,
       tags: ["staging"],
-      gas: 80000000,
-      gasPrice: 8000000000,
+      gas: 800000000,
+      gasPrice: 80000000000,
     },
     avalanche_test: {
       url: "https://api.avax-test.network/ext/bc/C/rpc",
@@ -130,8 +130,8 @@ const config: HardhatConfig = {
       live: true,
       saveDeployments: true,
       tags: ["staging"],
-      gas: 80000000,
-      gasPrice: 8000000000,
+      gas: 8000000000,
+      gasPrice: 800000000000,
     },
     goerli: {
       url: "https://eth-goerli.g.alchemy.com/v2/MuYCfm2woPaS-j4opSyasMdBsiGiWk0R",
