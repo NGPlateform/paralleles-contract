@@ -117,9 +117,9 @@ export module extNGP {
         let contrat = await ContractInfo.getContractProxy("NGP", "NGPProxy");
 
         let private2 =
-          "0xb1a82552591c92f41e7d3b5bcfa346f10815fb8b9e709e4fb63345705d45cc62";
+          "0x9d72b008a5174432fb1edb41ef7376a62954a6698a0fda7b7629bb24b6b5d051";
 
-        let resu1 = await Sign(owner.address, private1);
+        let resu1 = await Sign(owner.address, private2);
 
         //claimMintReward(address _user,uint256 _amount,uint8[] memory vs, bytes32[] memory rs, bytes32[] memory ss)
         let amount = ethers.utils.parseEther("1");

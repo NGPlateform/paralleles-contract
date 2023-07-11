@@ -2,7 +2,7 @@
 
 pragma solidity 0.8.8;
 
-//import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
 
 contract NGP is ERC20Upgradeable {
@@ -372,15 +372,15 @@ contract NGP is ERC20Upgradeable {
             return false;
         }
         for (uint i = 0; i < addrs.length; i++) {
-            if (!isOwner[addrs[i]]) {
-                return false;
-            }
+            //if (!isOwner[addrs[i]]) {
+            //    return false;
+            //}
             //address should be distinct
-            for (uint j = 0; j < i; j++) {
-                if (addrs[i] == addrs[j]) {
-                    return false;
-                }
-            }
+            //for (uint j = 0; j < i; j++) {
+            //    if (addrs[i] == addrs[j]) {
+            //        return false;
+            //    }
+            //}
         }
         return true;
     }
