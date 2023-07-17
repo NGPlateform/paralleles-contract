@@ -241,10 +241,10 @@ contract NGP is ERC20Upgradeable {
         uint256 _amount = withdrawAmount[msg.sender];
 
         require(_amount > 0, "amount > 0");
-        require(
-            !dayReceivedAmount[msg.sender][block.timestamp / SECONDS_IN_DAY],
-            "day receive"
-        );
+        //require(
+        //    !dayReceivedAmount[msg.sender][block.timestamp / SECONDS_IN_DAY],
+        //    "day receive"
+        //);
 
         dayReceivedAmount[msg.sender][block.timestamp / SECONDS_IN_DAY] = true;
 
@@ -311,8 +311,8 @@ contract NGP is ERC20Upgradeable {
         uint256 maturityTs
     ) private view returns (uint256) {
         if (block.timestamp > maturityTs) {
-            uint256 rate = apy * term; // apy*天数*1000/365
-            return (amount * rate) / 100; // 质押的数量 * rate / 100_000_000
+            uint256 rate = apy * term * 10 / 365; // apy初始化未修改，暂时乘10，相当于年化10%
+            return amount * rate; 
         }
         return 0;
     }

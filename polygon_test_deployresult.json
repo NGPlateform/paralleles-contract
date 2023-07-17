@@ -2,7 +2,7 @@
  "contracts": {
   "NGP": {
    "deployer": "0x843076428Df85c8F7704a2Be73B0E1b1D5799D4d",
-   "addr": "0xe9b628C66F90790C5C1A646DFcC17c99eACeC410",
+   "addr": "0xC389CA0cA93c30656dd68b273f8A7ed2aaF1D233",
    "abi": [
     {
      "anonymous": false,
