@@ -5,17 +5,258 @@ pragma solidity 0.8.8;
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
 
-contract NGP is ERC20Upgradeable {
-    struct MintInfo {
-        address user;
-        string number;
-        uint256 updateTs;
-        uint256 withdrawTs;
+abstract contract MeshAreaBase {
+    bytes[] public meshData;
+
+    int256 public minLat;
+    int256 public maxLat;
+    int256 public minLon;
+    int256 public maxLon;
+
+    constructor(
+        int256 _minLat,
+        int256 _maxLat,
+        int256 _minLon,
+        int256 _maxLon
+    ) {
+        meshData = new bytes[](100);
+        minLat = _minLat;
+        maxLat = _maxLat;
+        minLon = _minLon;
+        maxLon = _maxLon;
     }
+
+    function computeMeshID(int256 lat, int256 lon)
+        internal
+        virtual pure 
+        returns (uint256);
+
+    function firstClaim(int256 lat, int256 lon) public returns (int8) {
+        require(
+            lon >= minLon && lon <= maxLon && lat >= minLat && lat <= maxLat,
+            "Invalid latitude or longitude"
+        );
+
+        uint256 meshID = computeMeshID(lat, lon);
+
+        uint256 subAreaIndex = meshID / 1620000;
+        if (meshData[subAreaIndex].length == 0) {
+            meshData[subAreaIndex] = new bytes(202500);
+        }
+
+        uint256 index = (meshID % 1620000) / 8;
+        uint256 offset = (meshID % 1620000) % 8;
+        uint8 mask = uint8(1 << offset);
+        uint8 meshByte = uint8(meshData[subAreaIndex][index]);
+
+        if ((meshByte & mask) == 0) {
+            meshData[subAreaIndex][index] = bytes1(meshByte | mask);
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+
+    function getClaimCount(int256 lat, int256 lon) public view returns (uint8) {
+        require(
+            lon >= minLon && lon <= maxLon && lat >= minLat && lat <= maxLat,
+            "Invalid latitude or longitude"
+        );
+
+        uint256 meshID = computeMeshID(lat, lon);
+        uint256 subAreaIndex = meshID / 1620000;
+        uint256 index = (meshID % 1620000) / 8;
+        uint256 offset = (meshID % 1620000) % 8;
+
+        if (meshData[subAreaIndex].length == 0) {
+            return 0;
+        }
+
+        uint8 mask = uint8(1 << offset);
+        uint8 meshByte = uint8(meshData[subAreaIndex][index]);
+
+        if ((meshByte & mask) == 0) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+}
+
+contract MeshArea1 is MeshAreaBase {
+    constructor() MeshAreaBase(-8999, 8999, 0, 8999) {}
+
+    function computeMeshID(int256 lat, int256 lon)
+        internal
+        virtual
+        override pure 
+        returns (uint256)
+    {
+        return uint256(lat + 9000) + uint256(lon * 18000);
+    }
+}
+
+contract MeshArea2 is MeshAreaBase {
+    constructor() MeshAreaBase(-8999, 8999, 9000,17999) {}
+
+    function computeMeshID(int256 lat, int256 lon)
+        internal
+        virtual
+        override pure 
+        returns (uint256)
+    {
+        return uint256(lat + 9000) + uint256(lon * 18000);
+    }
+}
+
+contract MeshArea3 is MeshAreaBase {
+    constructor() MeshAreaBase(-8999, 8999, -8999, 0) {}
+
+    function computeMeshID(int256 lat, int256 lon)
+        internal
+        virtual
+        override pure 
+        returns (uint256)
+    {
+        return uint256(lat + 9000) + uint256((0 - lon) * 18000);
+    }
+}
+
+contract MeshArea4 is MeshAreaBase {
+    constructor() MeshAreaBase(-8999, 8999, -17999, -9000) {}
+
+    function computeMeshID(int256 lat, int256 lon)
+        internal
+        virtual
+        override pure 
+        returns (uint256)
+    {
+        return uint256(lat + 9000) + uint256((9000 - lon) * 18000);
+    }
+}
+
+// 创建 MultiClaim 智能合约用于管理第1次之后的数据
+contract MultiClaim {
+    struct ClaimInfo {
+        uint8 claimCount; // uint8 or uint16?
+    }
+
+    // 使用双重映射来存储经纬度对应的 MeshID 的声明信息
+    mapping(int256 => mapping(int256 => ClaimInfo)) claimedMeshes;
+
+    function claimMesh(int256 lat, int256 lon) public {
+        // 修正 require 语句的条件
+        require(
+            lon > -18000 && lon < 18000 && lat > -9000 && lat < 9000,
+            "Invalid lat or lon"
+        );
+
+        // 获取当前经纬度的声明信息
+        ClaimInfo storage info = claimedMeshes[lat][lon];
+
+        // 如果当前经纬度未被声明，初始化声明信息
+        if (info.claimCount == 0) {
+            info.claimCount = 1;
+        } else {
+            info.claimCount++;
+        }
+    }
+
+    function getClaimCount(int256 lat, int256 lon)
+        public
+        view
+        returns (ClaimInfo memory)
+    {
+        // 获取当前经纬度的声明信息
+        ClaimInfo memory info = claimedMeshes[lat][lon];
+        return info;
+    }
+}
+
+contract MeshManagement {
+    MeshArea1 public area1;
+    MeshArea2 public area2;
+    MeshArea3 public area3;
+    MeshArea4 public area4;
+
+    MultiClaim public multiClaim;
+
+    constructor(
+        address _area1,
+        address _area2,
+        address _area3,
+        address _area4,
+        address _multiClaim
+    ) {
+        area1 = MeshArea1(_area1);
+        area2 = MeshArea2(_area2);
+        area3 = MeshArea3(_area3);
+        area4 = MeshArea4(_area4);
+        multiClaim = MultiClaim(_multiClaim);
+    }
+
+    function getClaimCount(int256 lat, int256 lon) public view returns (uint8) {
+        uint8 areaClaimStatus = 0;
+        if (lat >= -8999 && lat <= 8999) {
+            if (lon >= 0 && lon <= 8999) {
+                areaClaimStatus = area1.getClaimCount(lat, lon);
+            } else if (lon >= 9000 && lon <= 17999) {
+                areaClaimStatus = area2.getClaimCount(lat, lon);
+            } else if (lon >= -8999 && lon <= 0) {
+                areaClaimStatus = area3.getClaimCount(lat, lon);
+            } else if (lon >= -17999 && lon <= -9000) {
+                areaClaimStatus = area4.getClaimCount(lat, lon);
+            } else {
+                revert("Invalid longitude");
+            }
+        } else {
+            revert("Invalid latitude");
+        }
+
+        if (areaClaimStatus == 1) {
+            MultiClaim.ClaimInfo memory info = multiClaim.getClaimCount(
+                lat,
+                lon
+            );
+            return info.claimCount;
+        } else {
+            return 0;
+        }
+    }
+
+    function claim(int256 lat, int256 lon) public {
+        int8 result;
+        if (lat >= -8999 && lat <= 8999) {
+            if (lon >= 0 && lon <= 8999) {
+                result = area1.firstClaim(lat, lon);
+            } else if (lon >= 9000 && lon <= 17999) {
+                result = area2.firstClaim(lat, lon);
+            } else if (lon >= -8999 && lon <= 0) {
+                result = area3.firstClaim(lat, lon);
+            } else if (lon >= -17999 && lon <= -9000) {
+                result = area4.firstClaim(lat, lon);
+            } else {
+                revert("Invalid longitude");
+            }
+        } else {
+            revert("Invalid latitude");
+        }
+
+        if (result == 1) {
+            multiClaim.claimMesh(lat, lon);
+        }
+    }
+}
+
+contract NGP is ERC20Upgradeable {
+    // ... [保留 NGP 合约的总体结构]
+
+    // 添加 MeshManagement 的引用
+    MeshManagement public meshManagement;
 
     uint256 public daySupply;
 
-    mapping(address => mapping(string => MintInfo)) public userMints;
+   // mapping(address => mapping(string => MintInfo)) public userMints;
 
     mapping(string => address[]) public userApplys;
 
@@ -120,10 +361,15 @@ contract NGP is ERC20Upgradeable {
     function initialize(
         address[] calldata _owners,
         uint256 _apy,
-        address _foundationAddr
+        address _foundationAddr,
+        address _meshManagement // 新增参数
     ) external initializer {
-        __ERC20_init("TERA Token", "TERA");
-        for (uint i = 0; i < _owners.length; i++) {
+        __ERC20_init("TERRA Token", "TERRA");
+
+        // 初始化 MeshManagement 的引用
+        meshManagement = MeshManagement(_meshManagement);
+
+        for (uint256 i = 0; i < _owners.length; i++) {
             //onwer should be distinct, and non-zero
             address _owner = _owners[i];
             if (isOwner[_owner] || _owner == address(0x0)) {
@@ -145,55 +391,39 @@ contract NGP is ERC20Upgradeable {
         FoundationAddr = _foundationAddr;
     }
 
-    function claimMint(string memory _number) external {
-        MintInfo memory mintInfo = userMints[msg.sender][_number];
+    function claimMesh(int256 lat, int256 lon) external {
+        // 使用 (lat, lon) 作为唯一标识
+        //bytes32 meshId = keccak256(abi.encodePacked(lat, lon));
 
-        require(mintInfo.updateTs == 0, "mNGP: Mint already in progress");
+        // 先进行 Mesh 的声明
+        meshManagement.claim(lat, lon);
 
-        uint256 _len = userApplys[_number].length;
-        if (_len != 0) {
-            uint256 _amount = degreeHeats[_number] / 10;
-            destructions += _amount;
-            if (_amount > 0) {
-                _burn(msg.sender, _amount);
-            }
-        } else {
-            activeNumbers++;
-        }
+        // 从 meshManagement 的 getClaimCount 方法中获取 claimCount
+        uint16 _n = meshManagement.getClaimCount(lat, lon);
 
-        mintInfo.number = _number;
-        mintInfo.user = msg.sender;
-        mintInfo.updateTs = block.timestamp;
-        mintInfo.withdrawTs = block.timestamp;
-        userMints[msg.sender][_number] = mintInfo;
+        // 计算 degreeHeats
+        uint256 _degreeHeats = (6667 * 106**_n * 10**11) / (100**_n);
 
-        userApplys[_number].push(msg.sender);
+        // 假设有一个函数 calculateDestructions 来根据 degreeHeats 计算 destructions
+        uint256 destruct = calculateDestructions(_degreeHeats);
 
-        //平均收益值: 864,000 / 12,960,000,0 = 0.0006667
-        uint256 _n = userApplys[_number].length;
-
-        uint256 _degreeHeats = (6667 * 106 ** _n * 10 ** 11) / (100 ** _n);
-        //6667 * 106 ** _n * 10 ** 11 / (100 ** _n);
-
-        degreeHeats[_number] = _degreeHeats;
-
-        emit DegreeHeats(_number, _degreeHeats, _n);
-
-        if (_degreeHeats > maxMeshHeats) {
-            maxMeshHeats = _degreeHeats;
-        }
-
-        userNumbers[msg.sender].push(_number);
-
-        if (!minters[msg.sender]) {
-            activeMinters++;
-
-            minters[msg.sender] = true;
+        if (destructions > 0) {
+            _burn(msg.sender, destruct);
         }
 
         claimMints++;
 
-        emit ClaimMint(msg.sender, _number, block.timestamp);
+        // Todo: emit ClaimMint(msg.sender, meshId, block.timestamp);
+    }
+
+    // 假设的 calculateDestructions 函数，您可能需要根据实际逻辑进行调整
+    function calculateDestructions(uint256 degreeOfHeats)
+        private
+        pure 
+        returns (uint256)
+    {
+        // 这里是一个简单的示例，您可能需要根据实际的逻辑进行调整
+        return degreeOfHeats / 10;
     }
 
     function SetUserReward(
@@ -217,13 +447,11 @@ contract NGP is ERC20Upgradeable {
 
         treasuryValue += _totalUnwithdrawAmounts;
 
-        _mint(FoundationAddr, (treasuryValue * 20) / 100);
-        treasuryValue = (treasuryValue * 80) / 100;
+        _mint(FoundationAddr, (treasuryValue * 10) / 100);
+        treasuryValue = (treasuryValue * 90) / 100;
     }
 
-    function getRewardAmount(
-        address _user
-    )
+    function getRewardAmount(address _user)
         external
         view
         returns (
@@ -241,10 +469,10 @@ contract NGP is ERC20Upgradeable {
         uint256 _amount = withdrawAmount[msg.sender];
 
         require(_amount > 0, "amount > 0");
-        //require(
-        //    !dayReceivedAmount[msg.sender][block.timestamp / SECONDS_IN_DAY],
-        //    "day receive"
-        //);
+        require(
+            !dayReceivedAmount[msg.sender][block.timestamp / SECONDS_IN_DAY],
+            "day receive"
+        );
 
         dayReceivedAmount[msg.sender][block.timestamp / SECONDS_IN_DAY] = true;
 
@@ -311,8 +539,8 @@ contract NGP is ERC20Upgradeable {
         uint256 maturityTs
     ) private view returns (uint256) {
         if (block.timestamp > maturityTs) {
-            uint256 rate = apy * term * 10 / 365; // apy初始化未修改，暂时乘10，相当于年化10%
-            return amount * rate; 
+            uint256 rate = (apy * term) / 365;
+            return amount * rate;
         }
         return 0;
     }
@@ -340,7 +568,7 @@ contract NGP is ERC20Upgradeable {
         require(vs.length >= required, "vs.length >= required");
         bytes32 message = _messageToRecover(_sender);
         address[] memory addrs = new address[](vs.length);
-        for (uint i = 0; i < vs.length; i++) {
+        for (uint256 i = 0; i < vs.length; i++) {
             //recover the address associated with the public key from elliptic curve signature or return zero on error
             addrs[i] = ecrecover(message, vs[i] + 27, rs[i], ss[i]);
         }
@@ -355,9 +583,11 @@ contract NGP is ERC20Upgradeable {
         return keccak256(abi.encodePacked(prefix, hashedUnsignedMessage));
     }
 
-    function generateMessageToSign(
-        address _sender
-    ) private view returns (bytes32) {
+    function generateMessageToSign(address _sender)
+        private
+        view
+        returns (bytes32)
+    {
         //the sequence should match generateMultiSigV2 in JS
         bytes32 message = keccak256(
             abi.encodePacked(_sender, block.chainid, spendNonce)
@@ -365,22 +595,24 @@ contract NGP is ERC20Upgradeable {
         return message;
     }
 
-    function _distinctOwners(
-        address[] memory addrs
-    ) private view returns (bool) {
+    function _distinctOwners(address[] memory addrs)
+        private
+        view
+        returns (bool)
+    {
         if (addrs.length > owners.length) {
             return false;
         }
-        for (uint i = 0; i < addrs.length; i++) {
-            //if (!isOwner[addrs[i]]) {
-            //    return false;
-            //}
+        for (uint256 i = 0; i < addrs.length; i++) {
+            if (!isOwner[addrs[i]]) {
+                return false;
+            }
             //address should be distinct
-            //for (uint j = 0; j < i; j++) {
-            //    if (addrs[i] == addrs[j]) {
-            //        return false;
-            //    }
-            //}
+            for (uint256 j = 0; j < i; j++) {
+                if (addrs[i] == addrs[j]) {
+                    return false;
+                }
+            }
         }
         return true;
     }
@@ -447,9 +679,7 @@ contract NGP is ERC20Upgradeable {
         foundation = balanceOf(FoundationAddr);
     }
 
-    function getStakeInfo(
-        address _user
-    )
+    function getStakeInfo(address _user)
         external
         view
         returns (
@@ -524,15 +754,16 @@ contract NGP is ERC20Upgradeable {
         ts = userStakes[user].maturityTs;
     }
 
-    function getClaimTsAmount(
-        address _user,
-        string calldata _number
-    ) public view returns (int256 count, uint256 _amount) {
-        if (userMints[_user][_number].withdrawTs != 0) {
-            count = -1;
-        } else {
+    function getClaimTsAmount(address _user, string calldata _number)
+        public
+        view
+        returns (int256 count, uint256 _amount)
+    {
+        //if (userMints[_user][_number].withdrawTs != 0) {
+        //    count = -1;
+        //} else {
             count = int256(userApplys[_number].length);
             _amount = degreeHeats[_number] / 10;
-        }
+        //}
     }
 }
