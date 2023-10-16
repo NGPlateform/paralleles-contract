@@ -19,7 +19,7 @@ abstract contract MeshAreaBase {
         int256 _minLon,
         int256 _maxLon
     ) {
-        meshData = new bytes[](100);
+        meshData = new bytes[](1000);
         minLat = _minLat;
         maxLat = _maxLat;
         minLon = _minLon;
@@ -28,7 +28,8 @@ abstract contract MeshAreaBase {
 
     function computeMeshID(int256 lat, int256 lon)
         internal
-        virtual pure 
+        pure
+        virtual
         returns (uint256);
 
     function firstClaim(int256 lat, int256 lon) public returns (int8) {
@@ -39,13 +40,13 @@ abstract contract MeshAreaBase {
 
         uint256 meshID = computeMeshID(lat, lon);
 
-        uint256 subAreaIndex = meshID / 1620000;
+        uint256 subAreaIndex = meshID / 162000;
         if (meshData[subAreaIndex].length == 0) {
-            meshData[subAreaIndex] = new bytes(202500);
+            meshData[subAreaIndex] = new bytes(20250);
         }
 
-        uint256 index = (meshID % 1620000) / 8;
-        uint256 offset = (meshID % 1620000) % 8;
+        uint256 index = (meshID % 162000) / 8;
+        uint256 offset = (meshID % 162000) % 8;
         uint8 mask = uint8(1 << offset);
         uint8 meshByte = uint8(meshData[subAreaIndex][index]);
 
@@ -57,6 +58,24 @@ abstract contract MeshAreaBase {
         }
     }
 
+    function checkStorage()
+        public
+        view
+        returns (uint256 allocatedMeshDataCount, uint256 totalStorageInBytes)
+    {
+        uint256 count = 0;
+        uint256 totalBytes = 0;
+
+        for (uint256 i = 0; i < meshData.length; i++) {
+            if (meshData[i].length > 0) {
+                count++;
+                totalBytes += meshData[i].length;
+            }
+        }
+
+        return (count, totalBytes);
+    }
+
     function getClaimCount(int256 lat, int256 lon) public view returns (uint8) {
         require(
             lon >= minLon && lon <= maxLon && lat >= minLat && lat <= maxLat,
@@ -64,9 +83,9 @@ abstract contract MeshAreaBase {
         );
 
         uint256 meshID = computeMeshID(lat, lon);
-        uint256 subAreaIndex = meshID / 1620000;
-        uint256 index = (meshID % 1620000) / 8;
-        uint256 offset = (meshID % 1620000) % 8;
+        uint256 subAreaIndex = meshID / 162000;
+        uint256 index = (meshID % 162000) / 8;
+        uint256 offset = (meshID % 162000) % 8;
 
         if (meshData[subAreaIndex].length == 0) {
             return 0;
@@ -88,8 +107,9 @@ contract MeshArea1 is MeshAreaBase {
 
     function computeMeshID(int256 lat, int256 lon)
         internal
+        pure
         virtual
-        override pure 
+        override
         returns (uint256)
     {
         return uint256(lat + 9000) + uint256(lon * 18000);
@@ -97,15 +117,16 @@ contract MeshArea1 is MeshAreaBase {
 }
 
 contract MeshArea2 is MeshAreaBase {
-    constructor() MeshAreaBase(-8999, 8999, 9000,17999) {}
+    constructor() MeshAreaBase(-8999, 8999, 9000, 17999) {}
 
     function computeMeshID(int256 lat, int256 lon)
         internal
+        pure
         virtual
-        override pure 
+        override
         returns (uint256)
     {
-        return uint256(lat + 9000) + uint256(lon * 18000);
+        return uint256(lat + 9000) + uint256((lon - 9000) * 18000);
     }
 }
 
@@ -114,8 +135,9 @@ contract MeshArea3 is MeshAreaBase {
 
     function computeMeshID(int256 lat, int256 lon)
         internal
+        pure
         virtual
-        override pure 
+        override
         returns (uint256)
     {
         return uint256(lat + 9000) + uint256((0 - lon) * 18000);
@@ -127,11 +149,12 @@ contract MeshArea4 is MeshAreaBase {
 
     function computeMeshID(int256 lat, int256 lon)
         internal
+        pure
         virtual
-        override pure 
+        override
         returns (uint256)
     {
-        return uint256(lat + 9000) + uint256((9000 - lon) * 18000);
+        return uint256(lat + 9000) + uint256((-9000 - lon) * 18000);
     }
 }
 
@@ -256,7 +279,7 @@ contract NGP is ERC20Upgradeable {
 
     uint256 public daySupply;
 
-   // mapping(address => mapping(string => MintInfo)) public userMints;
+    // mapping(address => mapping(string => MintInfo)) public userMints;
 
     mapping(string => address[]) public userApplys;
 
@@ -419,7 +442,7 @@ contract NGP is ERC20Upgradeable {
     // 假设的 calculateDestructions 函数，您可能需要根据实际逻辑进行调整
     function calculateDestructions(uint256 degreeOfHeats)
         private
-        pure 
+        pure
         returns (uint256)
     {
         // 这里是一个简单的示例，您可能需要根据实际的逻辑进行调整
@@ -762,8 +785,8 @@ contract NGP is ERC20Upgradeable {
         //if (userMints[_user][_number].withdrawTs != 0) {
         //    count = -1;
         //} else {
-            count = int256(userApplys[_number].length);
-            _amount = degreeHeats[_number] / 10;
+        count = int256(userApplys[_number].length);
+        _amount = degreeHeats[_number] / 10;
         //}
     }
 }

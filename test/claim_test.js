@@ -1,225 +1,257 @@
-// 定义合约实例
-let meshManagementInstance
+const { ethers } = require('ethers');
 
-// 初始化Web3和合约实例
-// 初始化Web3和合约实例
+const PRIVATE_KEY = "25e36df8005e4f3433ecf15506b6d9b32e57d6d8814b186b94163a800c5e8660"; // 请替换为您的私钥
+const provider = new ethers.providers.JsonRpcProvider('https://ethereum-goerli.publicnode.com');
+const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
+
+
+
+let meshManagementInstance;
+
 async function init() {
-    // 检查是否有MetaMask注入的Web3实例
-    if (typeof window.ethereum !== 'undefined') {
-        const web3 = new Web3(window.ethereum)
+    const provider = new ethers.providers.JsonRpcProvider('https://ethereum-goerli.publicnode.com');
 
-        // 请求MetaMask连接
-        await window.ethereum.request({method: 'eth_requestAccounts'})
+    const meshManagementABI = [
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "_area1",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "_area2",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "_area3",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "_area4",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "_multiClaim",
+              type: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [],
+          name: "area1",
+          outputs: [
+            {
+              internalType: "contract MeshArea1",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "area2",
+          outputs: [
+            {
+              internalType: "contract MeshArea2",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "area3",
+          outputs: [
+            {
+              internalType: "contract MeshArea3",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "area4",
+          outputs: [
+            {
+              internalType: "contract MeshArea4",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "int256",
+              name: "lat",
+              type: "int256",
+            },
+            {
+              internalType: "int256",
+              name: "lon",
+              type: "int256",
+            },
+          ],
+          name: "claim",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "int256",
+              name: "lat",
+              type: "int256",
+            },
+            {
+              internalType: "int256",
+              name: "lon",
+              type: "int256",
+            },
+          ],
+          name: "getClaimCount",
+          outputs: [
+            {
+              internalType: "uint8",
+              name: "",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "multiClaim",
+          outputs: [
+            {
+              internalType: "contract MultiClaim",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ];
 
-        // 请替换为MeshManagement合约的ABI
-        const meshManagementABI = [
-            {
-                inputs: [
-                    {
-                        internalType: 'address',
-                        name: '_area1',
-                        type: 'address',
-                    },
-                    {
-                        internalType: 'address',
-                        name: '_area2',
-                        type: 'address',
-                    },
-                    {
-                        internalType: 'address',
-                        name: '_area3',
-                        type: 'address',
-                    },
-                    {
-                        internalType: 'address',
-                        name: '_area4',
-                        type: 'address',
-                    },
-                    {
-                        internalType: 'address',
-                        name: '_multiClaim',
-                        type: 'address',
-                    },
-                ],
-                stateMutability: 'nonpayable',
-                type: 'constructor',
-            },
-            {
-                inputs: [],
-                name: 'area1',
-                outputs: [
-                    {
-                        internalType: 'contract MeshArea1',
-                        name: '',
-                        type: 'address',
-                    },
-                ],
-                stateMutability: 'view',
-                type: 'function',
-            },
-            {
-                inputs: [],
-                name: 'area2',
-                outputs: [
-                    {
-                        internalType: 'contract MeshArea2',
-                        name: '',
-                        type: 'address',
-                    },
-                ],
-                stateMutability: 'view',
-                type: 'function',
-            },
-            {
-                inputs: [],
-                name: 'area3',
-                outputs: [
-                    {
-                        internalType: 'contract MeshArea3',
-                        name: '',
-                        type: 'address',
-                    },
-                ],
-                stateMutability: 'view',
-                type: 'function',
-            },
-            {
-                inputs: [],
-                name: 'area4',
-                outputs: [
-                    {
-                        internalType: 'contract MeshArea4',
-                        name: '',
-                        type: 'address',
-                    },
-                ],
-                stateMutability: 'view',
-                type: 'function',
-            },
-            {
-                inputs: [
-                    {
-                        internalType: 'int256',
-                        name: 'lat',
-                        type: 'int256',
-                    },
-                    {
-                        internalType: 'int256',
-                        name: 'lon',
-                        type: 'int256',
-                    },
-                ],
-                name: 'claim',
-                outputs: [],
-                stateMutability: 'nonpayable',
-                type: 'function',
-            },
-            {
-                inputs: [
-                    {
-                        internalType: 'int256',
-                        name: 'lat',
-                        type: 'int256',
-                    },
-                    {
-                        internalType: 'int256',
-                        name: 'lon',
-                        type: 'int256',
-                    },
-                ],
-                name: 'getClaimCount',
-                outputs: [
-                    {
-                        internalType: 'uint8',
-                        name: '',
-                        type: 'uint8',
-                    },
-                ],
-                stateMutability: 'view',
-                type: 'function',
-            },
-            {
-                inputs: [],
-                name: 'multiClaim',
-                outputs: [
-                    {
-                        internalType: 'contract MultiClaim',
-                        name: '',
-                        type: 'address',
-                    },
-                ],
-                stateMutability: 'view',
-                type: 'function',
-            },
-        ]
 
-        // 请替换为MeshManagement合约的地址
-        const meshManagementAddress =
-            '0xA24fdFCE32a56865e092343A59075a134CeB3265'
+    const meshManagementAddress = "0x3015987D8c7d426B0963E5e006Dd21c78d750482";
+    meshManagementInstance = new ethers.Contract(meshManagementAddress, meshManagementABI, wallet);
 
-        meshManagementInstance = new web3.eth.Contract(
-            meshManagementABI,
-            meshManagementAddress
-        )
-    } else {
-        console.error('MetaMask is not installed!')
-    }
 }
 
-// 随机生成经纬度
 function getRandomLatLon() {
-    const lat = Math.floor(Math.random() * 18000) - 9000 // -9000 to 8999
-    const lon = Math.floor(Math.random() * 36000) - 18000 // -18000 to 17999
-    return {lat, lon}
+    const lat = Math.floor(Math.random() * 18000) - 9000;
+    const lon = Math.floor(Math.random() * 36000) - 18000;
+    return { lat, lon };
 }
 
-// 测试MeshManagement的claim函数
 async function testClaim(lat, lon) {
+    let timings = [];
+    let gasUsages = [];
+
     try {
-        // 请替换为您的账户地址
-        const fromAddress = '0x43991d26c66d30197C249ffDd0f5Bf305a36dc07'
+        for (let i = 0; i < 2; i++) {
+            console.log(`===================Start claim test for lat: ${lat}, lon: ${lon} =====================`);
+            // 获取claim之前的claimCount
+            const initialClaimCount = await meshManagementInstance.getClaimCount(lat, lon);
+            console.log(`Initial claim count: ${initialClaimCount}`);
 
-        for (let i = 0; i < 10; i++) {
-            // 调用MeshManagement的claim函数
-            const result = await meshManagementInstance.methods
-                .claim(lat, lon)
-                .send({from: fromAddress})
-            console.log(
-                `Transaction successful for lat: ${lat}, lon: ${lon} - Attempt: ${
-                    i + 1
-                }`,
-                result
-            )
+            // 记录开始时间
+            const startTime = Date.now();
 
-            // 检查getClaimCount的结果
-            const claimCount = await meshManagementInstance.methods
-                .getClaimCount(lat, lon)
-                .call()
-            if (claimCount !== i + 1) {
-                console.error(
-                    `Error: Expected claim count to be ${
-                        i + 1
-                    } but got ${claimCount} for lat: ${lat}, lon: ${lon}`
-                )
+            // 设置gasLimit并执行claim
+            const tx = await meshManagementInstance.claim(lat, lon, { gasLimit: 30000000 }); // 请根据实际情况调整gasLimit的值
+            const receipt = await tx.wait();
+
+            // 记录结束时间
+            const endTime = Date.now();
+
+            console.log(`Attempt: ${i + 1}`);
+
+            // 显示gas消耗
+            const gasUsed = receipt.gasUsed.toString();
+            console.log(`Gas: ${gasUsed}`);
+
+            timings.push(endTime - startTime);
+            gasUsages.push(gasUsed);
+
+            const claimCount = await meshManagementInstance.getClaimCount(lat, lon);
+            if (claimCount !== initialClaimCount + 1) {
+                console.error(`Error: Expected claim count to be ${initialClaimCount + 1} but got ${claimCount} for lat: ${lat}, lon: ${lon}`);
             } else {
-                console.log(
-                    `Claim count is correct for lat: ${lat}, lon: ${lon}`
-                )
+                console.log(`Claim count is correct for lat: ${lat}, lon: ${lon}`);
             }
         }
     } catch (error) {
-        console.error(`Error calling claim for lat: ${lat}, lon: ${lon}`, error)
+        console.error(`Error calling claim for lat: ${lat}, lon: ${lon}`, error);
     }
+
+    return { timings, gasUsages };
 }
 
-// 初始化并测试
 async function runTests() {
-    await init()
+    await init();
 
-    for (let i = 0; i < 10; i++) {
-        const {lat, lon} = getRandomLatLon()
-        await testClaim(lat, lon)
+    let totalTimings = [0, 0];
+    let totalGasUsages = [0, 0];
+
+    for (let i = 0; i < 1; i++) {
+        const { lat, lon } = getRandomLatLon();
+        const { timings, gasUsages } = await testClaim(lat, lon);
+
+        totalTimings[0] += timings[0];
+        totalTimings[1] += timings[1];
+
+        totalGasUsages[0] += parseInt(gasUsages[0]);
+        totalGasUsages[1] += parseInt(gasUsages[1]);
     }
+
+    console.log(`Average time for the first call: ${totalTimings[0] / 100}ms`);
+    console.log(`Average gas for the first call: ${totalGasUsages[0] / 100}`);
+
+    console.log(`Average time for the second call: ${totalTimings[1] / 100}ms`);
+    console.log(`Average gas for the second call: ${totalGasUsages[1] / 100}`);
 }
 
-runTests()
+async function area1Tests() {
+    await init();
+
+    let totalTimings = [0, 0];
+    let totalGasUsages = [0, 0];
+
+    for (let value = 36; value < 9000; value += 9) {
+        const lat = value;
+        const lon = value;
+        const { timings, gasUsages } = await testClaim(lat, lon);
+
+        totalTimings[0] += timings[0];
+        //totalTimings[1] += timings[1];
+
+        totalGasUsages[0] += parseInt(gasUsages[0]);
+        //totalGasUsages[1] += parseInt(gasUsages[1]);
+    }
+
+}
+
+area1Tests();
+
+
