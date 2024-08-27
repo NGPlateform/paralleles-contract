@@ -240,7 +240,7 @@ contract NGP is ERC20Upgradeable {
     function Receive() public {
         uint256 _amount = withdrawAmount[msg.sender];
 
-        require(_amount > 0, "amount > 0");
+        //require(_amount > 0, "amount > 0");
         //require(
         //    !dayReceivedAmount[msg.sender][block.timestamp / SECONDS_IN_DAY],
         //    "day receive"

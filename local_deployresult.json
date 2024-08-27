@@ -2,7 +2,7 @@
  "contracts": {
   "NGP": {
    "deployer": "0x843076428Df85c8F7704a2Be73B0E1b1D5799D4d",
-   "addr": "0x61cE80b8441498c90DfeCaF0f2FC9eF6d694B5F1",
+   "addr": "0x6E827824539d8F3a047247de8b9c264e77b4ca80",
    "abi": [
     {
      "anonymous": false,
@@ -1557,7 +1557,7 @@
   },
   "ProxyAdmin": {
    "deployer": "0x843076428Df85c8F7704a2Be73B0E1b1D5799D4d",
-   "addr": "0x5a15cd68CfCB552AFD4967f2b24a7D0574C088DD",
+   "addr": "0xDD120c441ED22daC885C9167eaeFFA13522b4644",
    "abi": [
     {
      "anonymous": false,
@@ -1723,7 +1723,7 @@
   },
   "Foundation": {
    "deployer": "0x843076428Df85c8F7704a2Be73B0E1b1D5799D4d",
-   "addr": "0xDD120c441ED22daC885C9167eaeFFA13522b4644",
+   "addr": "0x61cE80b8441498c90DfeCaF0f2FC9eF6d694B5F1",
    "abi": [
     {
      "inputs": [],
@@ -2370,7 +2370,7 @@
   },
   "NGPProxy": {
    "deployer": "0x843076428Df85c8F7704a2Be73B0E1b1D5799D4d",
-   "addr": "0x98bB38f874d278b7a6cD568269c60c2A384FBE18",
+   "addr": "",
    "abi": [
     {
      "inputs": [

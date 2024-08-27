@@ -638,9 +638,8 @@ contract NGPProxy is ERC1967Proxy {
      */
     constructor(
         address _logic,
-        address admin_,
-        bytes memory _data
-    ) payable ERC1967Proxy(_logic, _data) {
+        address admin_
+    ) payable ERC1967Proxy(_logic, "") {
         assert(_ADMIN_SLOT == bytes32(uint256(keccak256("eip1967.proxy.admin")) - 1));
         _changeAdmin(admin_);
     }

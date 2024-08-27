@@ -271,7 +271,7 @@ contract MeshManagement {
     }
 }
 
-contract NGP is ERC20Upgradeable {
+contract NGPstatic is ERC20Upgradeable {
     // ... [保留 NGP 合约的总体结构]
 
     // 添加 MeshManagement 的引用
