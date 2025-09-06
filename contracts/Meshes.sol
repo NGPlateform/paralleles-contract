@@ -3,9 +3,10 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "./IPancakeRouter02.sol";
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import "@openzeppelin/contracts/security/Pausable.sol";
 
-contract Meshes is ERC20 {
+contract Meshes is ERC20, ReentrancyGuard, Pausable {
     struct MintInfo {
         address user;
         string meshID;
@@ -15,28 +16,29 @@ contract Meshes is ERC20 {
 
     uint256 SECONDS_IN_DAY = 86400;
     uint256 totalMintDuration = 10 * 365 * SECONDS_IN_DAY; // 10年
-    uint256 public constant MAX_TOTAL_SUPPLY = 81_000_000_000 * 10**18; // 81亿枚
-    uint256 public constant MAX_MINT_PER_CALL = 100 * 10**18; // 每次铸造上限为100枚
+//    uint256 public constant MAX_TOTAL_SUPPLY = 81_000_000_000 * 10**18; // 81亿枚
+//    uint256 public constant MAX_MINT_PER_CALL = 100 * 10**18; // 每次铸造上限为100枚
     uint256 baseBurnAmount = 10;
-    uint256 baseMintAmount = 1;
+    // baseMintAmount 不再使用（原线性日因子参数），留空以避免误用
 
     uint256 public dailyMintFactor;
-    uint256 public lastUpdatedDay = 0; // 记录上次更新的日期索引
+    uint256 public lastUpdatedDay = 0; // 记录上次更新的“相对创世”的日期索引
 
     bool public burnSwitch = false; // 控制是否启用burn操作
 
     mapping(address => mapping(string => MintInfo)) public userMints;
-    mapping(string => address[]) public userApplys;
+    // 原 userApplys[string] => address[] 改为申请计数器，避免数组膨胀
+    mapping(string => uint32) public meshApplyCount;
     mapping(string => uint256) public degreeHeats;
-    mapping(address => string[]) public userClaims;
-    mapping(address => uint256) public awardAmount;
-    mapping(address => uint256) public awardWithdrawAmount;
+    // 原 userClaims[address] => string[] 改为用户累计权重与计数
+    mapping(address => uint256) public userWeightSum;
+    mapping(address => uint32) public userClaimCounts;
+    // 用户上一次提现的“相对创世”的天索引
+    mapping(address => uint256) public lastWithdrawDay;
     mapping(address => bool) private minters;
-    uint256 private spendNonce;
+    // spendNonce 已弃用（旧多签相关）
 
-    mapping(address => bool) private isOwner;
-    address[] private owners;
-    uint256 private signRequired;
+    // legacy owner fields removed; governance via Gnosis Safe
 
     uint256 public genesisTs;
     uint256 public activeMinters;
@@ -45,39 +47,69 @@ contract Meshes is ERC20 {
     uint256 public maxMeshHeats;
     uint256 public totalBurn;
 
-    struct StakeInfo {
-        uint256 term;
-        uint256 maturityTs;
-        uint256 amount;
+    address public FoundationAddr;
+    address public governanceSafe;
+
+    // 基金会待转池与小时转账
+    uint256 public pendingFoundationPool;
+    uint256 public lastPayoutHour;
+    uint256 private constant HOUR_SECONDS = 3600;
+
+    // 未提现余额与处理进度（用于“日衰减 50%”记账）
+    mapping(address => uint256) public carryBalance;
+    mapping(address => uint256) public lastProcessedDay; // 已处理至的日索引（含）
+
+    mapping(uint256 => uint256) public dayMintAmount;
+    mapping(address => uint256) public userTotalMint;
+
+    // 优化的事件定义，添加indexed参数
+    event ClaimMint(address indexed user, string indexed meshID, uint256 indexed time);
+    event DegreeHeats(string indexed meshID, uint256 heat, uint256 len);
+    event UserMint(address indexed user, uint256 amount);
+    event UserWithdraw(address indexed user, uint256 amount);
+    event BurnSwitchUpdated(bool indexed oldValue, bool indexed newValue);
+    event FoundationAddressUpdated(address indexed oldAddress, address indexed newAddress);
+    event FoundationFeeAccrued(uint256 indexed amount, uint256 indexed time);
+    event FoundationPayout(uint256 indexed amount, uint256 indexed time);
+    // New developer-friendly events
+    event MeshClaimed(
+        address indexed user,
+        string indexed meshID,
+        int32 lon100,
+        int32 lat100,
+        uint32 applyCount,
+        uint256 heat,
+        uint256 costBurned
+    );
+    event UserWeightUpdated(address indexed user, uint256 newWeight, uint32 claimCount);
+    event WithdrawProcessed(
+        address indexed user,
+        uint256 payout,
+        uint256 burned,
+        uint256 foundation,
+        uint256 carryAfter,
+        uint256 dayIndex
+    );
+    event TokensBurned(uint256 amount, uint8 reasonCode); // 1=claim_cost, 2=unclaimed_decay
+    event YearFactorUpdated(uint256 indexed yearIndex, uint256 factor1e10);
+    event UnclaimedDecayApplied(
+        address indexed user,
+        uint256 daysProcessed,
+        uint256 burned,
+        uint256 foundation,
+        uint256 carryAfter
+    );
+    event GovernanceSafeUpdated(address indexed oldSafe, address indexed newSafe);
+
+    modifier onlySafe() {
+        require(msg.sender == governanceSafe, "Only Safe");
+        _;
     }
 
-    uint256 public apy;
-    uint256 public activeStakes;
-    uint256 public totalStaked;
-    uint256 public treasuryValue;
+    // legacy isOnlyOwner removed
 
-    uint256 public totalEarn;
-    mapping(address => StakeInfo) public userStakes;
-
-    address public FoundationAddr;
-    IPancakeRouter02 public pancakeRouter;
-
-    mapping(address => uint256) public stakeValues;
-    mapping(uint256 => uint256) public dayMintAmount;
-    mapping(uint256 => uint256) public dayStaked;
-    mapping(uint256 => uint256) public dayUnStaked;
-    mapping(address => uint256) public userTotalMint;
-    mapping(address => mapping(uint256 => bool)) public dayReceived;
-
-    event ClaimMint(address user, string meshID, uint256 time);
-    event DegreeHeats(string meshID, uint256 heat, uint256 len);
-    event UserMint(address user);
-
-    event Staked(address indexed user, uint256 amount, uint256 term);
-    event Withdrawn(address indexed user, uint256 amount, uint256 reward);
-
-    modifier isOnlyOwner() {
-        require(isOwner[msg.sender], "Not owner");
+    modifier whenNotPaused() {
+        require(!paused(), "Contract is paused");
         _;
     }
 
@@ -116,47 +148,172 @@ contract Meshes is ERC20 {
     ];
 
     constructor(
-        address[] memory _owners,
-        uint256 _apy,
         address _foundationAddr,
-        address _pancakeRouter
+        address _governanceSafe
     ) ERC20("Mesh Token", "MESH") {
-        for (uint256 i = 0; i < _owners.length; i++) {
-            //onwer should be distinct, and non-zero
-            address _owner = _owners[i];
-            if (isOwner[_owner] || _owner == address(0x0)) {
-                revert();
-            }
-
-            isOwner[_owner] = true;
-            owners.push(_owner);
-        }
+        require(_foundationAddr != address(0), "Invalid foundation address");
+        require(_governanceSafe != address(0), "Invalid safe address");
 
         genesisTs = block.timestamp;
-        apy = _apy;
         FoundationAddr = _foundationAddr;
-        signRequired = _owners.length / 2 + 1;
-        pancakeRouter = IPancakeRouter02(_pancakeRouter);
+        governanceSafe = _governanceSafe;
+        // 初始化日因子为首日值
+        dailyMintFactor = 1e10;
+        lastUpdatedDay = 0;
+        lastPayoutHour = block.timestamp / HOUR_SECONDS;
     }
 
-    function setPancakeRouterAddress(address _newPancakeRouter)
-        external
-        isOnlyOwner
-    {
-        require(_newPancakeRouter != address(0), "Invalid address");
-        pancakeRouter = IPancakeRouter02(_newPancakeRouter);
+    // 计算“自创世以来”的天索引
+    function _currentDayIndex() private view returns (uint256) {
+        return (block.timestamp - genesisTs) / SECONDS_IN_DAY;
     }
 
-    function setBurnSwitch(bool _burnSwitch) external isOnlyOwner {
+    // 年度 10% 衰减：Fd = F0 * (0.9 ^ yearIndex)，F0 = 1e10
+    function _dailyMintFactorForDay(uint256 dayIndex) private pure returns (uint256) {
+        uint256 yearIndex = dayIndex / 365;
+        // 快速幂（定点 1e10，不缩放底数，仅整数比例）
+        // 预计算 0.9^n 的 1e10 定点：逐年乘以 0.9（用 9/10 近似）
+        uint256 factor = 1e10;
+        for (uint256 i = 0; i < yearIndex; i++) {
+            factor = (factor * 9) / 10; // 每年衰减 10%
+            if (factor == 0) break;
+        }
+        return factor;
+    }
+
+    // 求和 F(a..b) 等差数列和，闭区间；若 a>b 返回 0
+    function _sumDailyMintFactor(uint256 a, uint256 b) private view returns (uint256) {
+        if (b < a) return 0;
+        uint256 n = b - a + 1;
+        uint256 first = _dailyMintFactorForDay(a);
+        uint256 last = _dailyMintFactorForDay(b);
+        // (first + last) * n / 2，按整数下取
+        return ((first + last) * n) / 2;
+    }
+
+    /**
+     * @dev 设置燃烧开关（仅限所有者）
+     */
+    function setBurnSwitch(
+        bool _burnSwitch
+    ) external onlySafe whenNotPaused {
+        bool oldValue = burnSwitch;
         burnSwitch = _burnSwitch;
+        emit BurnSwitchUpdated(oldValue, _burnSwitch);
     }
 
-    function ClaimMesh(string memory _meshID, uint256 autoSwap) external {
+    /**
+     * @dev 更新Foundation地址（仅限所有者）
+     */
+    function setFoundationAddress(
+        address _newFoundationAddr
+    ) external onlySafe whenNotPaused {
+        require(_newFoundationAddr != address(0), "Invalid foundation address");
+        require(_newFoundationAddr != FoundationAddr, "Same foundation address");
+        address oldFoundation = FoundationAddr;
+        FoundationAddr = _newFoundationAddr;
+        emit FoundationAddressUpdated(oldFoundation, _newFoundationAddr);
+    }
+
+    /**
+     * @dev 紧急暂停合约（仅限所有者）
+     */
+    function pause() external onlySafe {
+        _pause();
+    }
+
+    /**
+     * @dev 恢复合约（仅限所有者）
+     */
+    function unpause() external onlySafe {
+        _unpause();
+    }
+
+    function setGovernanceSafe(address _newSafe) external onlySafe whenNotPaused {
+        require(_newSafe != address(0), "Invalid safe");
+        require(_newSafe != governanceSafe, "Same safe");
+        address old = governanceSafe;
+        governanceSafe = _newSafe;
+        emit GovernanceSafeUpdated(old, _newSafe);
+    }
+
+    /**
+     * @dev 验证网格ID格式
+     */
+    function isValidMeshID(string memory _meshID) public pure returns (bool) {
+        bytes memory b = bytes(_meshID);
+        if (b.length < 3 || b.length > 32) {
+            return false;
+        }
+        // 规则：^[EW][0-9]+[NS][0-9]+$
+        if (!(b[0] == bytes1("E") || b[0] == bytes1("W"))) {
+            return false;
+        }
+        uint256 i = 1;
+        uint256 sep = type(uint256).max; // 记录 N/S 的位置
+        for (; i < b.length; i++) {
+            bytes1 c = b[i];
+            if (c == bytes1("N") || c == bytes1("S")) {
+                sep = i;
+                break;
+            }
+            if (c < bytes1("0") || c > bytes1("9")) {
+                return false;
+            }
+        }
+        if (sep == type(uint256).max) {
+            return false; // 未找到 N/S 分隔符
+        }
+        if (sep == 1) {
+            return false; // 经度数字缺失
+        }
+        if (sep + 1 >= b.length) {
+            return false; // 纬度数字缺失
+        }
+        // 校验纬度部分均为数字
+        for (uint256 j = sep + 1; j < b.length; j++) {
+            bytes1 c2 = b[j];
+            if (c2 < bytes1("0") || c2 > bytes1("9")) {
+                return false;
+            }
+        }
+        // 解析数值并检查范围：|lon*100| < 18000, |lat*100| <= 9000
+        uint256 lonAbs = 0;
+        for (uint256 k = 1; k < sep; k++) {
+            lonAbs = lonAbs * 10 + (uint8(b[k]) - uint8(bytes1("0")));
+            if (lonAbs >= 18000) {
+                // 经度上限为 17999（对应 [-180,180) 的 0.01 度网格）
+                return false;
+            }
+        }
+        uint256 latAbs = 0;
+        for (uint256 m = sep + 1; m < b.length; m++) {
+            latAbs = latAbs * 10 + (uint8(b[m]) - uint8(bytes1("0")));
+            if (latAbs > 9000) {
+                // 纬度上限为 9000（对应 [-90,90] 的 0.01 度网格）
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * @dev 认领网格铸造权
+     */
+    function claimMint(string memory _meshID) 
+        external 
+        nonReentrant 
+        whenNotPaused 
+    {
+        // 输入验证
+        require(bytes(_meshID).length > 0, "MeshID cannot be empty");
+        require(isValidMeshID(_meshID), "Invalid meshID format");
+        
         MintInfo memory mintInfo = userMints[msg.sender][_meshID];
 
         require(mintInfo.updateTs == 0, "Already claim");
 
-        uint256 _len = userApplys[_meshID].length;
+        uint256 _len = meshApplyCount[_meshID];
         if (0 == _len) {
             activeMeshes++;
         }
@@ -165,22 +322,18 @@ contract Meshes is ERC20 {
             uint256 _amount = (baseBurnAmount *
                 degreeHeats[_meshID] *
                 degreeHeats[_meshID]) / maxMeshHeats;
-            uint256 userBalance = balanceOf(msg.sender);
-
-            // 检查用户余额是否足够，如果不足则通过 PancakeSwap 兑换
-            if (userBalance < _amount) {
-                uint256 deficit = _amount - userBalance;
-                require(autoSwap >= deficit, "Insufficient swap amount");
-
-                // 调用 PancakeSwap 路由合约来兑换 BNB 为 MESH
-                swapBNBForMesh(deficit);
-            }
-
-            // 再次检查余额是否足够
+            // 前端预换：仅检查余额足够
             require(balanceOf(msg.sender) >= _amount, "Insufficient to burn");
 
             totalBurn += _amount;
             _burn(msg.sender, _amount);
+            emit TokensBurned(_amount, 1);
+        }
+
+        // 在增加权重之前，先把历史未领（按天）结算到昨天，确保新权重只影响今天及以后
+        uint256 cd = _currentDayIndex();
+        if (cd > 0) {
+            _applyUnclaimedDecay(msg.sender, cd);
         }
 
         mintInfo.meshID = _meshID;
@@ -188,8 +341,7 @@ contract Meshes is ERC20 {
         mintInfo.updateTs = block.timestamp;
         mintInfo.withdrawTs = block.timestamp;
         userMints[msg.sender][_meshID] = mintInfo;
-        userApplys[_meshID].push(msg.sender);
-
+        // 更新网格热度（按当前参与人数）
         uint256 _degreeHeat = calculateDegreeHeat(_len);
         degreeHeats[_meshID] = _degreeHeat;
         if (_degreeHeat > maxMeshHeats) {
@@ -198,7 +350,37 @@ contract Meshes is ERC20 {
 
         emit DegreeHeats(_meshID, _degreeHeat, _len);
 
-        userClaims[msg.sender].push(_meshID);
+        // 用户累计权重 +1 次认领（影响今天之后）
+        userClaimCounts[msg.sender] += 1;
+        userWeightSum[msg.sender] += _degreeHeat;
+        emit UserWeightUpdated(msg.sender, userWeightSum[msg.sender], userClaimCounts[msg.sender]);
+
+        // 更新用户首次认领的上次提现日，避免追溯罚没
+        if (userClaimCounts[msg.sender] == 1) {
+            uint256 cd = _currentDayIndex();
+            if (cd > 0) {
+                lastWithdrawDay[msg.sender] = cd - 1;
+                lastProcessedDay[msg.sender] = cd - 1;
+            } else {
+                lastWithdrawDay[msg.sender] = 0;
+                lastProcessedDay[msg.sender] = 0;
+            }
+        }
+
+        // 递增网格申请计数
+        meshApplyCount[_meshID] = uint32(_len + 1);
+
+        // 解析 lon/lat（以 0.01 度为单位），若解析失败则返回 (0,0)
+        (int32 lon100, int32 lat100) = _parseMeshId(_meshID);
+        emit MeshClaimed(
+            msg.sender,
+            _meshID,
+            lon100,
+            lat100,
+            uint32(_len + 1),
+            _degreeHeat,
+            burnSwitch && _len > 0 ? (baseBurnAmount * _degreeHeat * _degreeHeat) / (maxMeshHeats == 0 ? 1 : maxMeshHeats) : 0
+        );
 
         if (!minters[msg.sender]) {
             activeMinters++;
@@ -208,278 +390,268 @@ contract Meshes is ERC20 {
         claimMints++;
 
         emit ClaimMint(msg.sender, _meshID, block.timestamp);
+
+        // 触发按小时基金会转出（用户发起，承担 gas）
+        _maybePayoutFoundation();
     }
 
     function calculateDegreeHeat(uint256 _n) internal view returns (uint256) {
         if (_n < 30) {
             return precomputedDegreeHeats[_n];
         } else {
-            uint256 base = 1.2 ether; // Representing 1.2 as a fixed-point number with 18 decimals
-            uint256 result = precomputedDegreeHeats[29]; // Start from the precomputed value for n = 29
-
-            for (uint256 i = 30; i <= _n; i++) {
-                result = (result * base) / 1 ether; // Multiply and then divide by 1 ether to maintain precision
+            // 防止线性循环 DoS：使用闭式近似（截断到 n=60 上限）
+            if (_n > 60) {
+                _n = 60;
             }
-
+            uint256 base = 1.2 ether;
+            uint256 result = precomputedDegreeHeats[29];
+            for (uint256 i = 30; i <= _n; i++) {
+                result = (result * base) / 1 ether;
+            }
             return result;
         }
     }
 
-    function swapBNBForMesh(uint256 meshAmount) private {
-        address[] memory path = new address[](2);
-        path[0] = pancakeRouter.WETH(); // BNB
-        path[1] = address(this); // MESH
+    // 已移除 Pancake 自动换币逻辑（前端预换）
 
-        uint256 deadline = block.timestamp + 15; // 设置一个合理的截止时间
-
-        pancakeRouter.swapExactETHForTokensSupportingFeeOnTransferTokens{
-            value: msg.value
-        }(meshAmount, path, msg.sender, deadline); // 使用传递的 BNB 数量
-    }
-
+    /**
+     * @dev 铸造代币（内部函数）
+     */
     function mint(address user, uint256 amount) private {
-        require(amount <= MAX_MINT_PER_CALL, "Mint amount exceeds limit");
-        require(
-            totalSupply() + amount <= MAX_TOTAL_SUPPLY,
-            "Total supply exceeds maximum limit"
-        );
-
-        uint256 _today = (block.timestamp - genesisTs) / SECONDS_IN_DAY;
-
+        uint256 _today = _currentDayIndex();
         dayMintAmount[_today] += amount;
-
         _mint(user, amount);
     }
 
-    function MintMeshes() public {
+    /**
+     * @dev 提取收益（添加重入保护）
+     */
+    function withdraw() public nonReentrant whenNotPaused {
         uint256 elapsedTime = block.timestamp - genesisTs;
         require(elapsedTime <= totalMintDuration, "Minting period over");
 
-        // 检查今天是否已经更新过 dailyMintFactor
-        uint256 dayIndex = block.timestamp / SECONDS_IN_DAY; // 当前日期索引
+        uint256 dayIndex = _currentDayIndex();
+        require(userClaimCounts[msg.sender] > 0, "No claims");
+        require(dayIndex > lastWithdrawDay[msg.sender], "Daily receive");
+
+        // 更新今日 dailyMintFactor（与创世对齐）
         if (dayIndex != lastUpdatedDay) {
-            uint256 timeDecayFactor = (elapsedTime * 1e10) / totalMintDuration; // 使用 1e18 放大基数
-
-            // 更新 dailyMintFactor
-            dailyMintFactor = 1e10 - (baseMintAmount * timeDecayFactor); // 使用 1e18 缩小基数
-            lastUpdatedDay = dayIndex; // 更新上次更新日期
+            dailyMintFactor = _dailyMintFactorForDay(dayIndex);
+            lastUpdatedDay = dayIndex;
         }
 
-        require(!dayReceived[msg.sender][dayIndex], "Daily receive");
-        require(userClaims[msg.sender].length > 0, "No claims");
+        address user = msg.sender;
+        uint256 weight = userWeightSum[user];
+        require(weight > 0, "Zero weight");
 
-        // 记录用户已经收到奖励
-        dayReceived[msg.sender][dayIndex] = true;
+        // 先对未领余额做“日衰减 50%”的懒结算（逐日推进到昨天）
+        _applyUnclaimedDecay(user, dayIndex);
 
-        uint256 sumDegreeHeats = 0;
-        uint256 claimsLength = userClaims[msg.sender].length; // 缓存长度到内存中
+        // 处理今日领取：今日应得 + 结转余额一次性发放
+        uint256 todayAmount = (dailyMintFactor * weight) / 1e10;
+        uint256 payout = carryBalance[user] + todayAmount;
+        require(payout > 0, "Zero mint");
 
-        // 使用内存来减少存储读取
-        for (uint256 i = 0; i < claimsLength; i++) {
-            sumDegreeHeats += degreeHeats[userClaims[msg.sender][i]];
+        // 发放并清零结转
+        mint(user, payout);
+        carryBalance[user] = 0;
+        lastProcessedDay[user] = dayIndex;
+        lastWithdrawDay[user] = dayIndex;
+
+        emit UserMint(user, payout);
+        userTotalMint[user] += payout;
+
+        emit WithdrawProcessed(user, payout, 0, 0, carryBalance[user], dayIndex);
+
+        _maybePayoutFoundation();
+    }
+
+    function _maybePayoutFoundation() private {
+        uint256 currentHour = block.timestamp / HOUR_SECONDS;
+        if (currentHour > lastPayoutHour && pendingFoundationPool > 0) {
+            uint256 amount = pendingFoundationPool;
+            pendingFoundationPool = 0;
+            lastPayoutHour = currentHour;
+            _transfer(address(this), FoundationAddr, amount);
+            emit FoundationPayout(amount, block.timestamp);
         }
-
-        // 计算最终的 _amount
-        uint256 _amount = (dailyMintFactor * sumDegreeHeats) / 1e10;
-
-        require(_amount > 0, "Zero mint");
-
-        // 铸造代币
-        mint(msg.sender, _amount);
-        // mint(FoundationAddr, _amount / 10);
-
-        emit UserMint(msg.sender);
-
-        // 合并状态更新以减少 gas
-        userTotalMint[msg.sender] += _amount;
     }
 
-    function SetUsersAward(
-        address[] calldata _users,
-        uint256[] calldata _awards,
-        uint256 _totalAward,
-        uint8[] memory vs,
-        bytes32[] memory rs,
-        bytes32[] memory ss
-    ) public isOnlyOwner {
-        require(validSignature(msg.sender, vs, rs, ss), "invalid signatures");
-        spendNonce = spendNonce + 1;
+    // 任何人可发起的基金会出账触发器（无外部程序依赖，gas 由调用者承担）
+    function payoutFoundationIfDue() external nonReentrant whenNotPaused {
+        _maybePayoutFoundation();
+    }
 
-        uint256 _len = _users.length;
-
-        require(_len == _awards.length, "error length");
-
-        for (uint256 i = 0; i < _len; i++) {
-            awardAmount[_users[i]] = _awards[i];
+    // 按天精确推进未领余额的“日衰减 50%”直至 upToDay-1
+    function _applyUnclaimedDecay(address user, uint256 upToDay) private {
+        uint256 fromDay = lastProcessedDay[user];
+        if (fromDay >= upToDay) {
+            return;
         }
-
-        treasuryValue += _totalAward;
-    }
-
-    function GetAward() public {
-        uint256 _amount = awardAmount[msg.sender];
-
-        require(_amount > 0, "No award");
-        require(
-            !dayReceived[msg.sender][block.timestamp / SECONDS_IN_DAY],
-            "day receive"
-        );
-
-        dayReceived[msg.sender][block.timestamp / SECONDS_IN_DAY] = true;
-
-        _amount = (_amount * 10) / 100;
-
-        userTotalMint[msg.sender] += _amount;
-
-        awardAmount[msg.sender] = 9 * _amount;
-
-        mint(msg.sender, _amount);
-        emit UserMint(msg.sender);
-    }
-
-    function Stake(uint256 amount, uint256 term) external {
-        require(balanceOf(msg.sender) >= amount, "MESH: check balance");
-        require(amount > 0, "MESH: amount > 0");
-        require(term >= 1, "MESH: term >= 1");
-        require(userStakes[msg.sender].amount == 0, "MESH: stake exists"); // 已经质押过了
-
-        // burn staked NGP
-        transfer(address(this), amount);
-        // create NGP Stake
-        _createStake(amount, term); // 创建质押数据
-
-        uint256 _today = (block.timestamp - genesisTs) / SECONDS_IN_DAY;
-
-        dayStaked[_today] += amount;
-
-        emit Staked(msg.sender, amount, term);
-    }
-
-    function Withdraw() external {
-        StakeInfo memory userStake = userStakes[msg.sender];
-        require(userStake.amount > 0, "MESH: no stake");
-        require(userStake.maturityTs <= block.timestamp, "maturityTs");
-        // 计算质押奖励
-        uint256 stackAward = _calculateStakeAward(
-            userStake.amount,
-            userStake.term,
-            userStake.maturityTs
-        );
-
-        uint256 unLockValue = userStake.amount + stackAward;
-
-        uint256 _today = (block.timestamp - genesisTs) / SECONDS_IN_DAY;
-
-        stakeValues[msg.sender] += stackAward;
-
-        totalEarn += stackAward;
-
-        activeStakes--;
-        totalStaked -= userStake.amount;
-
-        dayUnStaked[_today] += unLockValue;
-
-        mint(msg.sender, unLockValue);
-        emit Withdrawn(msg.sender, userStake.amount, stackAward);
-        delete userStakes[msg.sender];
-    }
-
-    function _calculateStakeAward(
-        uint256 amount,
-        uint256 term,
-        uint256 maturityTs
-    ) private view returns (uint256) {
-        if (block.timestamp > maturityTs) {
-            uint256 rate = (apy * term * 10) / 365;
-            return amount * rate;
+        uint256 weight = userWeightSum[user];
+        if (weight == 0) {
+            lastProcessedDay[user] = upToDay - 1;
+            return;
         }
+        uint256 daysProcessed = 0;
+        uint256 burnedTotal = 0;
+        uint256 foundationTotal = 0;
+        uint256 carry = carryBalance[user];
+        for (uint256 d = fromDay; d < upToDay; d++) {
+            uint256 factorD = _dailyMintFactorForDay(d);
+            uint256 Rd = (factorD * weight) / 1e10;
+            uint256 Xd = carry + Rd;
+            if (Xd > 0) {
+                uint256 burnD = (Xd * 40) / 100;
+                uint256 fundD = (Xd * 10) / 100;
+                carry = Xd - burnD - fundD; // 50% 结转
+                burnedTotal += burnD;
+                foundationTotal += fundD;
+            }
+            daysProcessed++;
+        }
+        if (burnedTotal > 0) {
+            mint(address(this), burnedTotal);
+            _burn(address(this), burnedTotal);
+            emit TokensBurned(burnedTotal, 2);
+        }
+        if (foundationTotal > 0) {
+            mint(address(this), foundationTotal);
+            pendingFoundationPool += foundationTotal;
+            emit FoundationFeeAccrued(foundationTotal, block.timestamp);
+        }
+        carryBalance[user] = carry;
+        lastProcessedDay[user] = upToDay - 1;
+        emit UnclaimedDecayApplied(user, daysProcessed, burnedTotal, foundationTotal, carry);
+    }
+
+    /**
+     * @dev 验证多签签名
+     */
+    // Legacy multi-sig validation removed in favor of Safe-based governance
+
+    // Legacy ecrecover helpers removed
+
+    /**
+     * @dev 获取消费nonce（仅限所有者）
+     */
+    function getSpendNonce() external pure returns (uint256) {
         return 0;
     }
 
-    function _createStake(uint256 amount, uint256 term) private {
-        userStakes[msg.sender] = StakeInfo({
-            term: term, // days
-            maturityTs: block.timestamp + term * SECONDS_IN_DAY, // time
-            amount: amount
-        });
-
-        activeStakes++;
-        totalStaked += amount;
+    // ===================== Developer-friendly VIEWs (skeletons) =====================
+    function getCurrentDayYear() external view returns (uint256 dayIndex, uint256 yearIndex, uint256 factor1e10) {
+        dayIndex = _currentDayIndex();
+        yearIndex = dayIndex / 365;
+        // placeholder: current linear factor; will switch to yearly-decay factor in next phase
+        factor1e10 = dailyMintFactor;
     }
 
-    function validSignature(
-        address _sender,
-        uint8[] memory vs,
-        bytes32[] memory rs,
-        bytes32[] memory ss
-    ) public view returns (bool) {
-        require(vs.length == rs.length, "vs.length == rs.length");
-        require(rs.length == ss.length, "rs.length == ss.length");
-        require(vs.length <= owners.length, "vs.length <= owners.length");
-        require(vs.length >= signRequired, "vs.length >= signRequired");
-        bytes32 message = _messageToRecover(_sender);
-        address[] memory addrs = new address[](vs.length);
-        for (uint256 i = 0; i < vs.length; i++) {
-            //recover the address associated with the public key from elliptic curve signature or return zero on error
-            addrs[i] = ecrecover(message, vs[i] + 27, rs[i], ss[i]);
+    function getMeshInfo(string calldata _meshID) external view returns (
+        uint32 applyCount,
+        uint256 heat,
+        int32 lon100,
+        int32 lat100
+    ) {
+        applyCount = meshApplyCount[_meshID];
+        heat = degreeHeats[_meshID];
+        (lon100, lat100) = _parseMeshId(_meshID);
+    }
+
+    function quoteClaimCost(string calldata _meshID) external view returns (uint256 heat, uint256 costBurned) {
+        uint32 cnt = meshApplyCount[_meshID];
+        heat = calculateDegreeHeat(cnt);
+        uint256 denom = maxMeshHeats == 0 ? 1 : maxMeshHeats;
+        costBurned = burnSwitch && cnt > 0 ? (baseBurnAmount * heat * heat) / denom : 0;
+    }
+
+    function getUserState(address _user) external view returns (
+        uint256 weight,
+        uint32 claimCount,
+        uint256 carryBalance,
+        uint256 lastProcessedDay
+    ) {
+        weight = userWeightSum[_user];
+        claimCount = userClaimCounts[_user];
+        // carryBalance & lastProcessedDay are placeholders for next-phase accounting
+        carryBalance = 0;
+        lastProcessedDay = lastWithdrawDay[_user];
+    }
+
+    function previewWithdraw(address _user) external view returns (
+        uint256 payoutToday,
+        uint256 carryBefore,
+        uint256 carryAfterIfNoWithdraw,
+        uint256 burnTodayIfNoWithdraw,
+        uint256 foundationTodayIfNoWithdraw,
+        uint256 dayIndex
+    ) {
+        dayIndex = _currentDayIndex();
+        uint256 weight = userWeightSum[_user];
+        uint256 factor = _dailyMintFactorForDay(dayIndex);
+        payoutToday = (factor * weight) / 1e10;
+        carryBefore = carryBalance[_user];
+        // 严格按天的“若不提现”模拟：仅计算今天一次
+        uint256 Xd = carryBefore + payoutToday;
+        burnTodayIfNoWithdraw = (Xd * 40) / 100;
+        foundationTodayIfNoWithdraw = (Xd * 10) / 100;
+        carryAfterIfNoWithdraw = Xd - burnTodayIfNoWithdraw - foundationTodayIfNoWithdraw;
+    }
+
+    // ===================== Internal utils =====================
+    function _parseMeshId(string memory _meshID) private pure returns (int32 lon100, int32 lat100) {
+        bytes memory b = bytes(_meshID);
+        if (b.length < 3) {
+            return (0, 0);
         }
-
-        require(_distinctOwners(addrs), "_distinctOwners");
-        return true;
-    }
-
-    function _messageToRecover(address _sender) private view returns (bytes32) {
-        bytes32 hashedUnsignedMessage = generateMessageToSign(_sender);
-        bytes memory prefix = "\x19Ethereum Signed Message:\n32";
-        return keccak256(abi.encodePacked(prefix, hashedUnsignedMessage));
-    }
-
-    function generateMessageToSign(address _sender)
-        private
-        view
-        returns (bytes32)
-    {
-        //the sequence should match generateMultiSigV2 in JS
-        bytes32 message = keccak256(
-            abi.encodePacked(_sender, block.chainid, spendNonce)
-        );
-        return message;
-    }
-
-    function _distinctOwners(address[] memory addrs)
-        private
-        view
-        returns (bool)
-    {
-        if (addrs.length > owners.length) {
-            return false;
+        int8 signLon = 1;
+        if (b[0] == bytes1("W")) signLon = -1;
+        uint256 i = 1;
+        uint256 sep = type(uint256).max;
+        for (; i < b.length; i++) {
+            bytes1 c = b[i];
+            if (c == bytes1("N") || c == bytes1("S")) { sep = i; break; }
         }
-        for (uint256 i = 0; i < addrs.length; i++) {
-            if (!isOwner[addrs[i]]) {
-                return false;
-            }
-            //address should be distinct
-            for (uint256 j = 0; j < i; j++) {
-                if (addrs[i] == addrs[j]) {
-                    return false;
-                }
-            }
+        if (sep == type(uint256).max || sep == 1 || sep + 1 >= b.length) {
+            return (0, 0);
         }
-        return true;
+        uint256 lonAbs = 0;
+        for (uint256 k = 1; k < sep; k++) { lonAbs = lonAbs * 10 + (uint8(b[k]) - uint8(bytes1("0"))); }
+        int8 signLat = 1;
+        if (b[sep] == bytes1("S")) signLat = -1;
+        uint256 latAbs = 0;
+        for (uint256 m = sep + 1; m < b.length; m++) { latAbs = latAbs * 10 + (uint8(b[m]) - uint8(bytes1("0"))); }
+        if (lonAbs >= 18000 || latAbs > 9000) {
+            return (0, 0);
+        }
+        lon100 = int32(int256(int(signLon) * int(lonAbs)));
+        lat100 = int32(int256(int(signLat) * int(latAbs)));
     }
 
-    function getSpendNonce() external view returns (uint256) {
-        return spendNonce;
-    }
+    /**
+     * @dev 增加消费nonce（仅限所有者）
+     */
+    // legacy addSpendNonce removed
 
-    function addSpendNonce() external {
-        spendNonce++;
-    }
-
+    /**
+     * @dev 获取用户认领数量
+     */
     function getUserClaimCount(address _user) external view returns (uint256) {
-        return userClaims[_user].length;
+        return userClaimCounts[_user];
     }
 
+    /**
+     * @dev 获取用户所有网格ID
+     */
+    function getUserMeshes(address _user) external view returns (string[] memory) {
+        // 存储结构已变更：兼容返回空数组
+        string[] memory empty;
+        return empty;
+    }
+
+    /**
+     * @dev 获取网格数据统计
+     */
     function getMeshData()
         external
         view
@@ -496,6 +668,9 @@ contract Meshes is ERC20 {
         liquidSupply = totalMinted - balanceOf(address(this));
     }
 
+    /**
+     * @dev 获取网格仪表板数据
+     */
     function getMeshDashboard()
         external
         view
@@ -514,6 +689,9 @@ contract Meshes is ERC20 {
         sinceGenesis = (block.timestamp - genesisTs) / SECONDS_IN_DAY;
     }
 
+    /**
+     * @dev 获取地球仪表板数据
+     */
     function getEarthDashboard()
         external
         view
@@ -521,7 +699,6 @@ contract Meshes is ERC20 {
             uint256 _totalSupply,
             uint256 _liquidSupply,
             uint256 _destruction,
-            uint256 _totalStaked,
             uint256 _treasury,
             uint256 _foundation
         )
@@ -529,101 +706,37 @@ contract Meshes is ERC20 {
         _totalSupply = totalSupply();
         _liquidSupply = _totalSupply - balanceOf(address(this));
         _destruction = totalBurn;
-        _totalStaked = totalStaked;
-        _treasury = treasuryValue;
+        _treasury = 0; // 已移除质押相关
         _foundation = balanceOf(FoundationAddr);
     }
 
-    function getRewardAmount(address _user)
-        external
-        view
-        returns (
-            uint256 _userTotalMint,
-            uint256 _userWithdraw,
-            uint256 _userUnWithdraw
-        )
-    {
-        _userTotalMint = userTotalMint[_user];
-        _userWithdraw = awardWithdrawAmount[_user];
-        _userUnWithdraw = awardAmount[_user];
-    }
-
-    function getStakeInfo(address _user)
-        external
-        view
-        returns (
-            uint256 tvl,
-            uint256 revenue,
-            uint256 earned,
-            uint256 claimable,
-            uint256 totalApy,
-            uint256 staked,
-            uint256 totalEarnValue,
-            uint256 offTokenStake
-        )
-    {
-        uint256 price = 1; // get price?
-        tvl = totalStaked * price;
-        revenue = totalEarn * price;
-        earned = totalEarn;
-        if (userStakes[_user].maturityTs <= block.timestamp) {
-            claimable = userStakes[_user].amount;
-        } else {
-            claimable = 0;
-        }
-
-        totalApy = apy;
-        staked = userStakes[_user].amount;
-        totalEarnValue = stakeValues[_user];
-
-        uint256 totalSupply = totalSupply();
-        if (totalSupply != 0) {
-            offTokenStake = (totalStaked * 1000000) / totalSupply;
-        }
-    }
-
-    function getNetworkEvents()
-        external
-        view
-        returns (
-            uint256 _genesisTs,
-            uint256[] memory _totalMint,
-            uint256[] memory _staked,
-            uint256[] memory _unstaked
-        )
-    {
-        uint256 _today = (block.timestamp - genesisTs) / SECONDS_IN_DAY;
-        _totalMint = new uint256[](_today);
-        _staked = new uint256[](_today);
-        _unstaked = new uint256[](_today);
-
-        _genesisTs = genesisTs;
-
-        for (uint256 i = 0; i < _today; i++) {
-            _totalMint[i] = dayMintAmount[i];
-            _staked[i] = dayStaked[i];
-            _unstaked[i] = dayUnStaked[i];
-        }
-    }
-
-    function getStakeTime(address user) external view returns (uint256 ts) {
-        if (userStakes[user].amount == 0) {
-            ts = 0;
-        }
-
-        ts = userStakes[user].maturityTs;
-    }
-
+    /**
+     * @dev 获取用户认领时间戳和金额
+     */
     function getClaimTsAmount(address _user, string calldata _meshID)
         public
         view
         returns (int256 count, uint256 _amount)
     {
-        if (userMints[_user][_meshID].withdrawTs != 0) {
-            count = -1;
-        } else {
-            count = int256(userApplys[_meshID].length);
+        // 兼容：返回当前网格已有申请次数与固定比例
+        count = int256(uint256(meshApplyCount[_meshID]));
             _amount = degreeHeats[_meshID] / 10;
-        }
+    }
+
+    /**
+     * @dev 获取合约状态信息
+     */
+    function getContractStatus() external view returns (
+        bool _paused,
+        uint256 _totalSupply,
+        uint256 _activeMinters,
+        uint256 _activeMeshes,
+        uint256 _totalBurn
+    ) {
+        _paused = paused();
+        _totalSupply = totalSupply();
+        _activeMinters = activeMinters;
+        _activeMeshes = activeMeshes;
+        _totalBurn = totalBurn;
     }
 }
