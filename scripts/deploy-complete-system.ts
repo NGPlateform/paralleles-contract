@@ -40,25 +40,34 @@ async function main() {
         // 阶段3: 部署业务合约
         console.log("\n=== 阶段3: 部署业务合约 ===");
         
-        const meshesAddress = await deployMeshes(foundationAddr, safeAddress);
+        const meshesAddress = await deployMeshes(safeAddress);
         console.log("✅ Meshes合约部署完成:", meshesAddress);
 
-        const rewardAddress = await deployReward(meshesAddress, foundationAddr, safeAddress);
+        const foundationManageAddress = await deployFoundationManage(safeAddress);
+        console.log("✅ FoundationManage合约部署完成:", foundationManageAddress);
+
+        const rewardAddress = await deployReward(meshesAddress, foundationManageAddress, safeAddress);
         console.log("✅ Reward合约部署完成:", rewardAddress);
 
-        const stakeAddress = await deployStake(meshesAddress, foundationAddr, safeAddress, initialAPY);
+        const stakeAddress = await deployStake(meshesAddress, foundationManageAddress, safeAddress, initialAPY);
         console.log("✅ Stake合约部署完成:", stakeAddress);
 
-        // 阶段4: 配置系统
-        console.log("\n=== 阶段4: 配置系统 ===");
+        // 阶段4: 建立合约关联
+        console.log("\n=== 阶段4: 建立合约关联 ===");
         
-        await configureSystem(safeManagerAddress, meshesAddress, rewardAddress, stakeAddress);
+        await establishContractLinks(meshesAddress, foundationManageAddress);
+        console.log("✅ 合约关联建立完成");
+
+        // 阶段5: 配置系统
+        console.log("\n=== 阶段5: 配置系统 ===");
+        
+        await configureSystem(safeManagerAddress, meshesAddress, rewardAddress, stakeAddress, foundationManageAddress);
         console.log("✅ 系统配置完成");
 
-        // 阶段5: 验证部署
-        console.log("\n=== 阶段5: 验证部署 ===");
+        // 阶段6: 验证部署
+        console.log("\n=== 阶段6: 验证部署 ===");
         
-        await verifyDeployment(safeAddress, safeManagerAddress, meshesAddress, rewardAddress, stakeAddress);
+        await verifyDeployment(safeAddress, safeManagerAddress, meshesAddress, rewardAddress, stakeAddress, foundationManageAddress);
         console.log("✅ 部署验证完成");
 
         // 保存部署信息
@@ -66,6 +75,7 @@ async function main() {
             safeAddress,
             safeManagerAddress,
             meshesAddress,
+            foundationManageAddress,
             rewardAddress,
             stakeAddress,
             owners,
@@ -78,6 +88,7 @@ async function main() {
         console.log("Gnosis Safe:", safeAddress);
         console.log("SafeManager:", safeManagerAddress);
         console.log("Meshes合约:", meshesAddress);
+        console.log("FoundationManage合约:", foundationManageAddress);
         console.log("Reward合约:", rewardAddress);
         console.log("Stake合约:", stakeAddress);
 
@@ -151,14 +162,27 @@ async function deploySafeManager(safeAddress: string): Promise<string> {
 /**
  * 部署Meshes合约
  */
-async function deployMeshes(foundationAddr: string, safeAddress: string): Promise<string> {
+async function deployMeshes(safeAddress: string): Promise<string> {
     console.log("部署Meshes合约...");
     
     const Meshes = await ethers.getContractFactory("Meshes");
-    const meshes = await Meshes.deploy(foundationAddr, safeAddress);
+    const meshes = await Meshes.deploy(safeAddress);
     await meshes.deployed();
     
     return meshes.address;
+}
+
+/**
+ * 部署FoundationManage合约
+ */
+async function deployFoundationManage(safeAddress: string): Promise<string> {
+    console.log("部署FoundationManage合约...");
+    
+    const FoundationManage = await ethers.getContractFactory("FoundationManage");
+    const foundationManage = await FoundationManage.deploy(safeAddress);
+    await foundationManage.deployed();
+    
+    return foundationManage.address;
 }
 
 /**
@@ -188,13 +212,39 @@ async function deployStake(meshToken: string, foundationAddr: string, safeAddres
 }
 
 /**
+ * 建立合约关联
+ */
+async function establishContractLinks(meshesAddress: string, foundationManageAddress: string) {
+    console.log("建立合约关联...");
+    
+    const [deployer] = await ethers.getSigners();
+    
+    // 1. 设置 Meshes 的 FoundationAddr 为 FoundationManage
+    const Meshes = await ethers.getContractFactory("Meshes");
+    const meshes = Meshes.attach(meshesAddress);
+    
+    console.log("设置 Meshes 的 FoundationAddr...");
+    await meshes.connect(deployer).setFoundationAddress(foundationManageAddress);
+    
+    // 2. 设置 FoundationManage 的 meshToken 为 Meshes
+    const FoundationManage = await ethers.getContractFactory("FoundationManage");
+    const foundationManage = FoundationManage.attach(foundationManageAddress);
+    
+    console.log("设置 FoundationManage 的 meshToken...");
+    await foundationManage.connect(deployer).setMeshToken(meshesAddress);
+    
+    console.log("合约关联建立完成");
+}
+
+/**
  * 配置系统
  */
 async function configureSystem(
     safeManagerAddress: string,
     meshesAddress: string,
     rewardAddress: string,
-    stakeAddress: string
+    stakeAddress: string,
+    foundationManageAddress: string
 ) {
     console.log("配置系统...");
     
@@ -212,7 +262,8 @@ async function verifyDeployment(
     safeManagerAddress: string,
     meshesAddress: string,
     rewardAddress: string,
-    stakeAddress: string
+    stakeAddress: string,
+    foundationManageAddress: string
 ) {
     console.log("验证部署...");
     
@@ -243,6 +294,14 @@ async function verifyDeployment(
     console.log("Meshes验证:");
     console.log("- 名称:", meshName);
     console.log("- 符号:", meshSymbol);
+    
+    // 验证FoundationManage
+    const FoundationManage = await ethers.getContractFactory("FoundationManage");
+    const foundationManage = FoundationManage.attach(foundationManageAddress);
+    const foundationSafeAddress = await foundationManage.safeAddress();
+    
+    console.log("FoundationManage验证:");
+    console.log("- Safe地址:", foundationSafeAddress);
     
     console.log("部署验证完成");
 }

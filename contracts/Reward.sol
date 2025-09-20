@@ -58,7 +58,7 @@ contract Reward is ReentrancyGuard, Pausable {
     /** @dev Mesh代币合约地址 */
     IERC20 public meshToken;
     
-    /** @dev 基金会地址，用于接收剩余代币 */
+    /** @dev 基金会地址（废弃路径，统一托管后不再作为提现来源） */
     address public foundationAddr;
     
     /** @dev 基金会管理合约地址，用于代币转移 */
@@ -250,9 +250,10 @@ contract Reward is ReentrancyGuard, Pausable {
         
         uint256 availableAmount = reward.totalAmount - reward.withdrawnAmount;
         require(_amount <= availableAmount, "Insufficient available rewards");
-        
-        // 从基金会账户转移代币
-        require(meshToken.transferFrom(foundationAddr, msg.sender, _amount), "Transfer failed");
+        // 直接由 Reward 自持余额发放
+        // 若余额不足，将由前置流程通过 FoundationManage 进行补仓
+        require(meshToken.balanceOf(address(this)) >= _amount, "Insufficient buffer");
+        require(meshToken.transfer(msg.sender, _amount), "Transfer failed");
         
         // 更新状态
         reward.withdrawnAmount += _amount;
@@ -269,9 +270,9 @@ contract Reward is ReentrancyGuard, Pausable {
         RewardInfo storage reward = userRewards[msg.sender];
         require(reward.totalAmount > reward.withdrawnAmount, "No rewards available");
         uint256 withdrawAmount = reward.totalAmount - reward.withdrawnAmount;
-        
-        // 从基金会账户转移代币
-        require(meshToken.transferFrom(foundationAddr, msg.sender, withdrawAmount), "Transfer failed");
+        // 直接由 Reward 自持余额发放
+        require(meshToken.balanceOf(address(this)) >= withdrawAmount, "Insufficient buffer");
+        require(meshToken.transfer(msg.sender, withdrawAmount), "Transfer failed");
         
         // 更新状态
         reward.withdrawnAmount += withdrawAmount;
@@ -349,7 +350,7 @@ contract Reward is ReentrancyGuard, Pausable {
 
     function _ensureTopUp(uint256 pendingNewRewards) internal {
         if (foundationManager == address(0)) return;
-        uint256 bal = meshToken.balanceOf(foundationAddr);
+        uint256 bal = meshToken.balanceOf(address(this));
         if (bal >= minFoundationBalance) return;
         // 估算请求量：目标补至 minFoundationBalance 的 2 倍，至少覆盖 pendingNewRewards
         uint256 target = minFoundationBalance * 2;
@@ -358,12 +359,9 @@ contract Reward is ReentrancyGuard, Pausable {
             need = pendingNewRewards;
         }
         if (need == 0) return;
-        // 由 Safe 发起对 FoundationManage 的转账调用；此处只发起请求事件
         emit AutoTopUpRequested(foundationManager, need);
-        // 可选：尝试直接调用（如由治理预授权）
-        try IFoundationManage(foundationManager).transferTo(foundationAddr, need) {
+        try IFoundationManage(foundationManager).transferTo(address(this), need) {
         } catch {
-            // 忽略失败，等待 Safe 手动或自动执行
         }
     }
 }

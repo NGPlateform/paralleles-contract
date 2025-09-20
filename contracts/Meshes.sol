@@ -262,29 +262,28 @@ contract Meshes is ERC20, ReentrancyGuard, Pausable {
 
     /**
      * @dev 构造函数，初始化Mesh代币合约
-     * @param _foundationAddr 基金会地址，用于接收代币分配
      * @param _governanceSafe 治理安全地址，用于管理合约
      * 
      * 初始化过程：
      * 1. 设置代币名称和符号
      * 2. 记录创世时间戳
-     * 3. 配置基金会和治理地址
+     * 3. 配置治理地址
      * 4. 初始化日铸造因子
      * 5. 设置基金会转账时间
+     * 6. FoundationAddr 初始化为 address(0)，后续通过 setFoundationAddress 设置
      */
     constructor(
-        address _foundationAddr,
         address _governanceSafe
     ) ERC20("Mesh Token", "MESH") {
-        require(_foundationAddr != address(0), "Invalid foundation address");
         require(_governanceSafe != address(0), "Invalid safe address");
 
         // 记录创世时间戳，用于计算相对时间
         genesisTs = block.timestamp;
         
-        // 设置基金会和治理地址
-        FoundationAddr = _foundationAddr;
+        // 设置治理地址
         governanceSafe = _governanceSafe;
+        // FoundationAddr 初始化为 address(0)，后续通过 setFoundationAddress 设置
+        FoundationAddr = address(0);
         
         // 初始化日因子为首日值（1e10 = 1.0，表示100%）
         dailyMintFactor = 1e10;
@@ -390,6 +389,8 @@ contract Meshes is ERC20, ReentrancyGuard, Pausable {
      * - 暂停时不可调用
      * - 地址验证：不能为零地址
      * - 重复检查：不能设置为相同地址
+     * - 首次设置：从 address(0) 设置时跳过白名单检查
+     * - 后续修改：需要白名单检查
      * - 事件记录：便于追踪地址变更
      */
     function setFoundationAddress(
@@ -397,9 +398,28 @@ contract Meshes is ERC20, ReentrancyGuard, Pausable {
     ) external onlySafe whenNotPaused {
         require(_newFoundationAddr != address(0), "Invalid foundation address");
         require(_newFoundationAddr != FoundationAddr, "Same foundation address");
-        address oldFoundation = FoundationAddr;
+        
+        // 如果是首次设置（从 address(0) 设置），跳过白名单检查
+        if (FoundationAddr == address(0)) {
+            address oldFoundation = FoundationAddr;
+            FoundationAddr = _newFoundationAddr;
+            emit FoundationAddressUpdated(oldFoundation, _newFoundationAddr);
+            return;
+        }
+        
+        // 后续修改仍需白名单检查
+        require(_isApprovedByCurrentTreasury(_newFoundationAddr), "New foundation not approved by treasury");
+        address oldFoundationAddr = FoundationAddr;
         FoundationAddr = _newFoundationAddr;
-        emit FoundationAddressUpdated(oldFoundation, _newFoundationAddr);
+        emit FoundationAddressUpdated(oldFoundationAddr, _newFoundationAddr);
+    }
+
+    // 仅用于只读校验：查询当前国库（若为合约且实现方法）对白名单的认可
+    function _isApprovedByCurrentTreasury(address candidate) internal view returns (bool) {
+        bytes4 sel = bytes4(keccak256("isRecipientApproved(address)"));
+        (bool ok, bytes memory data) = FoundationAddr.staticcall(abi.encodeWithSelector(sel, candidate));
+        if (!ok || data.length == 0) return false;
+        return abi.decode(data, (bool));
     }
 
     /**

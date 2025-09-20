@@ -33,15 +33,29 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
  */
 contract FoundationManage is Ownable, ReentrancyGuard, Pausable {
     // ============ 合约地址配置 ============
-    /** @dev Mesh代币合约地址（不可变） */
-    IERC20 public immutable meshToken;
+    /** @dev Mesh代币合约地址 */
+    IERC20 public meshToken;
     
     /** @dev 多签Safe地址，作为二次权限来源 */
     address public safeAddress;
 
     // ============ 权限控制 ============
-    /** @dev 允许的支出方（例如Rewards合约、Stake合约） */
-    mapping(address => bool) public approvedSpenders;
+    /** @dev 收款白名单（允许作为 to 接收划拨） */
+    mapping(address => bool) public approvedRecipients;
+    /** @dev 发起白名单（允许作为 spender/initiator 发起拨款） */
+    mapping(address => bool) public approvedInitiators;
+    /** @dev 自动划拨收款白名单（仅 autoTransferTo 允许的 to） */
+    mapping(address => bool) public approvedAutoRecipients;
+
+    /** @dev 按收款地址的自动划拨限额（进一步风控） */
+    struct RecipientAutoLimit {
+        uint256 maxPerTx;
+        uint256 maxDaily;
+        uint256 usedToday;
+        uint256 dayIndex;
+        bool enabled;
+    }
+    mapping(address => RecipientAutoLimit) public autoRecipientLimits;
 
     // ============ 自动限额配置 ============
     /**
@@ -70,22 +84,27 @@ contract FoundationManage is Ownable, ReentrancyGuard, Pausable {
     /** @dev 支出方批准事件：当支出方被批准或取消批准时触发 */
     event SpenderApproved(address indexed spender, bool approved);
     
-    /** @dev 转账执行事件：当代币转账执行时触发 */
-    event TransferExecuted(address indexed to, uint256 amount);
+    /** @dev Mesh代币地址更新事件：当Mesh代币地址设置时触发 */
+    event MeshTokenUpdated(address indexed meshToken);
+    
+    /** @dev 转账执行事件：记录调用发起者、名义发起方、收款方、金额、方式与原因ID */
+    // method: 1=transferTo, 2=autoTransferTo, 3=transferFor
+    event TransferExecuted(address indexed initiator, address indexed spender, address indexed to, uint256 amount, uint8 method, bytes32 reasonId);
     
     /** @dev 自动限额更新事件：当自动限额配置更新时触发 */
     event AutoLimitUpdated(address indexed spender, uint256 maxPerTx, uint256 maxDaily, bool enabled);
 
-    modifier onlySafe() {
-        require(msg.sender == safeAddress || msg.sender == owner(), "FoundationManage: not authorized");
+    // 仅限 Safe 执行（用于资金划拨）
+    modifier onlySafeExec() {
+        require(msg.sender == safeAddress, "FoundationManage: only Safe");
         _;
     }
 
-    constructor(address _meshToken, address _safe) {
-        require(_meshToken != address(0), "FoundationManage: invalid token");
+    constructor(address _safe) {
         require(_safe != address(0), "FoundationManage: invalid safe");
-        meshToken = IERC20(_meshToken);
         safeAddress = _safe;
+        // meshToken 初始化为 address(0)，后续通过 setMeshToken 设置
+        meshToken = IERC20(address(0));
     }
 
     function setSafe(address _newSafe) external onlyOwner {
@@ -95,9 +114,44 @@ contract FoundationManage is Ownable, ReentrancyGuard, Pausable {
         emit SafeUpdated(old, _newSafe);
     }
 
-    function setSpender(address spender, bool approved) external onlyOwner {
-        approvedSpenders[spender] = approved;
+    /**
+     * @dev 设置Mesh代币地址（仅限Owner，且只能设置一次）
+     * @param _meshToken Mesh代币合约地址
+     * 
+     * 功能说明：
+     * - 设置Mesh代币合约地址
+     * - 只能设置一次，防止意外修改
+     * - 用于解决部署时的循环依赖问题
+     * 
+     * 安全特性：
+     * - 仅限Owner调用
+     * - 地址验证：不能为零地址
+     * - 一次性设置：防止重复设置
+     * - 事件记录：便于追踪地址设置
+     */
+    function setMeshToken(address _meshToken) external onlyOwner {
+        require(_meshToken != address(0), "FoundationManage: invalid token");
+        require(address(meshToken) == address(0), "FoundationManage: token already set");
+        meshToken = IERC20(_meshToken);
+        emit MeshTokenUpdated(_meshToken);
+    }
+
+    // 新接口：单独设置收款白名单
+    function setRecipient(address to, bool approved) external onlyOwner {
+        approvedRecipients[to] = approved;
+        emit SpenderApproved(to, approved);
+    }
+
+    // 新接口：单独设置发起白名单
+    function setInitiator(address spender, bool approved) external onlyOwner {
+        approvedInitiators[spender] = approved;
         emit SpenderApproved(spender, approved);
+    }
+
+    // 新接口：设置自动划拨可用的收款白名单
+    function setAutoRecipient(address to, bool approved) external onlyOwner {
+        approvedAutoRecipients[to] = approved;
+        emit SpenderApproved(to, approved);
     }
 
     function setAutoLimit(address spender, uint256 maxPerTx, uint256 maxDaily, bool enabled) external onlyOwner {
@@ -108,21 +162,60 @@ contract FoundationManage is Ownable, ReentrancyGuard, Pausable {
         emit AutoLimitUpdated(spender, maxPerTx, maxDaily, enabled);
     }
 
+    // 全局自动划拨日上限（风控断路器）。如 autoGlobalEnabled=false 则禁用自动划拨
+    uint256 public globalAutoDailyMax;
+    uint256 public globalAutoUsedToday;
+    uint256 public globalAutoDayIndex;
+    bool public autoGlobalEnabled;
+
+    function setGlobalAutoDailyMax(uint256 maxAmount) external onlyOwner {
+        globalAutoDailyMax = maxAmount;
+    }
+
+    function setGlobalAutoEnabled(bool enabled) external onlyOwner {
+        autoGlobalEnabled = enabled;
+    }
+
+    // 只读白名单查询，供外部约束使用（如 Meshes 强约束设置 FoundationAddr）
+    function isRecipientApproved(address to) external view returns (bool) {
+        return approvedRecipients[to];
+    }
+
+    function isInitiatorApproved(address spender) external view returns (bool) {
+        return approvedInitiators[spender];
+    }
+
+    function isAutoRecipientApproved(address to) external view returns (bool) {
+        return approvedAutoRecipients[to];
+    }
+
     // Rewards 合约提出补充申请后，由 Safe 调用执行
-    function transferTo(address to, uint256 amount) external onlySafe nonReentrant whenNotPaused {
+    function transferTo(address to, uint256 amount) external onlySafeExec nonReentrant whenNotPaused {
         require(to != address(0), "FoundationManage: invalid to");
         require(amount > 0, "FoundationManage: zero amount");
         require(meshToken.balanceOf(address(this)) >= amount, "FoundationManage: insufficient");
-        require(approvedSpenders[to], "FoundationManage: to not approved");
+        require(approvedRecipients[to], "FoundationManage: recipient not approved");
         require(meshToken.transfer(to, amount), "ERC20 transfer failed");
-        emit TransferExecuted(to, amount);
+        emit TransferExecuted(msg.sender, address(0), to, amount, 1, bytes32(0));
+    }
+
+    // 带原因ID的转账（Safe 执行）
+    function transferToWithReason(address to, uint256 amount, bytes32 reasonId) external onlySafeExec nonReentrant whenNotPaused {
+        require(to != address(0), "FoundationManage: invalid to");
+        require(amount > 0, "FoundationManage: zero amount");
+        require(approvedRecipients[to], "FoundationManage: recipient not approved");
+        require(meshToken.balanceOf(address(this)) >= amount, "FoundationManage: insufficient");
+        require(meshToken.transfer(to, amount), "ERC20 transfer failed");
+        emit TransferExecuted(msg.sender, address(0), to, amount, 1, reasonId);
     }
 
     // 受限自动划拨：由已批准的 spender 自行触发，用于“小额自动化”，不经 Safe
     function autoTransferTo(address to, uint256 amount) external nonReentrant whenNotPaused {
         require(to != address(0), "FoundationManage: invalid to");
         require(amount > 0, "FoundationManage: zero amount");
-        require(approvedSpenders[to], "FoundationManage: to not approved");
+        require(approvedAutoRecipients[to], "FoundationManage: auto recipient not approved");
+        require(autoGlobalEnabled, "FoundationManage: auto disabled");
+        require(approvedInitiators[msg.sender], "FoundationManage: initiator not approved");
         AutoLimit storage lim = autoLimits[msg.sender];
         require(lim.enabled, "FoundationManage: auto limit disabled");
         require(amount <= lim.maxPerTx, "FoundationManage: exceeds per-tx limit");
@@ -132,19 +225,102 @@ contract FoundationManage is Ownable, ReentrancyGuard, Pausable {
             lim.usedToday = 0;
         }
         require(lim.usedToday + amount <= lim.maxDaily, "FoundationManage: exceeds daily limit");
+        // 收款地址限额
+        RecipientAutoLimit storage rlim = autoRecipientLimits[to];
+        require(rlim.enabled, "FoundationManage: auto recipient limit disabled");
+        require(amount <= rlim.maxPerTx, "FoundationManage: recipient per-tx limit");
+        if (rlim.dayIndex != day) {
+            rlim.dayIndex = day;
+            rlim.usedToday = 0;
+        }
+        require(rlim.usedToday + amount <= rlim.maxDaily, "FoundationManage: recipient daily limit");
+        // 全局自动化日限额
+        if (globalAutoDayIndex != day) {
+            globalAutoDayIndex = day;
+            globalAutoUsedToday = 0;
+        }
+        require(globalAutoDailyMax > 0, "FoundationManage: global daily max not set");
+        require(globalAutoUsedToday + amount <= globalAutoDailyMax, "FoundationManage: exceeds global daily limit");
         require(meshToken.balanceOf(address(this)) >= amount, "FoundationManage: insufficient");
         lim.usedToday += amount;
+        rlim.usedToday += amount;
+        globalAutoUsedToday += amount;
         require(meshToken.transfer(to, amount), "ERC20 transfer failed");
-        emit TransferExecuted(to, amount);
+        emit TransferExecuted(msg.sender, msg.sender, to, amount, 2, bytes32(0));
+    }
+
+    // 带原因ID的自动划拨
+    function autoTransferToWithReason(address to, uint256 amount, bytes32 reasonId) external nonReentrant whenNotPaused {
+        require(to != address(0), "FoundationManage: invalid to");
+        require(amount > 0, "FoundationManage: zero amount");
+        require(approvedAutoRecipients[to], "FoundationManage: auto recipient not approved");
+        require(autoGlobalEnabled, "FoundationManage: auto disabled");
+        require(approvedInitiators[msg.sender], "FoundationManage: initiator not approved");
+        AutoLimit storage lim = autoLimits[msg.sender];
+        require(lim.enabled, "FoundationManage: auto limit disabled");
+        require(amount <= lim.maxPerTx, "FoundationManage: exceeds per-tx limit");
+        uint256 day = block.timestamp / 1 days;
+        if (lim.dayIndex != day) {
+            lim.dayIndex = day;
+            lim.usedToday = 0;
+        }
+        require(lim.usedToday + amount <= lim.maxDaily, "FoundationManage: exceeds daily limit");
+        RecipientAutoLimit storage rlim = autoRecipientLimits[to];
+        require(rlim.enabled, "FoundationManage: auto recipient limit disabled");
+        require(amount <= rlim.maxPerTx, "FoundationManage: recipient per-tx limit");
+        if (rlim.dayIndex != day) {
+            rlim.dayIndex = day;
+            rlim.usedToday = 0;
+        }
+        require(rlim.usedToday + amount <= rlim.maxDaily, "FoundationManage: recipient daily limit");
+        if (globalAutoDayIndex != day) {
+            globalAutoDayIndex = day;
+            globalAutoUsedToday = 0;
+        }
+        require(globalAutoDailyMax > 0, "FoundationManage: global daily max not set");
+        require(globalAutoUsedToday + amount <= globalAutoDailyMax, "FoundationManage: exceeds global daily limit");
+        require(meshToken.balanceOf(address(this)) >= amount, "FoundationManage: insufficient");
+        lim.usedToday += amount;
+        rlim.usedToday += amount;
+        globalAutoUsedToday += amount;
+        require(meshToken.transfer(to, amount), "ERC20 transfer failed");
+        emit TransferExecuted(msg.sender, msg.sender, to, amount, 2, reasonId);
     }
 
     // 允许 Safe 发起对某个 spender 的一次性划拨
-    function transferFor(address spender, address to, uint256 amount) external onlySafe nonReentrant whenNotPaused {
-        require(approvedSpenders[spender], "FoundationManage: spender not approved");
+    function transferFor(address spender, address to, uint256 amount) external onlySafeExec nonReentrant whenNotPaused {
+        require(approvedInitiators[spender], "FoundationManage: initiator not approved");
+        require(approvedRecipients[to], "FoundationManage: recipient not approved");
         require(to != address(0) && amount > 0, "FoundationManage: invalid params");
         require(meshToken.balanceOf(address(this)) >= amount, "FoundationManage: insufficient");
         require(meshToken.transfer(to, amount), "ERC20 transfer failed");
-        emit TransferExecuted(to, amount);
+        emit TransferExecuted(msg.sender, spender, to, amount, 3, bytes32(0));
+    }
+
+    function transferForWithReason(address spender, address to, uint256 amount, bytes32 reasonId) external onlySafeExec nonReentrant whenNotPaused {
+        require(approvedInitiators[spender], "FoundationManage: initiator not approved");
+        require(approvedRecipients[to], "FoundationManage: recipient not approved");
+        require(to != address(0) && amount > 0, "FoundationManage: invalid params");
+        require(meshToken.balanceOf(address(this)) >= amount, "FoundationManage: insufficient");
+        require(meshToken.transfer(to, amount), "ERC20 transfer failed");
+        emit TransferExecuted(msg.sender, spender, to, amount, 3, reasonId);
+    }
+
+    // 配置每个收款地址的自动限额
+    function setAutoRecipientLimit(address to, uint256 maxPerTx, uint256 maxDaily, bool enabled) external onlyOwner {
+        RecipientAutoLimit storage rlim = autoRecipientLimits[to];
+        rlim.maxPerTx = maxPerTx;
+        rlim.maxDaily = maxDaily;
+        rlim.enabled = enabled;
+    }
+
+    // 仅 Safe 可暂停/恢复，作为业务断路器
+    function pause() external onlySafeExec {
+        _pause();
+    }
+
+    function unpause() external onlySafeExec {
+        _unpause();
     }
 }
 
