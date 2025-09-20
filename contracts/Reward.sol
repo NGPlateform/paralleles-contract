@@ -4,54 +4,106 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import "@openzeppelin/contracts/security/Pausable.sol";
 
+/**
+ * @title ICheckInVerifier - 签到验证接口
+ * @dev 用于验证用户是否满足特定活动的签到条件
+ */
 interface ICheckInVerifier {
     function isEligible(uint256 activityId, address user) external view returns (bool);
 }
 
+/**
+ * @title IFoundationManage - 基金会管理接口
+ * @dev 用于从基金会合约转移代币到奖励合约
+ */
 interface IFoundationManage {
     function transferTo(address to, uint256 amount) external;
 }
 
-contract Reward is ReentrancyGuard {
+/**
+ * @title Reward - 奖励分发合约
+ * @dev 管理用户奖励的分配和提取，支持活动奖励和基础奖励
+ * 
+ * 核心功能：
+ * 1. 奖励设置：治理地址可以设置用户奖励
+ * 2. 奖励提取：用户可以从基金会提取奖励
+ * 3. 活动奖励：支持基于活动的奖励分发
+ * 4. 自动补充：当余额不足时自动从基金会补充
+ * 
+ * 安全特性：
+ * - 重入保护：防止重入攻击
+ * - 暂停机制：紧急情况下可暂停
+ * - 访问控制：关键功能仅限治理地址
+ * - 余额检查：确保有足够的代币进行分发
+ * 
+ * @author Parallels Team
+ * @notice 本合约实现了基于活动的奖励分发系统
+ */
+contract Reward is ReentrancyGuard, Pausable {
+    /**
+     * @dev 用户奖励信息结构体
+     * @param totalAmount 总奖励数量
+     * @param withdrawnAmount 已提取数量
+     * @param lastWithdrawTime 最后提取时间戳
+     */
     struct RewardInfo {
-        uint256 totalAmount;
-        uint256 withdrawnAmount;
-        uint256 lastWithdrawTime;
+        uint256 totalAmount;        // 用户总奖励数量
+        uint256 withdrawnAmount;    // 已提取的奖励数量
+        uint256 lastWithdrawTime;   // 最后提取时间戳
     }
 
+    // ============ 合约地址配置 ============
+    /** @dev Mesh代币合约地址 */
     IERC20 public meshToken;
+    
+    /** @dev 基金会地址，用于接收剩余代币 */
     address public foundationAddr;
-    address public foundationManager; // FoundationManage 合约地址
-    ICheckInVerifier public checkInVerifier; // Chainlink 校验合约
-    address public governanceSafe;            // Gnosis Safe 地址（用于管理操作）
     
+    /** @dev 基金会管理合约地址，用于代币转移 */
+    address public foundationManager;
+    
+    /** @dev 签到验证合约地址，用于验证用户资格 */
+    ICheckInVerifier public checkInVerifier;
+    
+    /** @dev 治理安全地址（Gnosis Safe），用于管理操作 */
+    address public governanceSafe;
+    
+    // ============ 用户数据映射 ============
+    /** @dev 用户奖励信息：用户地址 => 奖励信息 */
     mapping(address => RewardInfo) public userRewards;
-    mapping(address => mapping(uint256 => bool)) public dayWithdrawn;
     
+    // ============ 统计信息 ============
+    /** @dev 总分发奖励数量 */
     uint256 public totalRewardsDistributed;
+    
+    /** @dev 总提取奖励数量 */
     uint256 public totalRewardsWithdrawn;
     
-    uint256 private spendNonce;
-    mapping(address => bool) private isOwner;
-    address[] private owners;
-    uint256 private signRequired;
+    // 取消日限额与内部签名机制
     
-    uint256 public constant SECONDS_IN_DAY = 86400;
-    uint256 public constant DAILY_WITHDRAW_LIMIT_PERCENT = 10; // 每日提取限制为10%
-    
+    // ============ 事件定义 ============
+    /** @dev 奖励设置事件：当为用户设置奖励时触发 */
     event RewardSet(address indexed user, uint256 amount, uint256 timestamp);
-    event RewardWithdrawn(address indexed user, uint256 amount, uint256 timestamp);
-    event FoundationUpdated(address indexed oldFoundation, address indexed newFoundation);
-    event FoundationManagerUpdated(address indexed oldManager, address indexed newManager);
-    event CheckInVerifierUpdated(address indexed oldVerifier, address indexed newVerifier);
-    event ActivityRewarded(uint256 indexed activityId, address indexed user, uint256 amount);
-    event ActivityBatchRewarded(uint256 indexed activityId, uint256 count, uint256 totalAmount);
     
-    modifier isOnlyOwner() {
-        require(isOwner[msg.sender], "Not owner");
-        _;
-    }
+    /** @dev 奖励提取事件：当用户提取奖励时触发 */
+    event RewardWithdrawn(address indexed user, uint256 amount, uint256 timestamp);
+    
+    /** @dev 基金会地址更新事件：当基金会地址变更时触发 */
+    event FoundationUpdated(address indexed oldFoundation, address indexed newFoundation);
+    
+    /** @dev 基金会管理合约更新事件：当管理合约地址变更时触发 */
+    event FoundationManagerUpdated(address indexed oldManager, address indexed newManager);
+    
+    /** @dev 签到验证合约更新事件：当验证合约地址变更时触发 */
+    event CheckInVerifierUpdated(address indexed oldVerifier, address indexed newVerifier);
+    
+    /** @dev 活动奖励事件：当用户获得活动奖励时触发 */
+    event ActivityRewarded(uint256 indexed activityId, address indexed user, uint256 amount);
+    
+    /** @dev 批量活动奖励事件：当批量分发活动奖励时触发 */
+    event ActivityBatchRewarded(uint256 indexed activityId, uint256 count, uint256 totalAmount);
     
     modifier onlySafe() {
         require(msg.sender == governanceSafe, "Only Safe");
@@ -64,59 +116,44 @@ contract Reward is ReentrancyGuard {
     }
     
     constructor(
-        address[] memory _owners,
         address _meshToken,
-        address _foundationAddr
+        address _foundationAddr,
+        address _governanceSafe
     ) {
         require(_meshToken != address(0), "Invalid mesh token address");
         require(_foundationAddr != address(0), "Invalid foundation address");
-        
-        for (uint256 i = 0; i < _owners.length; i++) {
-            address _owner = _owners[i];
-            if (isOwner[_owner] || _owner == address(0)) {
-                revert("Invalid owner address");
-            }
-            
-            isOwner[_owner] = true;
-            owners.push(_owner);
-        }
-        
+        require(_governanceSafe != address(0), "Invalid safe address");
         meshToken = IERC20(_meshToken);
         foundationAddr = _foundationAddr;
-        signRequired = _owners.length / 2 + 1;
-        governanceSafe = address(0);
+        governanceSafe = _governanceSafe;
     }
     
     /**
      * @dev 设置/更新治理 Safe 地址（由旧多签所有者发起一次性迁移）
      */
-    function setGovernanceSafe(address _safe) external isOnlyOwner {
+    function setGovernanceSafe(address _safe) external onlySafe {
         require(_safe != address(0), "Invalid safe");
+        require(_safe != governanceSafe, "Same safe");
         governanceSafe = _safe;
     }
     
+    // 仅限 Safe：紧急暂停/恢复
+    function pause() external onlySafe { _pause(); }
+    function unpause() external onlySafe { _unpause(); }
+    
     /**
-     * @dev 设置用户奖励（需要多签确认）
+     * @dev 设置用户奖励（由 Safe 执行）
      * @param _users 用户地址数组
      * @param _amounts 对应的奖励金额数组
-     * @param _totalAmount 总奖励金额
-     * @param vs 签名v值数组
-     * @param rs 签名r值数组
-     * @param ss 签名s值数组
+     * @param _totalAmount 总奖励金额（用于一致性检查）
      */
     function setUserReward(
         address[] calldata _users,
         uint256[] calldata _amounts,
-        uint256 _totalAmount,
-        uint8[] memory vs,
-        bytes32[] memory rs,
-        bytes32[] memory ss
-    ) external onlySafe {
-        // 迁移到 Safe 后，不再需要合约内多签校验，保留签名参数以兼容接口
+        uint256 _totalAmount
+    ) external onlySafe whenNotPaused {
         require(_users.length == _amounts.length, "Array length mismatch");
         require(_users.length > 0, "Empty arrays");
-        
-        spendNonce++;
         
         uint256 calculatedTotal = 0;
         for (uint256 i = 0; i < _users.length; i++) {
@@ -140,7 +177,7 @@ contract Reward is ReentrancyGuard {
         uint256 activityId,
         address user,
         uint256 amount
-    ) external isOnlyOwner {
+    ) external onlySafe whenNotPaused {
         require(user != address(0) && amount > 0, "Invalid params");
         require(address(checkInVerifier) != address(0), "Verifier not set");
         require(checkInVerifier.isEligible(activityId, user), "Not eligible");
@@ -159,7 +196,7 @@ contract Reward is ReentrancyGuard {
         uint256 activityId,
         address[] calldata users,
         uint256[] calldata amounts
-    ) external isOnlyOwner {
+    ) external onlySafe {
         require(users.length == amounts.length && users.length > 0, "Invalid arrays");
         require(address(checkInVerifier) != address(0), "Verifier not set");
         uint256 total;
@@ -205,7 +242,7 @@ contract Reward is ReentrancyGuard {
      * @dev 用户提取奖励
      * @param _amount 提取金额
      */
-    function withdraw(uint256 _amount) external nonReentrant {
+    function withdraw(uint256 _amount) external nonReentrant whenNotPaused {
         require(_amount > 0, "Amount must be greater than 0");
         
         RewardInfo storage reward = userRewards[msg.sender];
@@ -214,21 +251,12 @@ contract Reward is ReentrancyGuard {
         uint256 availableAmount = reward.totalAmount - reward.withdrawnAmount;
         require(_amount <= availableAmount, "Insufficient available rewards");
         
-        // 检查每日提取限制
-        uint256 dayIndex = block.timestamp / SECONDS_IN_DAY;
-        require(!dayWithdrawn[msg.sender][dayIndex], "Already withdrawn today");
-        
-        // 计算每日提取限制
-        uint256 dailyLimit = (reward.totalAmount * DAILY_WITHDRAW_LIMIT_PERCENT) / 100;
-        require(_amount <= dailyLimit, "Exceeds daily withdrawal limit");
-        
         // 从基金会账户转移代币
         require(meshToken.transferFrom(foundationAddr, msg.sender, _amount), "Transfer failed");
         
         // 更新状态
         reward.withdrawnAmount += _amount;
         reward.lastWithdrawTime = block.timestamp;
-        dayWithdrawn[msg.sender][dayIndex] = true;
         totalRewardsWithdrawn += _amount;
         
         emit RewardWithdrawn(msg.sender, _amount, block.timestamp);
@@ -237,18 +265,10 @@ contract Reward is ReentrancyGuard {
     /**
      * @dev 批量提取奖励（一次性提取所有可用奖励）
      */
-    function withdrawAll() external nonReentrant {
+    function withdrawAll() external nonReentrant whenNotPaused {
         RewardInfo storage reward = userRewards[msg.sender];
         require(reward.totalAmount > reward.withdrawnAmount, "No rewards available");
-        
-        uint256 availableAmount = reward.totalAmount - reward.withdrawnAmount;
-        
-        // 检查每日提取限制
-        uint256 dayIndex = block.timestamp / SECONDS_IN_DAY;
-        require(!dayWithdrawn[msg.sender][dayIndex], "Already withdrawn today");
-        
-        uint256 dailyLimit = (reward.totalAmount * DAILY_WITHDRAW_LIMIT_PERCENT) / 100;
-        uint256 withdrawAmount = availableAmount > dailyLimit ? dailyLimit : availableAmount;
+        uint256 withdrawAmount = reward.totalAmount - reward.withdrawnAmount;
         
         // 从基金会账户转移代币
         require(meshToken.transferFrom(foundationAddr, msg.sender, withdrawAmount), "Transfer failed");
@@ -256,7 +276,6 @@ contract Reward is ReentrancyGuard {
         // 更新状态
         reward.withdrawnAmount += withdrawAmount;
         reward.lastWithdrawTime = block.timestamp;
-        dayWithdrawn[msg.sender][dayIndex] = true;
         totalRewardsWithdrawn += withdrawAmount;
         
         emit RewardWithdrawn(msg.sender, withdrawAmount, block.timestamp);
@@ -296,96 +315,27 @@ contract Reward is ReentrancyGuard {
         uint256 _totalRewardsDistributed,
         uint256 _totalRewardsWithdrawn,
         uint256 _pendingRewards,
-        uint256 _ownerCount,
-        uint256 _signRequired
+        address _safe
     ) {
         _totalRewardsDistributed = totalRewardsDistributed;
         _totalRewardsWithdrawn = totalRewardsWithdrawn;
         _pendingRewards = totalRewardsDistributed - totalRewardsWithdrawn;
-        _ownerCount = owners.length;
-        _signRequired = signRequired;
+        _safe = governanceSafe;
     }
     
     /**
      * @dev 获取用户列表（用于管理）
      */
-    function getUsersWithRewards(uint256 _startIndex, uint256 _endIndex) 
+    function getUsersWithRewards(uint256 /*_startIndex*/, uint256 /*_endIndex*/) 
         external 
-        view 
+        pure 
         returns (address[] memory users, uint256[] memory amounts) 
     {
-        require(_startIndex < _endIndex, "Invalid index range");
-        require(_endIndex <= owners.length, "Index out of range");
-        
-        uint256 count = _endIndex - _startIndex;
-        users = new address[](count);
-        amounts = new uint256[](count);
-        
-        for (uint256 i = 0; i < count; i++) {
-            address user = owners[_startIndex + i];
-            users[i] = user;
-            amounts[i] = userRewards[user].totalAmount;
-        }
+        // 简化：不在链上分页枚举，返回空数组以鼓励 Off-chain 统计
+        users = new address[](0);
+        amounts = new uint256[](0);
     }
-    
-    // 多签验证相关函数
-    function validSignature(
-        address _sender,
-        uint8[] memory vs,
-        bytes32[] memory rs,
-        bytes32[] memory ss
-    ) public view returns (bool) {
-        require(vs.length == rs.length, "vs.length == rs.length");
-        require(rs.length == ss.length, "rs.length == ss.length");
-        require(vs.length <= owners.length, "vs.length <= owners.length");
-        require(vs.length >= signRequired, "vs.length >= signRequired");
-        
-        bytes32 message = _messageToRecover(_sender);
-        address[] memory addrs = new address[](vs.length);
-        
-        for (uint256 i = 0; i < vs.length; i++) {
-            addrs[i] = ecrecover(message, vs[i] + 27, rs[i], ss[i]);
-        }
-        
-        return _distinctOwners(addrs);
-    }
-    
-    function _messageToRecover(address _sender) private view returns (bytes32) {
-        bytes32 hashedUnsignedMessage = generateMessageToSign(_sender);
-        bytes memory prefix = "\x19Ethereum Signed Message:\n32";
-        return keccak256(abi.encodePacked(prefix, hashedUnsignedMessage));
-    }
-    
-    function generateMessageToSign(address _sender) private view returns (bytes32) {
-        return keccak256(abi.encodePacked(_sender, block.chainid, spendNonce));
-    }
-    
-    function _distinctOwners(address[] memory addrs) private view returns (bool) {
-        if (addrs.length > owners.length) {
-            return false;
-        }
-        
-        for (uint256 i = 0; i < addrs.length; i++) {
-            if (!isOwner[addrs[i]]) {
-                return false;
-            }
-            
-            for (uint256 j = 0; j < i; j++) {
-                if (addrs[i] == addrs[j]) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-    
-    function getSpendNonce() external view returns (uint256) {
-        return spendNonce;
-    }
-    
-    function addSpendNonce() external onlySafe {
-        spendNonce++;
-    }
+
 
     // ============ 内部：余额不足时自动向 FoundationManage 申请补充 =========
     uint256 public minFoundationBalance; // 低于该值则触发申请

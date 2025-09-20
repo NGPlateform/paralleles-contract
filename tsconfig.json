@@ -5,6 +5,25 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "skipLibCheck": true
-  }
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    },
+    "types": ["jest", "node", "chai"]
+  },
+  "include": [
+    "contracts/**/*",
+    "scripts/**/*",
+    "test/**/*",
+    "utils/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "artifacts",
+    "cache"
+  ]
 }

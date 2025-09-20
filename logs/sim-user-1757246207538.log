@@ -1,0 +1,302 @@
+[2025-09-07T11:56:47.544Z] Start single-user TUI: user=0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC
+[2025-09-07T11:56:48.124Z] claim E100N100
+[2025-09-07T11:56:49.494Z] reward set +4.0
+[2025-09-07T11:56:50.226Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:56:50.931Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:56:52.483Z] claim W483N7462
+[2025-09-07T11:56:54.701Z] claim E560N689
+[2025-09-07T11:56:55.994Z] withdraw MESH +5.3125
+[2025-09-07T11:56:56.738Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:56:57.525Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:56:58.846Z] reward withdraw +3.5
+[2025-09-07T11:56:58.847Z] reward set +3.0
+[2025-09-07T11:56:59.942Z] reward withdraw +2.75
+[2025-09-07T11:56:59.943Z] reward set +2.0
+[2025-09-07T11:57:01.406Z] withdraw MESH +4.5
+[2025-09-07T11:57:03.589Z] withdraw MESH +4.5
+[2025-09-07T11:57:04.342Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:57:05.794Z] reward set +1.0
+[2025-09-07T11:57:07.464Z] reward set +4.0
+[2025-09-07T11:57:09.350Z] claim W586N5220
+[2025-09-07T11:57:11.508Z] claim W580S2951
+[2025-09-07T11:57:12.255Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:57:14.775Z] error: Transaction ran out of gas
+[2025-09-07T11:57:16.112Z] withdraw MESH +7.5
+[2025-09-07T11:57:16.936Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:57:19.829Z] reward withdraw +4.875
+[2025-09-07T11:57:19.830Z] reward set +2.0
+[2025-09-07T11:57:21.821Z] claim E573N1161
+[2025-09-07T11:57:22.734Z] reward set +1.0
+[2025-09-07T11:57:24.269Z] withdraw MESH +10.55
+[2025-09-07T11:57:26.531Z] claim W218N1320
+[2025-09-07T11:57:28.219Z] withdraw MESH +12.35
+[2025-09-07T11:57:29.591Z] reward withdraw +3.4375
+[2025-09-07T11:57:29.593Z] reward set +1.0
+[2025-09-07T11:57:30.467Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:57:32.594Z] claim E777N2745
+[2025-09-07T11:57:34.463Z] claim W970N8459
+[2025-09-07T11:57:37.089Z] withdraw MESH +14.4
+[2025-09-07T11:57:38.035Z] reward set +5.0
+[2025-09-07T11:57:40.209Z] reward withdraw +5.71875
+[2025-09-07T11:57:40.217Z] reward set +3.0
+[2025-09-07T11:57:41.242Z] reward set +1.0
+[2025-09-07T11:57:43.180Z] claim W473S7270
+[2025-09-07T11:57:44.073Z] reward set +1.0
+[2025-09-07T11:57:44.838Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:57:48.441Z] claim E817S787
+[2025-09-07T11:57:49.345Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:57:50.099Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:57:50.984Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:57:53.252Z] reward set +4.0
+[2025-09-07T11:57:56.633Z] withdraw MESH +22.80625
+[2025-09-07T11:57:57.601Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:57:58.891Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:58:00.205Z] reward withdraw +10.359375
+[2025-09-07T11:58:00.206Z] reward set +4.0
+[2025-09-07T11:58:02.263Z] claim E268S7237
+[2025-09-07T11:58:04.296Z] withdraw MESH +23.25
+[2025-09-07T11:58:05.097Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:58:06.815Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:58:08.497Z] withdraw MESH +18.9
+[2025-09-07T11:58:09.377Z] reward set +3.0
+[2025-09-07T11:58:11.139Z] reward set +5.0
+[2025-09-07T11:58:12.089Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:58:12.797Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:58:13.494Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:58:15.506Z] withdraw MESH +23.625
+[2025-09-07T11:58:16.449Z] reward set +2.0
+[2025-09-07T11:58:17.185Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:58:18.853Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:58:20.029Z] reward withdraw +11.1796875
+[2025-09-07T11:58:20.030Z] reward set +2.0
+[2025-09-07T11:58:21.883Z] claim W983N7121
+[2025-09-07T11:58:23.632Z] reward set +3.0
+[2025-09-07T11:58:24.466Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:58:25.328Z] reward set +1.0
+[2025-09-07T11:58:28.794Z] reward withdraw +8.08984375
+[2025-09-07T11:58:28.795Z] reward set +1.0
+[2025-09-07T11:58:30.854Z] withdraw MESH +26.2875
+[2025-09-07T11:58:31.684Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:58:33.602Z] claim E992N1179
+[2025-09-07T11:58:36.614Z] claim W510S5243
+[2025-09-07T11:58:37.449Z] reward set +3.0
+[2025-09-07T11:58:41.088Z] reward withdraw +6.044921875
+[2025-09-07T11:58:41.090Z] reward set +1.0
+[2025-09-07T11:58:43.896Z] claim E702N1051
+[2025-09-07T11:58:45.341Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:58:46.184Z] reward set +3.0
+[2025-09-07T11:58:50.781Z] error: Transaction ran out of gas
+[2025-09-07T11:58:51.567Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:58:54.319Z] withdraw MESH +32.5875
+[2025-09-07T11:58:57.677Z] claim W53S3570
+[2025-09-07T11:59:00.937Z] withdraw MESH +32.875
+[2025-09-07T11:59:01.980Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:59:02.776Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:59:05.167Z] claim W885N4440
+[2025-09-07T11:59:07.060Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:59:10.743Z] reward withdraw +5.5224609375
+[2025-09-07T11:59:10.744Z] reward set +2.0
+[2025-09-07T11:59:14.314Z] claim E180N1845
+[2025-09-07T11:59:15.931Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:59:17.668Z] reward withdraw +5.26123046875
+[2025-09-07T11:59:17.670Z] reward set +5.0
+[2025-09-07T11:59:19.092Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:59:20.542Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:59:24.318Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:59:27.196Z] withdraw MESH +38.49375
+[2025-09-07T11:59:29.092Z] reward withdraw +4.130615234375
+[2025-09-07T11:59:29.094Z] reward set +3.0
+[2025-09-07T11:59:30.088Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:59:34.946Z] reward withdraw +3.0653076171875
+[2025-09-07T11:59:34.947Z] reward set +2.0
+[2025-09-07T11:59:35.787Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:59:44.599Z] claim E278N2462
+[2025-09-07T11:59:46.546Z] withdraw MESH +35.8
+[2025-09-07T11:59:47.758Z] reward set +1.0
+[2025-09-07T11:59:52.132Z] claim W761N3637
+[2025-09-07T11:59:52.917Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T11:59:55.810Z] withdraw MESH +40.375
+[2025-09-07T11:59:56.671Z] reward set +2.0
+[2025-09-07T12:00:00.434Z] error: Transaction ran out of gas
+[2025-09-07T12:00:01.192Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:00:04.146Z] withdraw MESH +37.8
+[2025-09-07T12:00:06.762Z] claim W947N4350
+[2025-09-07T12:00:07.620Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:00:12.364Z] withdraw MESH +42.25
+[2025-09-07T12:00:13.291Z] reward set +5.0
+[2025-09-07T12:00:14.538Z] reward set +3.0
+[2025-09-07T12:00:18.311Z] error: Transaction ran out of gas
+[2025-09-07T12:00:19.088Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:00:21.084Z] reward withdraw +10.03265380859375
+[2025-09-07T12:00:21.085Z] reward set +3.0
+[2025-09-07T12:00:23.213Z] withdraw MESH +42.375
+[2025-09-07T12:00:25.107Z] reward withdraw +5.5081634521484375
+[2025-09-07T12:00:25.108Z] reward set +5.0
+[2025-09-07T12:00:26.599Z] withdraw MESH +33.9
+[2025-09-07T12:00:28.964Z] withdraw MESH +33.9
+[2025-09-07T12:00:29.727Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:00:33.068Z] reward withdraw +3.75408172607421875
+[2025-09-07T12:00:33.068Z] reward set +2.0
+[2025-09-07T12:00:33.922Z] reward set +2.0
+[2025-09-07T12:00:34.871Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:00:35.682Z] reward set +1.0
+[2025-09-07T12:00:37.190Z] withdraw MESH +42.375
+[2025-09-07T12:00:38.790Z] claim W523N5057
+[2025-09-07T12:00:40.872Z] claim E381N2362
+[2025-09-07T12:00:41.586Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:00:42.856Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:00:44.781Z] claim W874N5901
+[2025-09-07T12:00:45.479Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:00:46.546Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:00:48.542Z] reward set +3.0
+[2025-09-07T12:00:49.661Z] reward withdraw +5.219260215759277344
+[2025-09-07T12:00:49.661Z] reward set +5.0
+[2025-09-07T12:00:51.755Z] error: Transaction ran out of gas
+[2025-09-07T12:00:52.478Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:00:53.724Z] withdraw MESH +50.753125
+[2025-09-07T12:00:55.192Z] withdraw MESH +38.4
+[2025-09-07T12:00:56.545Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:00:57.296Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:00:59.515Z] reward withdraw +3.609630107879638672
+[2025-09-07T12:00:59.515Z] reward set +2.0
+[2025-09-07T12:01:00.508Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:01:03.029Z] reward withdraw +3.804815053939819336
+[2025-09-07T12:01:03.030Z] reward set +4.0
+[2025-09-07T12:01:04.055Z] reward withdraw +2.402407526969909668
+[2025-09-07T12:01:04.055Z] reward set +1.0
+[2025-09-07T12:01:05.554Z] withdraw MESH +44.8
+[2025-09-07T12:01:06.522Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:01:09.855Z] reward withdraw +3.201203763484954834
+[2025-09-07T12:01:09.856Z] reward set +4.0
+[2025-09-07T12:01:11.149Z] withdraw MESH +38.4
+[2025-09-07T12:01:11.878Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:01:12.833Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:01:13.513Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:01:14.474Z] reward withdraw +2.600601881742477417
+[2025-09-07T12:01:14.474Z] reward set +2.0
+[2025-09-07T12:01:15.963Z] reward set +5.0
+[2025-09-07T12:01:18.269Z] withdraw MESH +38.4
+[2025-09-07T12:01:19.836Z] reward set +4.0
+[2025-09-07T12:01:20.547Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:01:21.588Z] reward set +5.0
+[2025-09-07T12:01:22.412Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:01:24.769Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:01:25.466Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:01:27.894Z] error: Transaction ran out of gas
+[2025-09-07T12:01:29.223Z] withdraw MESH +44.8
+[2025-09-07T12:01:30.087Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:01:31.167Z] reward set +4.0
+[2025-09-07T12:01:32.754Z] withdraw MESH +38.4
+[2025-09-07T12:01:34.068Z] reward withdraw +11.800300940871238708
+[2025-09-07T12:01:34.069Z] reward set +3.0
+[2025-09-07T12:01:34.855Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:01:36.230Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:01:36.947Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:01:37.643Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:01:39.124Z] withdraw MESH +38.4
+[2025-09-07T12:01:39.879Z] reward set +5.0
+[2025-09-07T12:01:40.606Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:01:42.246Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:01:43.574Z] reward withdraw +9.400150470435619354
+[2025-09-07T12:01:43.575Z] reward set +2.0
+[2025-09-07T12:01:44.870Z] reward withdraw +6.200075235217809677
+[2025-09-07T12:01:44.871Z] reward set +3.0
+[2025-09-07T12:01:45.594Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:01:47.231Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:01:48.897Z] withdraw MESH +44.8
+[2025-09-07T12:01:49.717Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:01:52.038Z] claim W382N782
+[2025-09-07T12:01:53.321Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:01:59.404Z] reward withdraw +4.100037617608904839
+[2025-09-07T12:01:59.404Z] reward set +2.0
+[2025-09-07T12:02:00.493Z] reward set +4.0
+[2025-09-07T12:02:02.264Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:02:02.967Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:02:04.027Z] reward withdraw +6.550018808804452419
+[2025-09-07T12:02:04.028Z] reward set +2.0
+[2025-09-07T12:02:05.902Z] claim E437N436
+[2025-09-07T12:02:06.682Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:02:08.570Z] withdraw MESH +51.375
+[2025-09-07T12:02:09.867Z] reward withdraw +5.27500940440222621
+[2025-09-07T12:02:09.867Z] reward set +4.0
+[2025-09-07T12:02:13.242Z] claim W255S3588
+[2025-09-07T12:02:15.307Z] reward withdraw +4.637504702201113105
+[2025-09-07T12:02:15.307Z] reward set +4.0
+[2025-09-07T12:02:17.257Z] withdraw MESH +53.25
+[2025-09-07T12:02:18.451Z] reward withdraw +3.818752351100556552
+[2025-09-07T12:02:18.452Z] reward set +3.0
+[2025-09-07T12:02:19.872Z] withdraw MESH +42.9
+[2025-09-07T12:02:21.542Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:02:24.476Z] claim W172N4691
+[2025-09-07T12:02:26.200Z] claim E799N3494
+[2025-09-07T12:02:29.975Z] claim W849N4373
+[2025-09-07T12:02:30.697Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:02:32.637Z] reward set +3.0
+[2025-09-07T12:02:33.456Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:02:35.342Z] reward withdraw +5.409376175550278276
+[2025-09-07T12:02:35.342Z] reward set +4.0
+[2025-09-07T12:02:36.458Z] reward withdraw +3.704688087775139138
+[2025-09-07T12:02:36.459Z] reward set +2.0
+[2025-09-07T12:02:38.859Z] error: Transaction ran out of gas
+[2025-09-07T12:02:39.580Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:02:40.342Z] reward set +4.0
+[2025-09-07T12:02:41.447Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:02:42.875Z] reward withdraw +5.852344043887569569
+[2025-09-07T12:02:42.875Z] reward set +4.0
+[2025-09-07T12:02:43.622Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:02:45.457Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:02:47.794Z] error: Transaction ran out of gas
+[2025-09-07T12:02:49.716Z] withdraw MESH +55.3
+[2025-09-07T12:02:51.339Z] reward withdraw +4.926172021943784785
+[2025-09-07T12:02:51.340Z] reward set +4.0
+[2025-09-07T12:02:52.105Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:02:54.047Z] withdraw MESH +47.4
+[2025-09-07T12:02:56.273Z] reward withdraw +4.463086010971892392
+[2025-09-07T12:02:56.273Z] reward set +4.0
+[2025-09-07T12:02:57.871Z] reward withdraw +3.231543005485946196
+[2025-09-07T12:02:57.871Z] reward set +2.0
+[2025-09-07T12:02:59.581Z] reward set +1.0
+[2025-09-07T12:03:01.582Z] claim W778N3789
+[2025-09-07T12:03:03.991Z] withdraw MESH +61.0
+[2025-09-07T12:03:07.074Z] reward withdraw +3.615771502742973098
+[2025-09-07T12:03:07.075Z] reward set +3.0
+[2025-09-07T12:03:08.749Z] claim W221S1689
+[2025-09-07T12:03:10.737Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:03:12.187Z] reward set +1.0
+[2025-09-07T12:03:12.886Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:03:14.328Z] reward withdraw +2.807885751371486549
+[2025-09-07T12:03:14.329Z] reward set +1.0
+[2025-09-07T12:03:15.073Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:03:17.186Z] withdraw MESH +63.0
+[2025-09-07T12:03:17.966Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:03:19.367Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:03:20.647Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:03:23.427Z] withdraw MESH +60.3
+[2025-09-07T12:03:24.242Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:03:26.884Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:03:27.583Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:03:30.650Z] claim W374N8363
+[2025-09-07T12:03:31.390Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:03:33.659Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:03:35.816Z] withdraw MESH +66.625
+[2025-09-07T12:03:36.977Z] reward withdraw +3.903942875685743275
+[2025-09-07T12:03:36.977Z] reward set +5.0
+[2025-09-07T12:03:37.731Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:03:39.656Z] claim W165N8236
+[2025-09-07T12:03:42.740Z] claim E733N2416
+[2025-09-07T12:03:44.469Z] withdraw MESH +73.3375
+[2025-09-07T12:03:45.482Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:03:46.845Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:03:47.622Z] reward set +1.0
+[2025-09-07T12:03:49.838Z] reward withdraw +4.451971437842871637
+[2025-09-07T12:03:49.838Z] reward set +4.0
+[2025-09-07T12:03:51.470Z] reward set +2.0
+[2025-09-07T12:03:52.920Z] withdraw MESH +65.8
+[2025-09-07T12:03:53.678Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:03:55.466Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:03:58.590Z] reward withdraw +4.225985718921435819
+[2025-09-07T12:03:58.590Z] reward set +2.0
+[2025-09-07T12:03:59.448Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:04:00.780Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T12:04:04.894Z] withdraw MESH +56.4
+[2025-09-07T12:04:06.458Z] claim E527N3870

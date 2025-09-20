@@ -1,5 +1,5 @@
 import { ethers } from "hardhat";
-import { SafeFactory, SafeAccountConfig } from "@safe-global/safe-core-sdk";
+// import { SafeFactory, SafeAccountConfig } from "@safe-global/safe-core-sdk"; // Not used currently
 
 /**
  * 完整系统部署脚本
@@ -13,22 +13,15 @@ async function main() {
     console.log("部署账户:", deployer.address);
 
     // 配置参数
-    const owners = process.env.SAFE_OWNERS?.split(",") || [
-        "0x843076428Df85c8F7704a2Be73B0E1b1D5799D4d",
-        "0xc4d97570A90096e9f8e23c58A1E7F528fDAa45e7",
-        "0xac3D7D1CeDa1c6B4f25B25991f7401D441E13340"
-    ];
-    
-    const threshold = parseInt(process.env.SAFE_THRESHOLD || "2");
+    const owners = process.env.SAFE_OWNERS?.split(",") || [];
+    const threshold = parseInt(process.env.SAFE_THRESHOLD || "1");
     const foundationAddr = process.env.FOUNDATION_ADDRESS || "0xDD120c441ED22daC885C9167eaeFFA13522b4644";
-    const pancakeRouter = process.env.PANCAKE_ROUTER || "0x10ED43C718714eb63d5aA57B78B54704E256024E";
     const initialAPY = parseInt(process.env.INITIAL_APY || "1000");
 
     console.log("系统配置:");
     console.log("- Safe所有者:", owners);
     console.log("- Safe阈值:", threshold);
     console.log("- 基金会地址:", foundationAddr);
-    console.log("- PancakeSwap路由:", pancakeRouter);
     console.log("- 初始APY:", initialAPY / 100, "%");
 
     try {
@@ -47,13 +40,13 @@ async function main() {
         // 阶段3: 部署业务合约
         console.log("\n=== 阶段3: 部署业务合约 ===");
         
-        const meshesAddress = await deployMeshes(owners, foundationAddr, pancakeRouter);
+        const meshesAddress = await deployMeshes(foundationAddr, safeAddress);
         console.log("✅ Meshes合约部署完成:", meshesAddress);
 
-        const rewardAddress = await deployReward(owners, meshesAddress, foundationAddr);
+        const rewardAddress = await deployReward(meshesAddress, foundationAddr, safeAddress);
         console.log("✅ Reward合约部署完成:", rewardAddress);
 
-        const stakeAddress = await deployStake(owners, meshesAddress, foundationAddr, initialAPY);
+        const stakeAddress = await deployStake(meshesAddress, foundationAddr, safeAddress, initialAPY);
         console.log("✅ Stake合约部署完成:", stakeAddress);
 
         // 阶段4: 配置系统
@@ -158,11 +151,11 @@ async function deploySafeManager(safeAddress: string): Promise<string> {
 /**
  * 部署Meshes合约
  */
-async function deployMeshes(owners: string[], foundationAddr: string, pancakeRouter: string): Promise<string> {
+async function deployMeshes(foundationAddr: string, safeAddress: string): Promise<string> {
     console.log("部署Meshes合约...");
     
     const Meshes = await ethers.getContractFactory("Meshes");
-    const meshes = await Meshes.deploy(owners, foundationAddr, pancakeRouter);
+    const meshes = await Meshes.deploy(foundationAddr, safeAddress);
     await meshes.deployed();
     
     return meshes.address;
@@ -171,11 +164,11 @@ async function deployMeshes(owners: string[], foundationAddr: string, pancakeRou
 /**
  * 部署Reward合约
  */
-async function deployReward(owners: string[], meshToken: string, foundationAddr: string): Promise<string> {
+async function deployReward(meshToken: string, foundationAddr: string, safeAddress: string): Promise<string> {
     console.log("部署Reward合约...");
     
     const Reward = await ethers.getContractFactory("Reward");
-    const reward = await Reward.deploy(owners, meshToken, foundationAddr);
+    const reward = await Reward.deploy(meshToken, foundationAddr, safeAddress);
     await reward.deployed();
     
     return reward.address;
@@ -184,11 +177,11 @@ async function deployReward(owners: string[], meshToken: string, foundationAddr:
 /**
  * 部署Stake合约
  */
-async function deployStake(owners: string[], meshToken: string, foundationAddr: string, apy: number): Promise<string> {
+async function deployStake(meshToken: string, foundationAddr: string, safeAddress: string, apy: number): Promise<string> {
     console.log("部署Stake合约...");
     
     const Stake = await ethers.getContractFactory("Stake");
-    const stake = await Stake.deploy(owners, meshToken, foundationAddr, apy);
+    const stake = await Stake.deploy(meshToken, foundationAddr, safeAddress, apy);
     await stake.deployed();
     
     return stake.address;

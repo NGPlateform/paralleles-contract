@@ -1,0 +1,2 @@
+[2025-09-07T05:52:44.837Z] Start single-user TUI: user=0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC
+[2025-09-07T05:52:44.864Z] error: call revert exception [ See: https://links.ethers.org/v5-errors-CALL_EXCEPTION ]

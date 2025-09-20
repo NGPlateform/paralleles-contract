@@ -1,0 +1,586 @@
+[2025-09-07T19:41:32.049Z] Start single-user TUI: user=0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC
+[2025-09-07T19:41:32.293Z] CALL ClaimMesh(E302S8527) ok | gas=330266 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 19.58782958984375->19.58782958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=12.9 totalBurn=1144.809303855895996093
+[2025-09-07T19:41:33.246Z] CALL ClaimMesh(W770N7010) ok | gas=297090 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 19.58782958984375->19.58782958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=7.325 totalBurn=1152.134303855895996093
+[2025-09-07T19:41:33.991Z] CALL withdraw ok | gas=155876 | myMESH 19.58782958984375->30.94720458984375 (Δ11.359375)
+  burn: claim=0.0 decay=0.0 totalΔ=4.2875 totalBurn=1156.421803855895996093
+[2025-09-07T19:41:34.643Z] SKIP withdraw | ineligible (weight=6.0 lastDay=38 curDay=38)
+[2025-09-07T19:41:35.302Z] SKIP withdraw | ineligible (weight=6.0 lastDay=38 curDay=38)
+[2025-09-07T19:41:36.183Z] CALL ClaimMesh(W553S4377) ok | gas=314232 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 30.94720458984375->30.94720458984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=2.4 totalBurn=1158.821803855895996093
+[2025-09-07T19:41:37.225Z] CALL ClaimMesh(W181N361) ok | gas=299864 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 30.94720458984375->30.94720458984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=8.8 totalBurn=1167.621803855895996093
+[2025-09-07T19:41:38.202Z] CALL ClaimMesh(E798S2000) ok | gas=301066 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 30.94720458984375->30.94720458984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=11.6 totalBurn=1179.221803855895996093
+[2025-09-07T19:41:39.091Z] CALL ClaimMesh(W812S4606) ok | gas=301174 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 30.94720458984375->30.94720458984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=13.5 totalBurn=1192.721803855895996093
+[2025-09-07T19:41:39.916Z] CALL ClaimMesh(W486N4536) ok | gas=279948 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 30.94720458984375->30.94720458984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=7.45 totalBurn=1200.171803855895996093
+[2025-09-07T19:41:40.826Z] CALL withdraw ok | gas=170549 | myMESH 30.94720458984375->52.52532958984375 (Δ21.578125)
+  burn: claim=0.0 decay=0.0 totalΔ=16.5875 totalBurn=1216.759303855895996093
+[2025-09-07T19:41:41.790Z] CALL ClaimMesh(E360S1467) ok | gas=314124 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 52.52532958984375->52.52532958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=4.4 totalBurn=1221.159303855895996093
+[2025-09-07T19:41:42.657Z] CALL ClaimMesh(E810S2888) ok | gas=301066 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 52.52532958984375->52.52532958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=15.3 totalBurn=1236.459303855895996093
+[2025-09-07T19:41:43.433Z] CALL withdraw ok | gas=170549 | myMESH 52.52532958984375->77.86907958984375 (Δ25.34375)
+  burn: claim=0.0 decay=0.0 totalΔ=19.225 totalBurn=1255.684303855895996093
+[2025-09-07T19:41:44.591Z] CALL ClaimMesh(E193S3920) ok | gas=314124 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 77.86907958984375->77.86907958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=5.2 totalBurn=1260.884303855895996093
+[2025-09-07T19:41:45.496Z] CALL withdraw ok | gas=170549 | myMESH 77.86907958984375->103.99407958984375 (Δ26.125)
+  burn: claim=0.0 decay=0.0 totalΔ=17.9 totalBurn=1278.784303855895996093
+[2025-09-07T19:41:46.638Z] CALL ClaimMesh(W15S4368) ok | gas=312625 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 103.99407958984375->103.99407958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=5.6 totalBurn=1284.384303855895996093
+[2025-09-07T19:41:47.609Z] CALL ClaimMesh(W404S6938) ok | gas=280032 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 103.99407958984375->103.99407958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=8.8 totalBurn=1293.184303855895996093
+[2025-09-07T19:41:48.407Z] CALL withdraw ok | gas=170549 | myMESH 103.99407958984375->134.74407958984375 (Δ30.75)
+  burn: claim=0.0 decay=0.0 totalΔ=22.6 totalBurn=1315.784303855895996093
+[2025-09-07T19:41:49.341Z] CALL ClaimMesh(E720S1516) ok | gas=314124 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 134.74407958984375->134.74407958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=6.4 totalBurn=1322.184303855895996093
+[2025-09-07T19:41:50.256Z] CALL withdraw ok | gas=170549 | myMESH 134.74407958984375->166.49407958984375 (Δ31.75)
+  burn: claim=0.0 decay=0.0 totalΔ=21.8 totalBurn=1343.984303855895996093
+[2025-09-07T19:41:51.025Z] SKIP withdraw | ineligible (weight=17.0 lastDay=52 curDay=52)
+[2025-09-07T19:41:51.841Z] CALL withdraw ok | gas=183236 | myMESH 166.49407958984375->191.99407958984375 (Δ25.5)
+  burn: claim=0.0 decay=0.0 totalΔ=6.8 totalBurn=1350.784303855895996093
+[2025-09-07T19:41:52.732Z] CALL ClaimMesh(E272N607) ok | gas=226271 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 191.99407958984375->191.99407958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=0.0 totalBurn=1350.784303855895996093
+[2025-09-07T19:41:53.564Z] CALL withdraw ok | gas=183236 | myMESH 191.99407958984375->218.99407958984375 (Δ27.0)
+  burn: claim=0.0 decay=0.0 totalΔ=7.2 totalBurn=1357.984303855895996093
+[2025-09-07T19:41:54.486Z] CALL withdraw ok | gas=183236 | myMESH 218.99407958984375->245.99407958984375 (Δ27.0)
+  burn: claim=0.0 decay=0.0 totalΔ=7.2 totalBurn=1365.184303855895996093
+[2025-09-07T19:41:55.337Z] CALL withdraw ok | gas=183236 | myMESH 245.99407958984375->272.99407958984375 (Δ27.0)
+  burn: claim=0.0 decay=0.0 totalΔ=7.2 totalBurn=1372.384303855895996093
+[2025-09-07T19:41:56.339Z] CALL withdraw ok | gas=183236 | myMESH 272.99407958984375->299.99407958984375 (Δ27.0)
+  burn: claim=0.0 decay=0.0 totalΔ=7.2 totalBurn=1379.584303855895996093
+[2025-09-07T19:41:57.231Z] CALL ClaimMesh(W768S7111) ok | gas=227689 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 299.99407958984375->299.99407958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=0.0 totalBurn=1379.584303855895996093
+[2025-09-07T19:41:58.193Z] CALL ClaimMesh(W347N3136) ok | gas=314148 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 299.99407958984375->299.99407958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=7.6 totalBurn=1387.184303855895996093
+[2025-09-07T19:41:59.048Z] CALL withdraw ok | gas=170549 | myMESH 299.99407958984375->337.36907958984375 (Δ37.375)
+  burn: claim=0.0 decay=0.0 totalΔ=25.7 totalBurn=1412.884303855895996093
+[2025-09-07T19:42:00.089Z] CALL ClaimMesh(E809N7472) ok | gas=314040 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 337.36907958984375->337.36907958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=8.0 totalBurn=1420.884303855895996093
+[2025-09-07T19:42:00.908Z] CALL withdraw ok | gas=170549 | myMESH 337.36907958984375->376.61907958984375 (Δ39.25)
+  burn: claim=0.0 decay=0.0 totalΔ=27.0 totalBurn=1447.884303855895996093
+[2025-09-07T19:42:01.817Z] CALL ClaimMesh(E631N37) ok | gas=225045 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 376.61907958984375->376.61907958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=0.0 totalBurn=1447.884303855895996093
+[2025-09-07T19:42:02.708Z] CALL ClaimMesh(W699S5065) ok | gas=314232 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 376.61907958984375->376.61907958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=8.8 totalBurn=1456.684303855895996093
+[2025-09-07T19:42:03.610Z] CALL ClaimMesh(W187N2291) ok | gas=301090 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 376.61907958984375->376.61907958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=29.6 totalBurn=1486.284303855895996093
+[2025-09-07T19:42:04.459Z] CALL withdraw ok | gas=170549 | myMESH 376.61907958984375->423.61907958984375 (Δ47.0)
+  burn: claim=0.0 decay=0.0 totalΔ=36.0 totalBurn=1522.284303855895996093
+[2025-09-07T19:42:05.345Z] CALL withdraw ok | gas=183236 | myMESH 423.61907958984375->459.61907958984375 (Δ36.0)
+  burn: claim=0.0 decay=0.0 totalΔ=9.6 totalBurn=1531.884303855895996093
+[2025-09-07T19:42:06.107Z] SKIP withdraw | ineligible (weight=24.0 lastDay=65 curDay=65)
+[2025-09-07T19:42:07.006Z] CALL withdraw ok | gas=183236 | myMESH 459.61907958984375->495.61907958984375 (Δ36.0)
+  burn: claim=0.0 decay=0.0 totalΔ=9.6 totalBurn=1541.484303855895996093
+[2025-09-07T19:42:07.893Z] CALL ClaimMesh(W990S8813) ok | gas=227689 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 495.61907958984375->495.61907958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=0.0 totalBurn=1541.484303855895996093
+[2025-09-07T19:42:08.577Z] SKIP withdraw | ineligible (weight=25.0 lastDay=66 curDay=66)
+[2025-09-07T19:42:09.529Z] CALL ClaimMesh(W271N4373) ok | gas=314148 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 495.61907958984375->495.61907958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=10.0 totalBurn=1551.484303855895996093
+[2025-09-07T19:42:10.545Z] CALL ClaimMesh(W964N5904) ok | gas=301090 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 495.61907958984375->495.61907958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=33.5 totalBurn=1584.984303855895996093
+[2025-09-07T19:42:11.357Z] CALL withdraw ok | gas=170549 | myMESH 495.61907958984375->548.52532958984375 (Δ52.90625)
+  burn: claim=0.0 decay=0.0 totalΔ=40.575 totalBurn=1625.559303855895996093
+[2025-09-07T19:42:12.257Z] CALL ClaimMesh(E427S4879) ok | gas=314124 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 548.52532958984375->548.52532958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=10.8 totalBurn=1636.359303855895996093
+[2025-09-07T19:42:13.073Z] CALL withdraw ok | gas=170549 | myMESH 548.52532958984375->600.90032958984375 (Δ52.375)
+  burn: claim=0.0 decay=0.0 totalΔ=36.1 totalBurn=1672.459303855895996093
+[2025-09-07T19:42:14.090Z] CALL ClaimMesh(E281S4400) ok | gas=314124 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 600.90032958984375->600.90032958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=11.2 totalBurn=1683.659303855895996093
+[2025-09-07T19:42:15.008Z] CALL ClaimMesh(W502S7343) ok | gas=280032 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 600.90032958984375->600.90032958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=17.2 totalBurn=1700.859303855895996093
+[2025-09-07T19:42:15.952Z] CALL ClaimMesh(E765S2009) ok | gas=301066 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 600.90032958984375->600.90032958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=42.9 totalBurn=1743.759303855895996093
+[2025-09-07T19:42:16.757Z] CALL withdraw ok | gas=170549 | myMESH 600.90032958984375->662.11907958984375 (Δ61.21875)
+  burn: claim=0.0 decay=0.0 totalΔ=47.725 totalBurn=1791.484303855895996093
+[2025-09-07T19:42:17.439Z] SKIP withdraw | ineligible (weight=31.0 lastDay=74 curDay=74)
+[2025-09-07T19:42:18.194Z] SKIP withdraw | ineligible (weight=31.0 lastDay=74 curDay=74)
+[2025-09-07T19:42:19.169Z] CALL withdraw ok | gas=183236 | myMESH 662.11907958984375->708.61907958984375 (Δ46.5)
+  burn: claim=0.0 decay=0.0 totalΔ=12.4 totalBurn=1803.884303855895996093
+[2025-09-07T19:42:20.080Z] CALL withdraw ok | gas=183236 | myMESH 708.61907958984375->755.11907958984375 (Δ46.5)
+  burn: claim=0.0 decay=0.0 totalΔ=12.4 totalBurn=1816.284303855895996093
+[2025-09-07T19:42:20.773Z] SKIP withdraw | ineligible (weight=31.0 lastDay=76 curDay=76)
+[2025-09-07T19:42:21.606Z] CALL withdraw ok | gas=183236 | myMESH 755.11907958984375->801.61907958984375 (Δ46.5)
+  burn: claim=0.0 decay=0.0 totalΔ=12.4 totalBurn=1828.684303855895996093
+[2025-09-07T19:42:22.640Z] CALL ClaimMesh(E674S1964) ok | gas=314124 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 801.61907958984375->801.61907958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=12.4 totalBurn=1841.084303855895996093
+[2025-09-07T19:42:23.510Z] CALL withdraw ok | gas=170549 | myMESH 801.61907958984375->861.49407958984375 (Δ59.875)
+  burn: claim=0.0 decay=0.0 totalΔ=41.3 totalBurn=1882.384303855895996093
+[2025-09-07T19:42:24.505Z] CALL ClaimMesh(W313S5761) ok | gas=314232 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 861.49407958984375->861.49407958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=12.8 totalBurn=1895.184303855895996093
+[2025-09-07T19:42:25.373Z] CALL withdraw ok | gas=155876 | myMESH 861.49407958984375->918.99407958984375 (Δ57.5)
+  burn: claim=0.0 decay=0.0 totalΔ=19.6 totalBurn=1914.784303855895996093
+[2025-09-07T19:42:26.289Z] CALL ClaimMesh(W643N147) ok | gas=226379 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 918.99407958984375->918.99407958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=0.0 totalBurn=1914.784303855895996093
+[2025-09-07T19:42:27.169Z] CALL withdraw ok | gas=183236 | myMESH 918.99407958984375->969.99407958984375 (Δ51.0)
+  burn: claim=0.0 decay=0.0 totalΔ=13.6 totalBurn=1928.384303855895996093
+[2025-09-07T19:42:28.040Z] CALL ClaimMesh(W329N2274) ok | gas=314148 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 969.99407958984375->969.99407958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=13.6 totalBurn=1941.984303855895996093
+[2025-09-07T19:42:28.956Z] CALL ClaimMesh(E664S3234) ok | gas=301066 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 969.99407958984375->969.99407958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=45.2 totalBurn=1987.184303855895996093
+[2025-09-07T19:42:29.950Z] CALL ClaimMesh(W686N6749) ok | gas=301090 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 969.99407958984375->969.99407958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=54.3 totalBurn=2041.484303855895996093
+[2025-09-07T19:42:30.885Z] CALL ClaimMesh(W812S5359) ok | gas=280032 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 969.99407958984375->969.99407958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=28.65 totalBurn=2070.134303855895996093
+[2025-09-07T19:42:31.687Z] CALL withdraw ok | gas=170549 | myMESH 969.99407958984375->1045.44720458984375 (Δ75.453125)
+  burn: claim=0.0 decay=0.0 totalΔ=59.4875 totalBurn=2129.621803855895996093
+[2025-09-07T19:42:32.512Z] CALL withdraw ok | gas=183236 | myMESH 1045.44720458984375->1102.44720458984375 (Δ57.0)
+  burn: claim=0.0 decay=0.0 totalΔ=15.2 totalBurn=2144.821803855895996093
+[2025-09-07T19:42:33.198Z] SKIP withdraw | ineligible (weight=38.0 lastDay=86 curDay=86)
+[2025-09-07T19:42:34.088Z] CALL ClaimMesh(W975N3816) ok | gas=314148 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1102.44720458984375->1102.44720458984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=15.2 totalBurn=2160.021803855895996093
+[2025-09-07T19:42:34.960Z] CALL withdraw ok | gas=170549 | myMESH 1102.44720458984375->1175.44720458984375 (Δ73.0)
+  burn: claim=0.0 decay=0.0 totalΔ=50.4 totalBurn=2210.421803855895996093
+[2025-09-07T19:42:35.969Z] CALL ClaimMesh(E367S4060) ok | gas=314124 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1175.44720458984375->1175.44720458984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=15.6 totalBurn=2226.021803855895996093
+[2025-09-07T19:42:36.891Z] CALL ClaimMesh(W630S4166) ok | gas=280032 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1175.44720458984375->1175.44720458984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=23.8 totalBurn=2249.821803855895996093
+[2025-09-07T19:42:37.769Z] CALL ClaimMesh(W922N6242) ok | gas=301090 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1175.44720458984375->1175.44720458984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=58.85 totalBurn=2308.671803855895996093
+[2025-09-07T19:42:38.611Z] CALL withdraw ok | gas=155876 | myMESH 1175.44720458984375->1257.54095458984375 (Δ82.09375)
+  burn: claim=0.0 decay=0.0 totalΔ=32.075 totalBurn=2340.746803855895996093
+[2025-09-07T19:42:39.540Z] CALL ClaimMesh(E725S5314) ok | gas=314124 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1257.54095458984375->1257.54095458984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=16.8 totalBurn=2357.546803855895996093
+[2025-09-07T19:42:40.398Z] CALL withdraw ok | gas=170549 | myMESH 1257.54095458984375->1338.04095458984375 (Δ80.5)
+  burn: claim=0.0 decay=0.0 totalΔ=55.6 totalBurn=2413.146803855895996093
+[2025-09-07T19:42:41.193Z] CALL withdraw ok | gas=183236 | myMESH 1338.04095458984375->1402.54095458984375 (Δ64.5)
+  burn: claim=0.0 decay=0.0 totalΔ=17.2 totalBurn=2430.346803855895996093
+[2025-09-07T19:42:42.203Z] CALL withdraw ok | gas=183236 | myMESH 1402.54095458984375->1467.04095458984375 (Δ64.5)
+  burn: claim=0.0 decay=0.0 totalΔ=17.2 totalBurn=2447.546803855895996093
+[2025-09-07T19:42:43.214Z] CALL ClaimMesh(E615N4369) ok | gas=314040 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1467.04095458984375->1467.04095458984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=17.2 totalBurn=2464.746803855895996093
+[2025-09-07T19:42:44.154Z] CALL ClaimMesh(E428N2787) ok | gas=300982 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1467.04095458984375->1467.04095458984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=56.9 totalBurn=2521.646803855895996093
+[2025-09-07T19:42:45.064Z] CALL ClaimMesh(E284S6582) ok | gas=301066 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1467.04095458984375->1467.04095458984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=68.025 totalBurn=2589.671803855895996093
+[2025-09-07T19:42:45.950Z] CALL withdraw ok | gas=170549 | myMESH 1467.04095458984375->1558.37689208984375 (Δ91.3359375)
+  burn: claim=0.0 decay=0.0 totalΔ=72.00625 totalBurn=2661.678053855895996093
+[2025-09-07T19:42:46.870Z] CALL ClaimMesh(W48N5264) ok | gas=312541 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1558.37689208984375->1558.37689208984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=18.4 totalBurn=2680.078053855895996093
+[2025-09-07T19:42:47.809Z] CALL ClaimMesh(W304N5539) ok | gas=301090 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1558.37689208984375->1558.37689208984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=60.8 totalBurn=2740.878053855895996093
+[2025-09-07T19:42:48.707Z] CALL ClaimMesh(E515S8148) ok | gas=301066 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1558.37689208984375->1558.37689208984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=72.6 totalBurn=2813.478053855895996093
+[2025-09-07T19:42:49.516Z] CALL withdraw ok | gas=170549 | myMESH 1558.37689208984375->1655.68939208984375 (Δ97.3125)
+  burn: claim=0.0 decay=0.0 totalΔ=76.75 totalBurn=2890.228053855895996093
+[2025-09-07T19:42:50.430Z] CALL ClaimMesh(W10S6780) ok | gas=226082 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1655.68939208984375->1655.68939208984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=0.0 totalBurn=2890.228053855895996093
+[2025-09-07T19:42:51.125Z] SKIP withdraw | ineligible (weight=50.0 lastDay=102 curDay=102)
+[2025-09-07T19:42:52.116Z] CALL ClaimMesh(E386S8946) ok | gas=314124 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1655.68939208984375->1655.68939208984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=20.0 totalBurn=2910.228053855895996093
+[2025-09-07T19:42:53.059Z] CALL withdraw ok | gas=170549 | myMESH 1655.68939208984375->1751.18939208984375 (Δ95.5)
+  burn: claim=0.0 decay=0.0 totalΔ=66.0 totalBurn=2976.228053855895996093
+[2025-09-07T19:42:54.043Z] CALL ClaimMesh(W156N3997) ok | gas=314148 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1751.18939208984375->1751.18939208984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=20.4 totalBurn=2996.628053855895996093
+[2025-09-07T19:42:55.042Z] CALL ClaimMesh(W494S3429) ok | gas=280032 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1751.18939208984375->1751.18939208984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=31.0 totalBurn=3027.628053855895996093
+[2025-09-07T19:42:55.976Z] CALL withdraw ok | gas=170549 | myMESH 1751.18939208984375->1853.62689208984375 (Δ102.4375)
+  burn: claim=0.0 decay=0.0 totalΔ=76.25 totalBurn=3103.878053855895996093
+[2025-09-07T19:42:56.894Z] SKIP withdraw | ineligible (weight=53.0 lastDay=106 curDay=106)
+[2025-09-07T19:42:57.602Z] SKIP withdraw | ineligible (weight=53.0 lastDay=106 curDay=106)
+[2025-09-07T19:42:58.629Z] CALL ClaimMesh(E956S7378) ok | gas=314124 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1853.62689208984375->1853.62689208984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=21.2 totalBurn=3125.078053855895996093
+[2025-09-07T19:42:59.538Z] CALL withdraw ok | gas=170549 | myMESH 1853.62689208984375->1954.75189208984375 (Δ101.125)
+  burn: claim=0.0 decay=0.0 totalΔ=69.9 totalBurn=3194.978053855895996093
+[2025-09-07T19:43:00.474Z] CALL withdraw ok | gas=183236 | myMESH 1954.75189208984375->2035.75189208984375 (Δ81.0)
+  burn: claim=0.0 decay=0.0 totalΔ=21.6 totalBurn=3216.578053855895996093
+[2025-09-07T19:43:01.518Z] CALL ClaimMesh(W825S3402) ok | gas=314232 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 2035.75189208984375->2035.75189208984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=21.6 totalBurn=3238.178053855895996093
+[2025-09-07T19:43:02.517Z] CALL ClaimMesh(E247N5430) ok | gas=300982 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 2035.75189208984375->2035.75189208984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=71.2 totalBurn=3309.378053855895996093
+[2025-09-07T19:43:03.515Z] CALL withdraw ok | gas=170549 | myMESH 2035.75189208984375->2145.75189208984375 (Δ110.0)
+  burn: claim=0.0 decay=0.0 totalΔ=84.8 totalBurn=3394.178053855895996093
+[2025-09-07T19:43:04.250Z] SKIP withdraw | ineligible (weight=56.0 lastDay=112 curDay=112)
+[2025-09-07T19:43:05.205Z] CALL withdraw ok | gas=183236 | myMESH 2145.75189208984375->2229.75189208984375 (Δ84.0)
+  burn: claim=0.0 decay=0.0 totalΔ=22.4 totalBurn=3416.578053855895996093
+[2025-09-07T19:43:06.255Z] CALL withdraw ok | gas=183236 | myMESH 2229.75189208984375->2313.75189208984375 (Δ84.0)
+  burn: claim=0.0 decay=0.0 totalΔ=22.4 totalBurn=3438.978053855895996093
+[2025-09-07T19:43:07.365Z] CALL ClaimMesh(W911N3169) ok | gas=314148 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 2313.75189208984375->2313.75189208984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=22.4 totalBurn=3461.378053855895996093
+[2025-09-07T19:43:08.298Z] CALL withdraw ok | gas=155876 | myMESH 2313.75189208984375->2413.25189208984375 (Δ99.5)
+  burn: claim=0.0 decay=0.0 totalΔ=34.0 totalBurn=3495.378053855895996093
+[2025-09-07T19:43:09.239Z] CALL ClaimMesh(W996N2144) ok | gas=314148 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 2413.25189208984375->2413.25189208984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=22.8 totalBurn=3518.178053855895996093
+[2025-09-07T19:43:10.295Z] CALL ClaimMesh(E962N2138) ok | gas=279840 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 2413.25189208984375->2413.25189208984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=34.6 totalBurn=3552.778053855895996093
+[2025-09-07T19:43:11.443Z] CALL withdraw ok | gas=170549 | myMESH 2413.25189208984375->2527.31439208984375 (Δ114.0625)
+  burn: claim=0.0 decay=0.0 totalΔ=84.95 totalBurn=3637.728053855895996093
+[2025-09-07T19:43:12.461Z] CALL ClaimMesh(E202N1692) ok | gas=227497 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 2527.31439208984375->2527.31439208984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=0.0 totalBurn=3637.728053855895996093
+[2025-09-07T19:43:13.544Z] CALL withdraw ok | gas=183236 | myMESH 2527.31439208984375->2617.31439208984375 (Δ90.0)
+  burn: claim=0.0 decay=0.0 totalΔ=24.0 totalBurn=3661.728053855895996093
+[2025-09-07T19:43:14.616Z] CALL ClaimMesh(E928S3481) ok | gas=314124 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 2617.31439208984375->2617.31439208984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=24.0 totalBurn=3685.728053855895996093
+[2025-09-07T19:43:15.794Z] CALL ClaimMesh(E682S2282) ok | gas=301066 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 2617.31439208984375->2617.31439208984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=79.0 totalBurn=3764.728053855895996093
+[2025-09-07T19:43:16.789Z] CALL ClaimMesh(E229N5138) ok | gas=300982 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 2617.31439208984375->2617.31439208984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=93.95 totalBurn=3858.678053855895996093
+[2025-09-07T19:43:17.677Z] CALL withdraw ok | gas=155876 | myMESH 2617.31439208984375->2741.72064208984375 (Δ124.40625)
+  burn: claim=0.0 decay=0.0 totalΔ=49.125 totalBurn=3907.803053855895996093
+[2025-09-07T19:43:18.677Z] CALL ClaimMesh(E994N3802) ok | gas=227497 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 2741.72064208984375->2741.72064208984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=0.0 totalBurn=3907.803053855895996093
+[2025-09-07T19:43:19.674Z] CALL ClaimMesh(W895S6879) ok | gas=314232 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 2741.72064208984375->2741.72064208984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=25.6 totalBurn=3933.403053855895996093
+[2025-09-07T19:43:20.738Z] CALL ClaimMesh(E927S1078) ok | gas=301066 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 2741.72064208984375->2741.72064208984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=84.2 totalBurn=4017.603053855895996093
+[2025-09-07T19:43:21.617Z] CALL withdraw ok | gas=170549 | myMESH 2741.72064208984375->2871.40814208984375 (Δ129.6875)
+  burn: claim=0.0 decay=0.0 totalΔ=100.05 totalBurn=4117.653053855895996093
+[2025-09-07T19:43:22.793Z] CALL ClaimMesh(E95S3748) ok | gas=312517 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 2871.40814208984375->2871.40814208984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=26.4 totalBurn=4144.053053855895996093
+[2025-09-07T19:43:23.776Z] CALL withdraw ok | gas=170549 | myMESH 2871.40814208984375->2996.90814208984375 (Δ125.5)
+  burn: claim=0.0 decay=0.0 totalΔ=86.8 totalBurn=4230.853053855895996093
+[2025-09-07T19:43:24.810Z] CALL withdraw ok | gas=183236 | myMESH 2996.90814208984375->3097.40814208984375 (Δ100.5)
+  burn: claim=0.0 decay=0.0 totalΔ=26.8 totalBurn=4257.653053855895996093
+[2025-09-07T19:43:26.074Z] CALL ClaimMesh(E675S3043) ok | gas=314124 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 3097.40814208984375->3097.40814208984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=26.8 totalBurn=4284.453053855895996093
+[2025-09-07T19:43:27.015Z] CALL withdraw ok | gas=170549 | myMESH 3097.40814208984375->3224.78314208984375 (Δ127.375)
+  burn: claim=0.0 decay=0.0 totalΔ=88.1 totalBurn=4372.553053855895996093
+[2025-09-07T19:43:28.075Z] CALL ClaimMesh(W219S1225) ok | gas=227689 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 3224.78314208984375->3224.78314208984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=0.0 totalBurn=4372.553053855895996093
+[2025-09-07T19:43:29.084Z] CALL ClaimMesh(W467S3413) ok | gas=227689 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 3224.78314208984375->3224.78314208984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=0.0 totalBurn=4372.553053855895996093
+[2025-09-07T19:43:29.816Z] SKIP withdraw | ineligible (weight=70.0 lastDay=129 curDay=129)
+[2025-09-07T19:43:30.762Z] CALL withdraw ok | gas=183236 | myMESH 3224.78314208984375->3329.78314208984375 (Δ105.0)
+  burn: claim=0.0 decay=0.0 totalΔ=28.0 totalBurn=4400.553053855895996093
+[2025-09-07T19:43:31.483Z] SKIP withdraw | ineligible (weight=70.0 lastDay=130 curDay=130)
+[2025-09-07T19:43:32.465Z] CALL withdraw ok | gas=183236 | myMESH 3329.78314208984375->3434.78314208984375 (Δ105.0)
+  burn: claim=0.0 decay=0.0 totalΔ=28.0 totalBurn=4428.553053855895996093
+[2025-09-07T19:43:33.638Z] CALL ClaimMesh(E902N2762) ok | gas=314040 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 3434.78314208984375->3434.78314208984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=28.0 totalBurn=4456.553053855895996093
+[2025-09-07T19:43:34.663Z] CALL withdraw ok | gas=170549 | myMESH 3434.78314208984375->3567.78314208984375 (Δ133.0)
+  burn: claim=0.0 decay=0.0 totalΔ=92.0 totalBurn=4548.553053855895996093
+[2025-09-07T19:43:35.850Z] CALL ClaimMesh(E691N2960) ok | gas=314040 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 3567.78314208984375->3567.78314208984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=28.4 totalBurn=4576.953053855895996093
+[2025-09-07T19:43:37.027Z] CALL ClaimMesh(E713S4065) ok | gas=301066 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 3567.78314208984375->3567.78314208984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=93.3 totalBurn=4670.253053855895996093
+[2025-09-07T19:43:38.248Z] CALL ClaimMesh(E565S7486) ok | gas=301066 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 3567.78314208984375->3567.78314208984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=110.725 totalBurn=4780.978053855895996093
+[2025-09-07T19:43:39.188Z] CALL withdraw ok | gas=170549 | myMESH 3567.78314208984375->3714.90032958984375 (Δ147.1171875)
+  burn: claim=0.0 decay=0.0 totalΔ=116.28125 totalBurn=4897.259303855895996093
+[2025-09-07T19:43:40.143Z] CALL ClaimMesh(W724S1329) ok | gas=227689 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 3714.90032958984375->3714.90032958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=0.0 totalBurn=4897.259303855895996093
+[2025-09-07T19:43:40.860Z] SKIP withdraw | ineligible (weight=75.0 lastDay=137 curDay=137)
+[2025-09-07T19:43:41.849Z] CALL withdraw ok | gas=183236 | myMESH 3714.90032958984375->3827.40032958984375 (Δ112.5)
+  burn: claim=0.0 decay=0.0 totalΔ=30.0 totalBurn=4927.259303855895996093
+[2025-09-07T19:43:42.791Z] CALL withdraw ok | gas=183236 | myMESH 3827.40032958984375->3939.90032958984375 (Δ112.5)
+  burn: claim=0.0 decay=0.0 totalΔ=30.0 totalBurn=4957.259303855895996093
+[2025-09-07T19:43:43.917Z] CALL ClaimMesh(E821N1537) ok | gas=314040 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 3939.90032958984375->3939.90032958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=30.0 totalBurn=4987.259303855895996093
+[2025-09-07T19:43:45.136Z] CALL ClaimMesh(W602N6449) ok | gas=301090 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 3939.90032958984375->3939.90032958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=98.5 totalBurn=5085.759303855895996093
+[2025-09-07T19:43:46.182Z] CALL ClaimMesh(E174S4041) ok | gas=301066 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 3939.90032958984375->3939.90032958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=116.825 totalBurn=5202.584303855895996093
+[2025-09-07T19:43:47.223Z] CALL withdraw ok | gas=170549 | myMESH 3939.90032958984375->4094.98626708984375 (Δ155.0859375)
+  burn: claim=0.0 decay=0.0 totalΔ=122.60625 totalBurn=5325.190553855895996093
+[2025-09-07T19:43:48.276Z] CALL withdraw ok | gas=183236 | myMESH 4094.98626708984375->4211.98626708984375 (Δ117.0)
+  burn: claim=0.0 decay=0.0 totalΔ=31.2 totalBurn=5356.390553855895996093
+[2025-09-07T19:43:49.408Z] CALL withdraw ok | gas=183236 | myMESH 4211.98626708984375->4328.98626708984375 (Δ117.0)
+  burn: claim=0.0 decay=0.0 totalΔ=31.2 totalBurn=5387.590553855895996093
+[2025-09-07T19:43:50.501Z] CALL ClaimMesh(W597N2724) ok | gas=314148 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 4328.98626708984375->4328.98626708984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=31.2 totalBurn=5418.790553855895996093
+[2025-09-07T19:43:51.355Z] CALL withdraw ok | gas=170549 | myMESH 4328.98626708984375->4476.98626708984375 (Δ148.0)
+  burn: claim=0.0 decay=0.0 totalΔ=102.4 totalBurn=5521.190553855895996093
+[2025-09-07T19:43:52.102Z] SKIP withdraw | ineligible (weight=79.0 lastDay=147 curDay=147)
+[2025-09-07T19:43:53.001Z] CALL withdraw ok | gas=183236 | myMESH 4476.98626708984375->4595.48626708984375 (Δ118.5)
+  burn: claim=0.0 decay=0.0 totalΔ=31.6 totalBurn=5552.790553855895996093
+[2025-09-07T19:43:53.881Z] CALL withdraw ok | gas=183236 | myMESH 4595.48626708984375->4713.98626708984375 (Δ118.5)
+  burn: claim=0.0 decay=0.0 totalΔ=31.6 totalBurn=5584.390553855895996093
+[2025-09-07T19:43:54.962Z] CALL ClaimMesh(E114S5845) ok | gas=227581 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 4713.98626708984375->4713.98626708984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=0.0 totalBurn=5584.390553855895996093
+[2025-09-07T19:43:56.018Z] CALL ClaimMesh(W151N8290) ok | gas=314148 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 4713.98626708984375->4713.98626708984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=32.0 totalBurn=5616.390553855895996093
+[2025-09-07T19:43:57.292Z] CALL ClaimMesh(E625S3233) ok | gas=301066 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 4713.98626708984375->4713.98626708984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=105.0 totalBurn=5721.390553855895996093
+[2025-09-07T19:43:58.286Z] CALL withdraw ok | gas=170549 | myMESH 4713.98626708984375->4875.17376708984375 (Δ161.1875)
+  burn: claim=0.0 decay=0.0 totalΔ=124.45 totalBurn=5845.840553855895996093
+[2025-09-07T19:43:59.413Z] CALL withdraw ok | gas=183236 | myMESH 4875.17376708984375->4998.17376708984375 (Δ123.0)
+  burn: claim=0.0 decay=0.0 totalΔ=32.8 totalBurn=5878.640553855895996093
+[2025-09-07T19:44:00.564Z] CALL ClaimMesh(E689N8329) ok | gas=314040 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 4998.17376708984375->4998.17376708984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=32.8 totalBurn=5911.440553855895996093
+[2025-09-07T19:44:01.709Z] CALL ClaimMesh(W274S2102) ok | gas=301174 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 4998.17376708984375->4998.17376708984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=107.6 totalBurn=6019.040553855895996093
+[2025-09-07T19:44:02.823Z] CALL ClaimMesh(W368S6014) ok | gas=301174 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 4998.17376708984375->4998.17376708984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=127.5 totalBurn=6146.540553855895996093
+[2025-09-07T19:44:03.890Z] CALL ClaimMesh(E860N78) ok | gas=298530 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 4998.17376708984375->4998.17376708984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=133.675 totalBurn=6280.215553855895996093
+[2025-09-07T19:44:04.980Z] CALL withdraw ok | gas=170549 | myMESH 4998.17376708984375->5169.68157958984375 (Δ171.5078125)
+  burn: claim=0.0 decay=0.0 totalΔ=136.41875 totalBurn=6416.634303855895996093
+[2025-09-07T19:44:06.114Z] CALL ClaimMesh(W326N3881) ok | gas=314148 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 5169.68157958984375->5169.68157958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=34.4 totalBurn=6451.034303855895996093
+[2025-09-07T19:44:07.073Z] CALL withdraw ok | gas=170549 | myMESH 5169.68157958984375->5332.68157958984375 (Δ163.0)
+  burn: claim=0.0 decay=0.0 totalΔ=112.8 totalBurn=6563.834303855895996093
+[2025-09-07T19:44:07.887Z] CALL withdraw ok | gas=183236 | myMESH 5332.68157958984375->5463.18157958984375 (Δ130.5)
+  burn: claim=0.0 decay=0.0 totalΔ=34.8 totalBurn=6598.634303855895996093
+[2025-09-07T19:44:08.858Z] CALL withdraw ok | gas=183236 | myMESH 5463.18157958984375->5593.68157958984375 (Δ130.5)
+  burn: claim=0.0 decay=0.0 totalΔ=34.8 totalBurn=6633.434303855895996093
+[2025-09-07T19:44:09.620Z] SKIP withdraw | ineligible (weight=87.0 lastDay=162 curDay=162)
+[2025-09-07T19:44:10.605Z] CALL ClaimMesh(E894N5409) ok | gas=314040 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 5593.68157958984375->5593.68157958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=34.8 totalBurn=6668.234303855895996093
+[2025-09-07T19:44:11.424Z] CALL withdraw ok | gas=170549 | myMESH 5593.68157958984375->5758.55657958984375 (Δ164.875)
+  burn: claim=0.0 decay=0.0 totalΔ=114.1 totalBurn=6782.334303855895996093
+[2025-09-07T19:44:12.097Z] SKIP withdraw | ineligible (weight=88.0 lastDay=164 curDay=164)
+[2025-09-07T19:44:13.170Z] CALL ClaimMesh(E452N6549) ok | gas=314040 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 5758.55657958984375->5758.55657958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=35.2 totalBurn=6817.534303855895996093
+[2025-09-07T19:44:14.239Z] CALL ClaimMesh(W356N4431) ok | gas=301090 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 5758.55657958984375->5758.55657958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=115.4 totalBurn=6932.934303855895996093
+[2025-09-07T19:44:15.075Z] CALL withdraw ok | gas=155876 | myMESH 5758.55657958984375->5932.43157958984375 (Δ173.875)
+  burn: claim=0.0 decay=0.0 totalΔ=67.1 totalBurn=7000.034303855895996093
+[2025-09-07T19:44:15.934Z] CALL withdraw ok | gas=183236 | myMESH 5932.43157958984375->6067.43157958984375 (Δ135.0)
+  burn: claim=0.0 decay=0.0 totalΔ=36.0 totalBurn=7036.034303855895996093
+[2025-09-07T19:44:16.884Z] CALL ClaimMesh(E584N2111) ok | gas=227497 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 6067.43157958984375->6067.43157958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=0.0 totalBurn=7036.034303855895996093
+[2025-09-07T19:44:17.754Z] CALL withdraw ok | gas=183236 | myMESH 6067.43157958984375->6203.93157958984375 (Δ136.5)
+  burn: claim=0.0 decay=0.0 totalΔ=36.4 totalBurn=7072.434303855895996093
+[2025-09-07T19:44:18.847Z] CALL ClaimMesh(W800S2019) ok | gas=314232 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 6203.93157958984375->6203.93157958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=36.4 totalBurn=7108.834303855895996093
+[2025-09-07T19:44:19.679Z] CALL withdraw ok | gas=155876 | myMESH 6203.93157958984375->6364.68157958984375 (Δ160.75)
+  burn: claim=0.0 decay=0.0 totalΔ=55.0 totalBurn=7163.834303855895996093
+[2025-09-07T19:44:20.574Z] CALL ClaimMesh(W233S2568) ok | gas=227689 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 6364.68157958984375->6364.68157958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=0.0 totalBurn=7163.834303855895996093
+[2025-09-07T19:44:21.625Z] CALL ClaimMesh(W841S318) ok | gas=313006 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 6364.68157958984375->6364.68157958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=37.2 totalBurn=7201.034303855895996093
+[2025-09-07T19:44:22.591Z] CALL withdraw ok | gas=170549 | myMESH 6364.68157958984375->6540.80657958984375 (Δ176.125)
+  burn: claim=0.0 decay=0.0 totalΔ=121.9 totalBurn=7322.934303855895996093
+[2025-09-07T19:44:23.697Z] CALL ClaimMesh(W471S5194) ok | gas=314232 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 6540.80657958984375->6540.80657958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=37.6 totalBurn=7360.534303855895996093
+[2025-09-07T19:44:24.604Z] CALL withdraw ok | gas=155876 | myMESH 6540.80657958984375->6706.80657958984375 (Δ166.0)
+  burn: claim=0.0 decay=0.0 totalΔ=56.8 totalBurn=7417.334303855895996093
+[2025-09-07T19:44:25.433Z] CALL withdraw ok | gas=183236 | myMESH 6706.80657958984375->6849.30657958984375 (Δ142.5)
+  burn: claim=0.0 decay=0.0 totalΔ=38.0 totalBurn=7455.334303855895996093
+[2025-09-07T19:44:26.284Z] CALL withdraw ok | gas=183236 | myMESH 6849.30657958984375->6991.80657958984375 (Δ142.5)
+  burn: claim=0.0 decay=0.0 totalΔ=38.0 totalBurn=7493.334303855895996093
+[2025-09-07T19:44:27.227Z] CALL ClaimMesh(W971S7030) ok | gas=314232 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 6991.80657958984375->6991.80657958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=38.0 totalBurn=7531.334303855895996093
+[2025-09-07T19:44:28.013Z] CALL withdraw ok | gas=170549 | myMESH 6991.80657958984375->7171.68157958984375 (Δ179.875)
+  burn: claim=0.0 decay=0.0 totalΔ=124.5 totalBurn=7655.834303855895996093
+[2025-09-07T19:44:28.862Z] CALL ClaimMesh(W693S4438) ok | gas=314232 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 7171.68157958984375->7171.68157958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=38.4 totalBurn=7694.234303855895996093
+[2025-09-07T19:44:29.824Z] CALL ClaimMesh(W927N1972) ok | gas=301090 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 7171.68157958984375->7171.68157958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=125.8 totalBurn=7820.034303855895996093
+[2025-09-07T19:44:30.616Z] CALL withdraw ok | gas=155876 | myMESH 7171.68157958984375->7361.05657958984375 (Δ189.375)
+  burn: claim=0.0 decay=0.0 totalΔ=73.1 totalBurn=7893.134303855895996093
+[2025-09-07T19:44:31.393Z] CALL withdraw ok | gas=183236 | myMESH 7361.05657958984375->7508.05657958984375 (Δ147.0)
+  burn: claim=0.0 decay=0.0 totalΔ=39.2 totalBurn=7932.334303855895996093
+[2025-09-07T19:44:32.166Z] CALL withdraw ok | gas=183236 | myMESH 7508.05657958984375->7655.05657958984375 (Δ147.0)
+  burn: claim=0.0 decay=0.0 totalΔ=39.2 totalBurn=7971.534303855895996093
+[2025-09-07T19:44:32.936Z] CALL withdraw ok | gas=183236 | myMESH 7655.05657958984375->7802.05657958984375 (Δ147.0)
+  burn: claim=0.0 decay=0.0 totalΔ=39.2 totalBurn=8010.734303855895996093
+[2025-09-07T19:44:33.703Z] CALL withdraw ok | gas=183236 | myMESH 7802.05657958984375->7949.05657958984375 (Δ147.0)
+  burn: claim=0.0 decay=0.0 totalΔ=39.2 totalBurn=8049.934303855895996093
+[2025-09-07T19:44:34.471Z] CALL withdraw ok | gas=183236 | myMESH 7949.05657958984375->8096.05657958984375 (Δ147.0)
+  burn: claim=0.0 decay=0.0 totalΔ=39.2 totalBurn=8089.134303855895996093
+[2025-09-07T19:44:35.250Z] CALL withdraw ok | gas=183236 | myMESH 8096.05657958984375->8243.05657958984375 (Δ147.0)
+  burn: claim=0.0 decay=0.0 totalΔ=39.2 totalBurn=8128.334303855895996093
+[2025-09-07T19:44:36.093Z] CALL ClaimMesh(E153S5965) ok | gas=227581 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 8243.05657958984375->8243.05657958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=0.0 totalBurn=8128.334303855895996093
+[2025-09-07T19:44:36.875Z] CALL withdraw ok | gas=183236 | myMESH 8243.05657958984375->8391.55657958984375 (Δ148.5)
+  burn: claim=0.0 decay=0.0 totalΔ=39.6 totalBurn=8167.934303855895996093
+[2025-09-07T19:44:37.731Z] CALL ClaimMesh(W584N313) ok | gas=312922 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 8391.55657958984375->8391.55657958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=39.6 totalBurn=8207.534303855895996093
+[2025-09-07T19:44:38.629Z] CALL ClaimMesh(E855N3886) ok | gas=279840 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 8391.55657958984375->8391.55657958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=59.8 totalBurn=8267.334303855895996093
+[2025-09-07T19:44:39.466Z] CALL withdraw ok | gas=170549 | myMESH 8391.55657958984375->8586.99407958984375 (Δ195.4375)
+  burn: claim=0.0 decay=0.0 totalΔ=145.85 totalBurn=8413.184303855895996093
+[2025-09-07T19:44:40.166Z] SKIP withdraw | ineligible (weight=101.0 lastDay=187 curDay=187)
+[2025-09-07T19:44:41.062Z] CALL ClaimMesh(E422N4287) ok | gas=314040 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 8586.99407958984375->8586.99407958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=40.4 totalBurn=8453.584303855895996093
+[2025-09-07T19:44:41.925Z] CALL ClaimMesh(E126N1982) ok | gas=279840 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 8586.99407958984375->8586.99407958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=61.0 totalBurn=8514.584303855895996093
+[2025-09-07T19:44:42.768Z] CALL ClaimMesh(W269N1219) ok | gas=301090 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 8586.99407958984375->8586.99407958984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=148.75 totalBurn=8663.334303855895996093
+[2025-09-07T19:44:43.532Z] CALL withdraw ok | gas=170549 | myMESH 8586.99407958984375->8793.07220458984375 (Δ206.078125)
+  burn: claim=0.0 decay=0.0 totalΔ=161.7875 totalBurn=8825.121803855895996093
+[2025-09-07T19:44:44.313Z] CALL withdraw ok | gas=183236 | myMESH 8793.07220458984375->8949.07220458984375 (Δ156.0)
+  burn: claim=0.0 decay=0.0 totalΔ=41.6 totalBurn=8866.721803855895996093
+[2025-09-07T19:44:45.223Z] CALL ClaimMesh(W253S6133) ok | gas=314232 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 8949.07220458984375->8949.07220458984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=41.6 totalBurn=8908.321803855895996093
+[2025-09-07T19:44:45.981Z] CALL withdraw ok | gas=170549 | myMESH 8949.07220458984375->9145.82220458984375 (Δ196.75)
+  burn: claim=0.0 decay=0.0 totalΔ=136.2 totalBurn=9044.521803855895996093
+[2025-09-07T19:44:46.791Z] CALL ClaimMesh(E281N6489) ok | gas=314040 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 9145.82220458984375->9145.82220458984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=42.0 totalBurn=9086.521803855895996093
+[2025-09-07T19:44:47.602Z] CALL ClaimMesh(E888N4334) ok | gas=279840 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 9145.82220458984375->9145.82220458984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=63.4 totalBurn=9149.921803855895996093
+[2025-09-07T19:44:48.356Z] CALL withdraw ok | gas=170549 | myMESH 9145.82220458984375->9352.88470458984375 (Δ207.0625)
+  burn: claim=0.0 decay=0.0 totalΔ=154.55 totalBurn=9304.471803855895996093
+[2025-09-07T19:44:49.246Z] CALL ClaimMesh(W737N3841) ok | gas=227605 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 9352.88470458984375->9352.88470458984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=0.0 totalBurn=9304.471803855895996093
+[2025-09-07T19:44:50.144Z] CALL ClaimMesh(W721N571) ok | gas=312922 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 9352.88470458984375->9352.88470458984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=43.2 totalBurn=9347.671803855895996093
+[2025-09-07T19:44:50.955Z] CALL ClaimMesh(W154N4715) ok | gas=301090 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 9352.88470458984375->9352.88470458984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=141.4 totalBurn=9489.071803855895996093
+[2025-09-07T19:44:51.691Z] CALL withdraw ok | gas=155876 | myMESH 9352.88470458984375->9565.50970458984375 (Δ212.625)
+  burn: claim=0.0 decay=0.0 totalΔ=82.1 totalBurn=9571.171803855895996093
+[2025-09-07T19:44:52.508Z] CALL ClaimMesh(E54N82) ok | gas=309981 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 9565.50970458984375->9565.50970458984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=44.0 totalBurn=9615.171803855895996093
+[2025-09-07T19:44:53.315Z] CALL ClaimMesh(E688N1360) ok | gas=300982 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 9565.50970458984375->9565.50970458984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=144.0 totalBurn=9759.171803855895996093
+[2025-09-07T19:44:54.209Z] CALL withdraw ok | gas=170549 | myMESH 9565.50970458984375->9785.75970458984375 (Δ220.25)
+  burn: claim=0.0 decay=0.0 totalΔ=170.2 totalBurn=9929.371803855895996093
+[2025-09-07T19:44:55.014Z] CALL ClaimMesh(W759N4501) ok | gas=227605 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 9785.75970458984375->9785.75970458984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=0.0 totalBurn=9929.371803855895996093
+[2025-09-07T19:44:55.761Z] CALL withdraw ok | gas=183236 | myMESH 9785.75970458984375->9955.25970458984375 (Δ169.5)
+  burn: claim=0.0 decay=0.0 totalΔ=45.2 totalBurn=9974.571803855895996093
+[2025-09-07T19:44:56.501Z] CALL withdraw ok | gas=183236 | myMESH 9955.25970458984375->10124.75970458984375 (Δ169.5)
+  burn: claim=0.0 decay=0.0 totalΔ=45.2 totalBurn=10019.771803855895996093
+[2025-09-07T19:44:57.373Z] CALL ClaimMesh(E823S3536) ok | gas=314124 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 10124.75970458984375->10124.75970458984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=45.2 totalBurn=10064.971803855895996093
+[2025-09-07T19:44:58.177Z] CALL ClaimMesh(W886S1500) ok | gas=301174 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 10124.75970458984375->10124.75970458984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=147.9 totalBurn=10212.871803855895996093
+[2025-09-07T19:44:58.934Z] CALL withdraw ok | gas=170549 | myMESH 10124.75970458984375->10350.91595458984375 (Δ226.15625)
+  burn: claim=0.0 decay=0.0 totalΔ=174.775 totalBurn=10387.646803855895996093
+[2025-09-07T19:44:59.627Z] SKIP withdraw | ineligible (weight=115.0 lastDay=205 curDay=205)
+[2025-09-07T19:45:00.414Z] CALL withdraw ok | gas=183236 | myMESH 10350.91595458984375->10523.41595458984375 (Δ172.5)
+  burn: claim=0.0 decay=0.0 totalΔ=46.0 totalBurn=10433.646803855895996093
+[2025-09-07T19:45:01.198Z] CALL ClaimMesh(W298N575) ok | gas=226379 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 10523.41595458984375->10523.41595458984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=0.0 totalBurn=10433.646803855895996093
+[2025-09-07T19:45:02.152Z] CALL ClaimMesh(E219S3380) ok | gas=314124 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 10523.41595458984375->10523.41595458984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=46.4 totalBurn=10480.046803855895996093
+[2025-09-07T19:45:03.012Z] CALL withdraw ok | gas=155876 | myMESH 10523.41595458984375->10727.91595458984375 (Δ204.5)
+  burn: claim=0.0 decay=0.0 totalΔ=70.0 totalBurn=10550.046803855895996093
+[2025-09-07T19:45:03.855Z] CALL withdraw ok | gas=183236 | myMESH 10727.91595458984375->10903.41595458984375 (Δ175.5)
+  burn: claim=0.0 decay=0.0 totalΔ=46.8 totalBurn=10596.846803855895996093
+[2025-09-07T19:45:04.766Z] CALL withdraw ok | gas=183236 | myMESH 10903.41595458984375->11078.91595458984375 (Δ175.5)
+  burn: claim=0.0 decay=0.0 totalΔ=46.8 totalBurn=10643.646803855895996093
+[2025-09-07T19:45:05.567Z] CALL withdraw ok | gas=183236 | myMESH 11078.91595458984375->11254.41595458984375 (Δ175.5)
+  burn: claim=0.0 decay=0.0 totalΔ=46.8 totalBurn=10690.446803855895996093
+[2025-09-07T19:45:06.380Z] CALL ClaimMesh(W286N2389) ok | gas=314148 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 11254.41595458984375->11254.41595458984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=46.8 totalBurn=10737.246803855895996093
+[2025-09-07T19:45:07.176Z] CALL ClaimMesh(E322S3147) ok | gas=301066 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 11254.41595458984375->11254.41595458984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=153.1 totalBurn=10890.346803855895996093
+[2025-09-07T19:45:08.061Z] CALL ClaimMesh(W40S6198) ok | gas=278425 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 11254.41595458984375->11254.41595458984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=88.85 totalBurn=10979.196803855895996093
+[2025-09-07T19:45:08.907Z] CALL ClaimMesh(E797S5614) ok | gas=301066 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 11254.41595458984375->11254.41595458984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=186.6375 totalBurn=11165.834303855895996093
+[2025-09-07T19:45:09.644Z] CALL withdraw ok | gas=170549 | myMESH 11254.41595458984375->11495.60736083984375 (Δ241.19140625)
+  burn: claim=0.0 decay=0.0 totalΔ=191.659375 totalBurn=11357.493678855895996093
+[2025-09-07T19:45:10.447Z] CALL ClaimMesh(W331S4515) ok | gas=227689 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 11495.60736083984375->11495.60736083984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=0.0 totalBurn=11357.493678855895996093
+[2025-09-07T19:45:11.350Z] CALL ClaimMesh(W151N889) ok | gas=312922 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 11495.60736083984375->11495.60736083984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=48.8 totalBurn=11406.293678855895996093
+[2025-09-07T19:45:12.187Z] CALL withdraw ok | gas=170549 | myMESH 11495.60736083984375->11726.10736083984375 (Δ230.5)
+  burn: claim=0.0 decay=0.0 totalΔ=159.6 totalBurn=11565.893678855895996093
+[2025-09-07T19:45:13.113Z] CALL withdraw ok | gas=183236 | myMESH 11726.10736083984375->11910.60736083984375 (Δ184.5)
+  burn: claim=0.0 decay=0.0 totalΔ=49.2 totalBurn=11615.093678855895996093
+[2025-09-07T19:45:14.000Z] CALL withdraw ok | gas=183236 | myMESH 11910.60736083984375->12095.10736083984375 (Δ184.5)
+  burn: claim=0.0 decay=0.0 totalΔ=49.2 totalBurn=11664.293678855895996093
+[2025-09-07T19:45:15.001Z] CALL withdraw ok | gas=183236 | myMESH 12095.10736083984375->12279.60736083984375 (Δ184.5)
+  burn: claim=0.0 decay=0.0 totalΔ=49.2 totalBurn=11713.493678855895996093
+[2025-09-07T19:45:15.803Z] CALL withdraw ok | gas=183236 | myMESH 12279.60736083984375->12464.10736083984375 (Δ184.5)
+  burn: claim=0.0 decay=0.0 totalΔ=49.2 totalBurn=11762.693678855895996093
+[2025-09-07T19:45:16.636Z] CALL withdraw ok | gas=183236 | myMESH 12464.10736083984375->12648.60736083984375 (Δ184.5)
+  burn: claim=0.0 decay=0.0 totalΔ=49.2 totalBurn=11811.893678855895996093
+[2025-09-07T19:45:17.590Z] CALL ClaimMesh(W304N2672) ok | gas=227605 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 12648.60736083984375->12648.60736083984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=0.0 totalBurn=11811.893678855895996093
+[2025-09-07T19:45:18.461Z] CALL withdraw ok | gas=183236 | myMESH 12648.60736083984375->12834.60736083984375 (Δ186.0)
+  burn: claim=0.0 decay=0.0 totalΔ=49.6 totalBurn=11861.493678855895996093
+[2025-09-07T19:45:19.232Z] CALL withdraw ok | gas=183236 | myMESH 12834.60736083984375->13020.60736083984375 (Δ186.0)
+  burn: claim=0.0 decay=0.0 totalΔ=49.6 totalBurn=11911.093678855895996093
+[2025-09-07T19:45:20.226Z] CALL ClaimMesh(W255S5554) ok | gas=314232 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 13020.60736083984375->13020.60736083984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=49.6 totalBurn=11960.693678855895996093
+[2025-09-07T19:45:21.033Z] CALL withdraw ok | gas=170549 | myMESH 13020.60736083984375->13254.85736083984375 (Δ234.25)
+  burn: claim=0.0 decay=0.0 totalΔ=162.2 totalBurn=12122.893678855895996093
+[2025-09-07T19:45:21.759Z] SKIP withdraw | ineligible (weight=125.0 lastDay=225 curDay=225)
+[2025-09-07T19:45:22.682Z] CALL ClaimMesh(E657S5120) ok | gas=314124 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 13254.85736083984375->13254.85736083984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=50.0 totalBurn=12172.893678855895996093
+[2025-09-07T19:45:23.497Z] CALL ClaimMesh(E994N605) ok | gas=278614 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 13254.85736083984375->13254.85736083984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=75.4 totalBurn=12248.293678855895996093
+[2025-09-07T19:45:24.680Z] CALL withdraw ok | gas=155876 | myMESH 13254.85736083984375->13492.48236083984375 (Δ237.625)
+  burn: claim=0.0 decay=0.0 totalΔ=88.5 totalBurn=12336.793678855895996093
+[2025-09-07T19:45:25.546Z] CALL withdraw ok | gas=183236 | myMESH 13492.48236083984375->13682.98236083984375 (Δ190.5)
+  burn: claim=0.0 decay=0.0 totalΔ=50.8 totalBurn=12387.593678855895996093
+[2025-09-07T19:45:26.369Z] CALL ClaimMesh(E280S5895) ok | gas=314124 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 13682.98236083984375->13682.98236083984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=50.8 totalBurn=12438.393678855895996093
+[2025-09-07T19:45:27.154Z] CALL withdraw ok | gas=155876 | myMESH 13682.98236083984375->13906.73236083984375 (Δ223.75)
+  burn: claim=0.0 decay=0.0 totalΔ=76.6 totalBurn=12514.993678855895996093
+[2025-09-07T19:45:28.115Z] CALL ClaimMesh(W335N4886) ok | gas=314148 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 13906.73236083984375->13906.73236083984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=51.2 totalBurn=12566.193678855895996093
+[2025-09-07T19:45:28.939Z] CALL ClaimMesh(W732S4976) ok | gas=280032 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 13906.73236083984375->13906.73236083984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=77.2 totalBurn=12643.393678855895996093
+[2025-09-07T19:45:29.753Z] CALL ClaimMesh(W649S6137) ok | gas=280032 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 13906.73236083984375->13906.73236083984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=90.6 totalBurn=12733.993678855895996093
+[2025-09-07T19:45:30.673Z] CALL withdraw ok | gas=170549 | myMESH 13906.73236083984375->14164.29486083984375 (Δ257.5625)
+  burn: claim=0.0 decay=0.0 totalΔ=198.95 totalBurn=12932.943678855895996093
+[2025-09-07T19:45:31.514Z] CALL ClaimMesh(E768N6378) ok | gas=314040 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 14164.29486083984375->14164.29486083984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=52.4 totalBurn=12985.343678855895996093
+[2025-09-07T19:45:32.253Z] CALL withdraw ok | gas=170549 | myMESH 14164.29486083984375->14411.66986083984375 (Δ247.375)
+  burn: claim=0.0 decay=0.0 totalΔ=171.3 totalBurn=13156.643678855895996093
+[2025-09-07T19:45:33.110Z] CALL ClaimMesh(W817N8779) ok | gas=314148 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 14411.66986083984375->14411.66986083984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=52.8 totalBurn=13209.443678855895996093
+[2025-09-07T19:45:33.900Z] CALL withdraw ok | gas=170549 | myMESH 14411.66986083984375->14660.91986083984375 (Δ249.25)
+  burn: claim=0.0 decay=0.0 totalΔ=172.6 totalBurn=13382.043678855895996093
+[2025-09-07T19:45:34.821Z] CALL ClaimMesh(W956S8135) ok | gas=314232 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 14660.91986083984375->14660.91986083984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=53.2 totalBurn=13435.243678855895996093
+[2025-09-07T19:45:35.823Z] CALL ClaimMesh(W647S1248) ok | gas=301174 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 14660.91986083984375->14660.91986083984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=173.9 totalBurn=13609.143678855895996093
+[2025-09-07T19:45:36.615Z] CALL withdraw ok | gas=170549 | myMESH 14660.91986083984375->14926.45111083984375 (Δ265.53125)
+  burn: claim=0.0 decay=0.0 totalΔ=205.275 totalBurn=13814.418678855895996093
+[2025-09-07T19:45:37.486Z] CALL ClaimMesh(W805S1383) ok | gas=314232 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 14926.45111083984375->14926.45111083984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=54.0 totalBurn=13868.418678855895996093
+[2025-09-07T19:45:38.651Z] CALL ClaimMesh(W846N851) ok | gas=278722 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 14926.45111083984375->14926.45111083984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=81.4 totalBurn=13949.818678855895996093
+[2025-09-07T19:45:39.453Z] CALL withdraw ok | gas=170549 | myMESH 14926.45111083984375->15191.63861083984375 (Δ265.1875)
+  burn: claim=0.0 decay=0.0 totalΔ=198.05 totalBurn=14147.868678855895996093
+[2025-09-07T19:45:40.408Z] CALL ClaimMesh(E936S2628) ok | gas=227581 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 15191.63861083984375->15191.63861083984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=0.0 totalBurn=14147.868678855895996093
+[2025-09-07T19:45:41.235Z] CALL withdraw ok | gas=184229 | myMESH 15191.63861083984375->15433.13861083984375 (Δ241.5)
+  burn: claim=0.0 decay=0.0 totalΔ=138.0 totalBurn=14285.868678855895996093
+[2025-09-07T19:45:42.346Z] CALL ClaimMesh(E160N3549) ok | gas=314040 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 15433.13861083984375->15433.13861083984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=55.2 totalBurn=14341.068678855895996093
+[2025-09-07T19:45:43.265Z] CALL ClaimMesh(W183S5955) ok | gas=280032 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 15433.13861083984375->15433.13861083984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=83.2 totalBurn=14424.268678855895996093
+[2025-09-07T19:45:44.049Z] CALL ClaimMesh(W817N3500) ok | gas=225494 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 15704.13861083984375->15704.13861083984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=0.0 totalBurn=14626.668678855895996093
+[2025-09-07T19:45:44.908Z] CALL ClaimMesh(E628S3231) ok | gas=314124 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 15704.13861083984375->15704.13861083984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=56.4 totalBurn=14683.068678855895996093
+[2025-09-07T19:45:45.709Z] CALL withdraw ok | gas=170549 | myMESH 15704.13861083984375->15970.26361083984375 (Δ266.125)
+  burn: claim=0.0 decay=0.0 totalΔ=184.3 totalBurn=14867.368678855895996093
+[2025-09-07T19:45:46.500Z] CALL ClaimMesh(W407S684) ok | gas=226463 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 15970.26361083984375->15970.26361083984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=0.0 totalBurn=14867.368678855895996093
+[2025-09-07T19:45:47.256Z] CALL withdraw ok | gas=183236 | myMESH 15970.26361083984375->16184.76361083984375 (Δ214.5)
+  burn: claim=0.0 decay=0.0 totalΔ=57.2 totalBurn=14924.568678855895996093
+[2025-09-07T19:45:48.050Z] CALL ClaimMesh(E604N8179) ok | gas=314040 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 16184.76361083984375->16184.76361083984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=57.2 totalBurn=14981.768678855895996093
+[2025-09-07T19:45:48.859Z] CALL ClaimMesh(E205S5910) ok | gas=301066 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 16184.76361083984375->16184.76361083984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=186.9 totalBurn=15168.668678855895996093
+[2025-09-07T19:45:49.781Z] CALL ClaimMesh(W271N5119) ok | gas=301090 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 16184.76361083984375->16184.76361083984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=220.525 totalBurn=15389.193678855895996093
+[2025-09-07T19:45:50.575Z] CALL ClaimMesh(W594N881) ok | gas=299864 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 16184.76361083984375->16184.76361083984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=230.13125 totalBurn=15619.324928855895996093
+[2025-09-07T19:45:51.376Z] CALL ClaimMesh(E652N4154) ok | gas=279840 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 16184.76361083984375->16184.76361083984375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=116.621875 totalBurn=15735.946803855895996093
+[2025-09-07T19:45:52.231Z] CALL withdraw ok | gas=170549 | myMESH 16184.76361083984375->16480.20794677734375 (Δ295.4443359375)
+  burn: claim=0.0 decay=0.0 totalΔ=235.46640625 totalBurn=15971.413210105895996093
+[2025-09-07T19:45:53.057Z] CALL ClaimMesh(E591N1919) ok | gas=314040 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 16480.20794677734375->16480.20794677734375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=59.2 totalBurn=16030.613210105895996093
+[2025-09-07T19:45:53.979Z] CALL ClaimMesh(E612N8967) ok | gas=279840 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 16480.20794677734375->16480.20794677734375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=89.2 totalBurn=16119.813210105895996093
+[2025-09-07T19:45:54.808Z] CALL withdraw ok | gas=170549 | myMESH 16480.20794677734375->16770.58294677734375 (Δ290.375)
+  burn: claim=0.0 decay=0.0 totalΔ=216.9 totalBurn=16336.713210105895996093
+[2025-09-07T19:45:55.771Z] CALL withdraw ok | gas=184229 | myMESH 16770.58294677734375->17033.08294677734375 (Δ262.5)
+  burn: claim=0.0 decay=0.0 totalΔ=150.0 totalBurn=16486.713210105895996093
+[2025-09-07T19:45:56.897Z] CALL ClaimMesh(W876S5376) ok | gas=314232 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 17033.08294677734375->17033.08294677734375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=60.0 totalBurn=16546.713210105895996093
+[2025-09-07T19:45:57.714Z] CALL ClaimMesh(W101N316) ok | gas=299864 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 17033.08294677734375->17033.08294677734375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=196.0 totalBurn=16742.713210105895996093
+[2025-09-07T19:45:58.585Z] CALL withdraw ok | gas=170549 | myMESH 17033.08294677734375->17332.08294677734375 (Δ299.0)
+  burn: claim=0.0 decay=0.0 totalΔ=231.2 totalBurn=16973.913210105895996093
+[2025-09-07T19:45:59.496Z] CALL withdraw ok | gas=183236 | myMESH 17332.08294677734375->17560.08294677734375 (Δ228.0)
+  burn: claim=0.0 decay=0.0 totalΔ=60.8 totalBurn=17034.713210105895996093
+[2025-09-07T19:46:00.498Z] CALL ClaimMesh(E1S6291) ok | gas=224367 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 17560.08294677734375->17560.08294677734375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=0.0 totalBurn=17034.713210105895996093
+[2025-09-07T19:46:01.286Z] CALL withdraw ok | gas=183236 | myMESH 17560.08294677734375->17789.58294677734375 (Δ229.5)
+  burn: claim=0.0 decay=0.0 totalΔ=61.2 totalBurn=17095.913210105895996093
+[2025-09-07T19:46:02.059Z] CALL withdraw ok | gas=183236 | myMESH 17789.58294677734375->18019.08294677734375 (Δ229.5)
+  burn: claim=0.0 decay=0.0 totalΔ=61.2 totalBurn=17157.113210105895996093
+[2025-09-07T19:46:02.829Z] CALL withdraw ok | gas=183236 | myMESH 18019.08294677734375->18248.58294677734375 (Δ229.5)
+  burn: claim=0.0 decay=0.0 totalΔ=61.2 totalBurn=17218.313210105895996093
+[2025-09-07T19:46:03.508Z] SKIP withdraw | ineligible (weight=153.0 lastDay=262 curDay=262)
+[2025-09-07T19:46:04.359Z] CALL ClaimMesh(E169N5377) ok | gas=314040 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 18248.58294677734375->18248.58294677734375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=61.2 totalBurn=17279.513210105895996093
+[2025-09-07T19:46:05.108Z] CALL withdraw ok | gas=170549 | myMESH 18248.58294677734375->18537.20794677734375 (Δ288.625)
+  burn: claim=0.0 decay=0.0 totalΔ=199.9 totalBurn=17479.413210105895996093
+[2025-09-07T19:46:05.904Z] CALL ClaimMesh(E251N8323) ok | gas=227497 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 18537.20794677734375->18537.20794677734375 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=0.0 totalBurn=17479.413210105895996093

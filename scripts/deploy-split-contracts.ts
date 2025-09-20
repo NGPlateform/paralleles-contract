@@ -8,41 +8,34 @@ async function main() {
   console.log("部署账户:", deployer.address);
 
   // 配置参数
-  const owners = [
-    "0x843076428Df85c8F7704a2Be73B0E1b1D5799D4d",
-    "0xc4d97570A90096e9f8e23c58A1E7F528fDAa45e7",
-    "0xac3D7D1CeDa1c6B4f25B25991f7401D441E13340",
-  ];
-  
-  const foundationAddr = "0xDD120c441ED22daC885C9167eaeFFA13522b4644";
-  const pancakeRouter = "0x10ED43C718714eb63d5aA57B78B54704E256024E"; // BSC主网PancakeSwap路由
-  const initialAPY = 1000; // 10% APY (1000基点)
+  const foundationAddr = process.env.FOUNDATION_ADDRESS || "0xDD120c441ED22daC885C9167eaeFFA13522b4644";
+  const safeAddress = process.env.SAFE_ADDRESS || "0x0000000000000000000000000000000000000001";
+  const initialAPY = parseInt(process.env.INITIAL_APY || "1000"); // 10% APY (1000基点)
 
   console.log("配置参数:");
-  console.log("- 所有者数量:", owners.length);
   console.log("- 基金会地址:", foundationAddr);
-  console.log("- PancakeSwap路由:", pancakeRouter);
+  console.log("- 治理Safe:", safeAddress);
   console.log("- 初始APY:", initialAPY / 100, "%");
 
   try {
     // 1. 部署Meshes合约
     console.log("\n1. 部署Meshes合约...");
     const Meshes = await ethers.getContractFactory("Meshes");
-    const meshes = await Meshes.deploy(owners, foundationAddr, pancakeRouter);
+    const meshes = await Meshes.deploy(foundationAddr, safeAddress);
     await meshes.deployed();
     console.log("Meshes合约已部署到:", meshes.address);
 
     // 2. 部署Reward合约
     console.log("\n2. 部署Reward合约...");
     const Reward = await ethers.getContractFactory("Reward");
-    const reward = await Reward.deploy(owners, meshes.address, foundationAddr);
+    const reward = await Reward.deploy(meshes.address, foundationAddr, safeAddress);
     await reward.deployed();
     console.log("Reward合约已部署到:", reward.address);
 
     // 3. 部署Stake合约
     console.log("\n3. 部署Stake合约...");
     const Stake = await ethers.getContractFactory("Stake");
-    const stake = await Stake.deploy(owners, meshes.address, foundationAddr, initialAPY);
+    const stake = await Stake.deploy(meshes.address, foundationAddr, safeAddress, initialAPY);
     await stake.deployed();
     console.log("Stake合约已部署到:", stake.address);
 
@@ -60,21 +53,20 @@ async function main() {
       contracts: {
         Meshes: {
           address: meshes.address,
-          constructorArgs: [owners, foundationAddr, pancakeRouter]
+          constructorArgs: [foundationAddr, safeAddress]
         },
         Reward: {
           address: reward.address,
-          constructorArgs: [owners, meshes.address, foundationAddr]
+          constructorArgs: [meshes.address, foundationAddr, safeAddress]
         },
         Stake: {
           address: stake.address,
-          constructorArgs: [owners, meshes.address, foundationAddr, initialAPY]
+          constructorArgs: [meshes.address, foundationAddr, safeAddress, initialAPY]
         }
       },
       configuration: {
-        owners: owners,
         foundationAddr: foundationAddr,
-        pancakeRouter: pancakeRouter,
+        safeAddress: safeAddress,
         initialAPY: initialAPY
       }
     };

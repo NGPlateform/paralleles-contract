@@ -6,7 +6,7 @@ import "@nomiclabs/hardhat-waffle";
 import "@nomiclabs/hardhat-etherscan";
 
 import "hardhat-abi-exporter";
-import "hardhat-deploy";
+// import "hardhat-deploy"; // disabled during Jest runs
 //import * as env from "dotenv";
 import { HardhatUserConfig } from "hardhat/types";
 import * as fs from "fs";
@@ -19,31 +19,28 @@ type ContractSizer = {
 };
 type HardhatConfig = HardhatUserConfig & ContractSizer;
 
-import { extTask } from "./hardhat.task";
-import { extFoundation } from "./test/foundation.task";
-import { extNGP } from "./test/ngp.task";
-import { Sign } from "./test/sign.task";
+// import { extTask } from "./hardhat.task"; // disabled during Jest runs
+// import { extFoundation } from "./test/foundation.task";
+// import { extNGP } from "./test/ngp.task";
+// import { Sign } from "./test/sign.task";
 
-console.log("config hardhat.");
+// console.log("config hardhat.");
+// if (process.env.ENABLE_HARDHAT_TASKS) {
+//   extTask.RegTasks();
+//   extFoundation.RegTasks();
+//   extNGP.RegTasks();
+//   Sign.RegTasks();
+// }
 
-extTask.RegTasks();
-extFoundation.RegTasks();
-extNGP.RegTasks();
-Sign.RegTasks();
-
-// get prikeyts from a json file
-let buffer = fs.readFileSync("local_privkeys.json");
-
-// let buffer = fs.readFileSync(
-//   "/Volumes/KINGSTON/privkey/ulab/bscmain_privkeys.json"
-// );
-// let buffer = fs.readFileSync("rinkeby_privkeys.json");
-// let buffer = fs.readFileSync("bsctest_privkeys.json");
-// let buffer = fs.readFileSync("bscmain_privkeys.json");
-let srcjson = JSON.parse(buffer.toString());
-
-let namedkeys: { [id: string]: number } = srcjson["namedkeys"];
-let onlykeys: string[] = srcjson["prikeys"] as string[];
+// get prikeyts from a json file (optional during Jest)
+let namedkeys: { [id: string]: number } = {};
+let onlykeys: string[] = [];
+try {
+  let buffer = fs.readFileSync("local_privkeys.json");
+  let srcjson = JSON.parse(buffer.toString());
+  namedkeys = srcjson["namedkeys"] || {};
+  onlykeys = (srcjson["prikeys"] as string[]) || [];
+} catch {}
 let hardhat_prikeys = [];
 for (var i = 0; i < onlykeys.length; i++)
   hardhat_prikeys.push({
@@ -51,7 +48,7 @@ for (var i = 0; i < onlykeys.length; i++)
     balance: "99000000000000000000",
   });
 
-const config: HardhatConfig = {
+const config: any = {
   solidity: {
     version: "0.8.8",
     settings: {
@@ -64,7 +61,7 @@ const config: HardhatConfig = {
   contractSizer: {
     runOnCompile: true,
   },
-  namedAccounts: namedkeys, //from json
+  // namedAccounts: namedkeys, //from json (disabled for Jest simplicity)
   paths: {
     artifacts: "artifacts",
     deploy: "deploy",
@@ -74,7 +71,7 @@ const config: HardhatConfig = {
   defaultNetwork: "hardhat",
   networks: {
     hardhat: {
-      accounts: hardhat_prikeys,
+      accounts: hardhat_prikeys.length ? hardhat_prikeys : undefined,
     },
     bsctest: {
       url: "https://bsc.getblock.io/aa12cf51-66b0-40a0-acef-68c538b3aacc/testnet/",
@@ -161,6 +158,17 @@ const config: HardhatConfig = {
   },
   mocha: {
     timeout: 600000,
+  },
+  // Jest configuration for testing
+  jest: {
+    testEnvironment: "node",
+    setupFilesAfterEnv: ["<rootDir>/test/setup.ts"],
+    testMatch: ["**/test/**/*.test.ts"],
+    collectCoverageFrom: [
+      "contracts/**/*.sol",
+      "scripts/**/*.ts",
+      "utils/**/*.ts"
+    ]
   },
 };
 

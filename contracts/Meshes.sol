@@ -6,114 +6,227 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/security/Pausable.sol";
 
+/**
+ * @title Meshes - 基于地理网格的ERC20代币系统
+ * @dev 这是一个创新的代币系统，用户通过认领地理网格来获得代币奖励
+ * 
+ * 核心机制：
+ * 1. 网格认领：用户认领地理网格（如E123N45），获得代币奖励
+ * 2. 热度系统：网格被认领次数越多，热度越高，奖励越多
+ * 3. 燃烧机制：重复认领需要燃烧代币，防止过度投机
+ * 4. 时间衰减：代币供应量随时间衰减，模拟稀缺性
+ * 5. 基金会分配：部分代币分配给基金会，支持生态发展
+ * 
+ * 安全特性：
+ * - 重入保护：防止重入攻击
+ * - 暂停机制：紧急情况下可暂停合约
+ * - 访问控制：关键功能仅限治理地址调用
+ * 
+ * @author Parallels Team
+ * @notice 本合约实现了基于地理网格的代币经济系统
+ */
 contract Meshes is ERC20, ReentrancyGuard, Pausable {
+    /**
+     * @dev 用户认领信息结构体
+     * @param user 认领用户地址
+     * @param meshID 网格ID（如"E123N45"）
+     * @param updateTs 最后更新时间戳
+     * @param withdrawTs 最后提取时间戳
+     */
     struct MintInfo {
-        address user;
-        string meshID;
-        uint256 updateTs;
-        uint256 withdrawTs;
+        address user;        // 认领用户地址
+        string meshID;       // 网格ID，格式为"E/W + 经度 + N/S + 纬度"
+        uint256 updateTs;    // 最后更新时间戳
+        uint256 withdrawTs;  // 最后提取时间戳
     }
 
+    // ============ 时间相关常量 ============
+    /** @dev 一天的秒数 */
     uint256 SECONDS_IN_DAY = 86400;
+    
+    /** @dev 总铸造持续时间：10年，用于计算代币衰减 */
     uint256 totalMintDuration = 10 * 365 * SECONDS_IN_DAY; // 10年
-//    uint256 public constant MAX_TOTAL_SUPPLY = 81_000_000_000 * 10**18; // 81亿枚
-//    uint256 public constant MAX_MINT_PER_CALL = 100 * 10**18; // 每次铸造上限为100枚
+    
+    // 已废弃的常量（保留用于历史记录）
+    //    uint256 public constant MAX_TOTAL_SUPPLY = 81_000_000_000 * 10**18; // 81亿枚
+    //    uint256 public constant MAX_MINT_PER_CALL = 100 * 10**18; // 每次铸造上限为100枚
+
+    // ============ 燃烧机制参数 ============
+    /** @dev 基础燃烧数量（wei单位），用于计算认领成本 */
     uint256 baseBurnAmount = 10;
-    // baseMintAmount 不再使用（原线性日因子参数），留空以避免误用
 
+    // ============ 代币铸造参数 ============
+    /** @dev 当前日铸造因子，用于计算每日可铸造的代币数量 */
     uint256 public dailyMintFactor;
-    uint256 public lastUpdatedDay = 0; // 记录上次更新的“相对创世”的日期索引
+    
+    /** @dev 记录上次更新的"相对创世"的日期索引，用于优化计算 */
+    uint256 public lastUpdatedDay = 0;
 
-    bool public burnSwitch = false; // 控制是否启用burn操作
+    /**
+     * @dev 燃烧缩放比例（千分位精度），表示对基础成本的乘数
+     * @notice 0 表示关闭燃烧；1000 表示 1.000x；1000000 表示 1000.000x
+     * @notice 范围 [0, 1_000_000]，用于动态调整燃烧成本
+     */
+    uint256 public burnScaleMilli = 0;
 
+    // ============ 用户数据映射 ============
+    /** @dev 用户认领信息映射：用户地址 => 网格ID => 认领信息 */
     mapping(address => mapping(string => MintInfo)) public userMints;
-    // 原 userApplys[string] => address[] 改为申请计数器，避免数组膨胀
+    
+    /** @dev 网格申请计数：网格ID => 申请次数（避免数组膨胀） */
     mapping(string => uint32) public meshApplyCount;
+    
+    /** @dev 网格热度值：网格ID => 热度值（基于申请次数计算） */
     mapping(string => uint256) public degreeHeats;
-    // 原 userClaims[address] => string[] 改为用户累计权重与计数
+    
+    /** @dev 用户累计权重：用户地址 => 累计权重（影响代币奖励） */
     mapping(address => uint256) public userWeightSum;
+    
+    /** @dev 用户认领次数：用户地址 => 认领次数 */
     mapping(address => uint32) public userClaimCounts;
-    // 用户上一次提现的“相对创世”的天索引
+    
+    /** @dev 用户上次提现日：用户地址 => 上次提现的"相对创世"的天索引 */
     mapping(address => uint256) public lastWithdrawDay;
+    
+    /** @dev 铸币者权限：用户地址 => 是否有铸币权限 */
     mapping(address => bool) private minters;
+    
     // spendNonce 已弃用（旧多签相关）
 
     // legacy owner fields removed; governance via Gnosis Safe
 
+    // ============ 系统状态变量 ============
+    /** @dev 创世时间戳，用于计算相对时间 */
     uint256 public genesisTs;
+    
+    /** @dev 活跃铸币者数量 */
     uint256 public activeMinters;
+    
+    /** @dev 活跃网格数量（被认领的网格数） */
     uint256 public activeMeshes;
+    
+    /** @dev 总认领次数 */
     uint256 public claimMints;
+    
+    /** @dev 最大网格热度值（用于计算燃烧成本） */
     uint256 public maxMeshHeats;
+    
+    /** @dev 总燃烧代币数量 */
     uint256 public totalBurn;
 
+    // ============ 地址配置 ============
+    /** @dev 基金会地址，接收部分代币分配 */
     address public FoundationAddr;
+    
+    /** @dev 治理安全地址（Gnosis Safe），用于管理合约 */
     address public governanceSafe;
 
-    // 基金会待转池与小时转账
+    // ============ 基金会分配机制 ============
+    /** @dev 基金会待转池，累积待转给基金会的代币 */
     uint256 public pendingFoundationPool;
+    
+    /** @dev 上次基金会转账的小时索引 */
     uint256 public lastPayoutHour;
+    
+    /** @dev 小时秒数常量 */
     uint256 private constant HOUR_SECONDS = 3600;
 
-    // 未提现余额与处理进度（用于“日衰减 50%”记账）
+    // ============ 用户余额与处理进度 ============
+    /** @dev 用户未提现余额（用于"日衰减 50%"记账） */
     mapping(address => uint256) public carryBalance;
-    mapping(address => uint256) public lastProcessedDay; // 已处理至的日索引（含）
+    
+    /** @dev 用户已处理至的日索引（含），用于优化日衰减计算 */
+    mapping(address => uint256) public lastProcessedDay;
+    
+    /** @dev 新用户第一次claim的时间戳，用于24小时提取限制 */
+    mapping(address => uint256) public firstClaimTimestamp;
 
+    // ============ 历史记录映射 ============
+    /** @dev 每日铸造数量记录：日索引 => 铸造数量 */
     mapping(uint256 => uint256) public dayMintAmount;
+    
+    /** @dev 用户总铸造数量：用户地址 => 总铸造数量 */
     mapping(address => uint256) public userTotalMint;
 
-    // 优化的事件定义，添加indexed参数
-    event ClaimMint(address indexed user, string indexed meshID, uint256 indexed time);
+    // ============ 事件定义 ============
+    // 已废弃的事件（保留用于历史记录）
+    //event ClaimMint(address indexed user, string indexed meshID, uint256 indexed time);
+    
+    /** @dev 网格热度更新事件：当网格被认领时触发 */
     event DegreeHeats(string indexed meshID, uint256 heat, uint256 len);
+    
+    /** @dev 用户代币铸造事件：当用户获得代币奖励时触发 */
     event UserMint(address indexed user, uint256 amount);
+    
+    /** @dev 用户提取事件：当用户提取代币时触发 */
     event UserWithdraw(address indexed user, uint256 amount);
-    event BurnSwitchUpdated(bool indexed oldValue, bool indexed newValue);
+    
+    /** @dev 燃烧缩放比例更新事件：当燃烧成本调整时触发 */
+    event BurnScaleUpdated(uint256 indexed oldMilli, uint256 indexed newMilli);
+    
+    /** @dev 基金会地址更新事件：当基金会地址变更时触发 */
     event FoundationAddressUpdated(address indexed oldAddress, address indexed newAddress);
+    
+    /** @dev 基金会费用累积事件：当基金会费用累积时触发 */
     event FoundationFeeAccrued(uint256 indexed amount, uint256 indexed time);
+    
+    /** @dev 基金会转账事件：当基金会收到代币时触发 */
     event FoundationPayout(uint256 indexed amount, uint256 indexed time);
-    // New developer-friendly events
+    
+    // ============ 开发者友好事件 ============
+    /** @dev 网格认领事件：包含详细的认领信息，便于前端展示 */
     event MeshClaimed(
-        address indexed user,
-        string indexed meshID,
-        int32 lon100,
-        int32 lat100,
-        uint32 applyCount,
-        uint256 heat,
-        uint256 costBurned
+        address indexed user,      // 认领用户
+        string indexed meshID,     // 网格ID
+        int32 lon100,             // 经度（以0.01度为单位）
+        int32 lat100,             // 纬度（以0.01度为单位）
+        uint32 applyCount,        // 申请次数
+        uint256 heat,             // 热度值
+        uint256 costBurned        // 燃烧成本
     );
+    
+    /** @dev 用户权重更新事件：当用户权重变化时触发 */
     event UserWeightUpdated(address indexed user, uint256 newWeight, uint32 claimCount);
+    
+    /** @dev 提取处理事件：包含详细的提取信息，便于分析 */
     event WithdrawProcessed(
-        address indexed user,
-        uint256 payout,
-        uint256 burned,
-        uint256 foundation,
-        uint256 carryAfter,
-        uint256 dayIndex
+        address indexed user,      // 提取用户
+        uint256 payout,           // 提取数量
+        uint256 burned,           // 燃烧数量
+        uint256 foundation,       // 基金会分配
+        uint256 carryAfter,       // 提取后结转余额
+        uint256 dayIndex          // 日索引
     );
+    /** @dev 代币燃烧事件：当代币被燃烧时触发 */
     event TokensBurned(uint256 amount, uint8 reasonCode); // 1=claim_cost, 2=unclaimed_decay
+    
+    /** @dev 认领成本燃烧事件：当用户认领网格燃烧代币时触发 */
+    event ClaimCostBurned(address indexed user, string indexed meshID, uint256 amount);
+    
+    /** @dev 年因子更新事件：当年衰减因子更新时触发 */
     event YearFactorUpdated(uint256 indexed yearIndex, uint256 factor1e10);
+    
+    /** @dev 未认领衰减应用事件：当应用日衰减时触发 */
     event UnclaimedDecayApplied(
-        address indexed user,
-        uint256 daysProcessed,
-        uint256 burned,
-        uint256 foundation,
-        uint256 carryAfter
+        address indexed user,      // 用户地址
+        uint256 daysProcessed,     // 处理的天数
+        uint256 burned,           // 燃烧数量
+        uint256 foundation,       // 基金会分配
+        uint256 carryAfter        // 处理后的结转余额
     );
+    
+    /** @dev 治理安全地址更新事件：当治理地址变更时触发 */
     event GovernanceSafeUpdated(address indexed oldSafe, address indexed newSafe);
 
+    // ============ 访问控制修饰符 ============
+    /** @dev 仅限治理安全地址调用的修饰符 */
     modifier onlySafe() {
         require(msg.sender == governanceSafe, "Only Safe");
         _;
     }
 
-    // legacy isOnlyOwner removed
-
-    modifier whenNotPaused() {
-        require(!paused(), "Contract is paused");
-        _;
-    }
-
-    // Precomputed values for (1.2 ** n) when n < 30
+    // ============ 预计算常量 ============
+    /** @dev 预计算的 (1.2 ** n) 值，当 n < 30 时使用，用于优化计算 */
     uint256[] private precomputedDegreeHeats = [
         1 ether,
         1.2 ether,
@@ -147,6 +260,18 @@ contract Meshes is ERC20, ReentrancyGuard, Pausable {
         197.81359483314138 ether
     ];
 
+    /**
+     * @dev 构造函数，初始化Mesh代币合约
+     * @param _foundationAddr 基金会地址，用于接收代币分配
+     * @param _governanceSafe 治理安全地址，用于管理合约
+     * 
+     * 初始化过程：
+     * 1. 设置代币名称和符号
+     * 2. 记录创世时间戳
+     * 3. 配置基金会和治理地址
+     * 4. 初始化日铸造因子
+     * 5. 设置基金会转账时间
+     */
     constructor(
         address _foundationAddr,
         address _governanceSafe
@@ -154,56 +279,118 @@ contract Meshes is ERC20, ReentrancyGuard, Pausable {
         require(_foundationAddr != address(0), "Invalid foundation address");
         require(_governanceSafe != address(0), "Invalid safe address");
 
+        // 记录创世时间戳，用于计算相对时间
         genesisTs = block.timestamp;
+        
+        // 设置基金会和治理地址
         FoundationAddr = _foundationAddr;
         governanceSafe = _governanceSafe;
-        // 初始化日因子为首日值
+        
+        // 初始化日因子为首日值（1e10 = 1.0，表示100%）
         dailyMintFactor = 1e10;
         lastUpdatedDay = 0;
+        
+        // 设置基金会转账时间（按小时计算）
         lastPayoutHour = block.timestamp / HOUR_SECONDS;
     }
 
-    // 计算“自创世以来”的天索引
+    // ============ 私有辅助函数 ============
+    /**
+     * @dev 计算"自创世以来"的天索引
+     * @return 当前时间相对于创世时间的天数索引
+     * @notice 用于计算日衰减因子和用户处理进度
+     */
     function _currentDayIndex() private view returns (uint256) {
         return (block.timestamp - genesisTs) / SECONDS_IN_DAY;
     }
 
-    // 年度 10% 衰减：Fd = F0 * (0.9 ^ yearIndex)，F0 = 1e10
+    /**
+     * @dev 计算指定日期的日铸造因子
+     * @param dayIndex 日索引（相对于创世时间）
+     * @return 该日的铸造因子（1e10 = 100%）
+     * 
+     * 算法说明：
+     * - 基础因子：F0 = 1e10 (100%)
+     * - 年衰减：每年衰减10%，即乘以0.9
+     * - 公式：Fd = F0 * (0.9 ^ yearIndex)
+     * - 使用整数运算避免浮点数精度问题
+     */
     function _dailyMintFactorForDay(uint256 dayIndex) private pure returns (uint256) {
         uint256 yearIndex = dayIndex / 365;
+        
         // 快速幂（定点 1e10，不缩放底数，仅整数比例）
         // 预计算 0.9^n 的 1e10 定点：逐年乘以 0.9（用 9/10 近似）
         uint256 factor = 1e10;
         for (uint256 i = 0; i < yearIndex; i++) {
             factor = (factor * 9) / 10; // 每年衰减 10%
-            if (factor == 0) break;
+            if (factor == 0) break; // 防止下溢
         }
         return factor;
     }
 
-    // 求和 F(a..b) 等差数列和，闭区间；若 a>b 返回 0
-    function _sumDailyMintFactor(uint256 a, uint256 b) private view returns (uint256) {
-        if (b < a) return 0;
-        uint256 n = b - a + 1;
-        uint256 first = _dailyMintFactorForDay(a);
-        uint256 last = _dailyMintFactorForDay(b);
-        // (first + last) * n / 2，按整数下取
+    /**
+     * @dev 计算日铸造因子的等差数列和
+     * @param a 起始日索引（包含）
+     * @param b 结束日索引（包含）
+     * @return 该区间内所有日铸造因子的和
+     * 
+     * 算法说明：
+     * - 使用等差数列求和公式：S = (first + last) * n / 2
+     * - 其中 first 和 last 分别是起始和结束日的铸造因子
+     * - n 是区间内的天数
+     * - 使用整数运算避免精度损失
+     */
+    function _sumDailyMintFactor(uint256 a, uint256 b) private pure returns (uint256) {
+        if (b < a) return 0; // 无效区间
+        uint256 n = b - a + 1; // 区间内的天数
+        uint256 first = _dailyMintFactorForDay(a); // 起始日因子
+        uint256 last = _dailyMintFactorForDay(b);  // 结束日因子
+        
+        // 等差数列求和：(first + last) * n / 2，按整数下取
         return ((first + last) * n) / 2;
     }
 
     /**
-     * @dev 设置燃烧开关（仅限所有者）
+     * @dev 设置燃烧缩放比例（仅限治理地址）
+     * @param _milli 缩放比例（千分位精度），范围 [0, 1_000_000]
+     * 
+     * 功能说明：
+     * - 0：关闭燃烧机制
+     * - 1000：1.000x（正常燃烧）
+     * - 1000000：1000.000x（高燃烧成本）
+     * 
+     * 使用场景：
+     * - 调整认领成本，控制网格认领频率
+     * - 在代币价格波动时调整燃烧成本
+     * - 根据网络活跃度动态调整参数
+     * 
+     * 安全特性：
+     * - 仅限治理地址调用
+     * - 暂停时不可调用
+     * - 范围检查防止异常值
      */
-    function setBurnSwitch(
-        bool _burnSwitch
-    ) external onlySafe whenNotPaused {
-        bool oldValue = burnSwitch;
-        burnSwitch = _burnSwitch;
-        emit BurnSwitchUpdated(oldValue, _burnSwitch);
+    function setBurnScale(uint256 _milli) external onlySafe whenNotPaused {
+        require(_milli <= 1_000_000, "Scale too large");
+        uint256 old = burnScaleMilli;
+        burnScaleMilli = _milli;
+        emit BurnScaleUpdated(old, _milli);
     }
 
     /**
-     * @dev 更新Foundation地址（仅限所有者）
+     * @dev 更新基金会地址（仅限治理地址）
+     * @param _newFoundationAddr 新的基金会地址
+     * 
+     * 功能说明：
+     * - 更新接收代币分配的基金会地址
+     * - 基金会地址用于接收系统分配的部分代币
+     * - 支持生态发展和项目运营
+     * 
+     * 安全特性：
+     * - 仅限治理地址调用
+     * - 暂停时不可调用
+     * - 地址验证：不能为零地址
+     * - 重复检查：不能设置为相同地址
+     * - 事件记录：便于追踪地址变更
      */
     function setFoundationAddress(
         address _newFoundationAddr
@@ -216,14 +403,14 @@ contract Meshes is ERC20, ReentrancyGuard, Pausable {
     }
 
     /**
-     * @dev 紧急暂停合约（仅限所有者）
+     * @dev 紧急暂停合约（仅限Safe）
      */
     function pause() external onlySafe {
         _pause();
     }
 
     /**
-     * @dev 恢复合约（仅限所有者）
+     * @dev 恢复合约（仅限Safe）
      */
     function unpause() external onlySafe {
         _unpause();
@@ -298,9 +485,28 @@ contract Meshes is ERC20, ReentrancyGuard, Pausable {
     }
 
     /**
-     * @dev 认领网格铸造权
+     * @dev 认领网格铸造权 - 核心功能函数
+     * @param _meshID 网格ID，格式为"E/W + 经度 + N/S + 纬度"（如"E123N45"）
+     * 
+     * 功能说明：
+     * 1. 验证网格ID格式和用户资格
+     * 2. 计算并扣除认领成本（如果网格已被认领过）
+     * 3. 更新网格热度和用户权重
+     * 4. 记录认领信息
+     * 5. 触发相关事件
+     * 
+     * 燃烧机制：
+     * - 首次认领：免费
+     * - 重复认领：需要燃烧代币，成本 = baseBurnAmount * (heat^2) / maxMeshHeats * burnScaleMilli / 1000
+     * - 燃烧的代币会被永久销毁，减少总供应量
+     * 
+     * 安全特性：
+     * - 重入保护：防止重入攻击
+     * - 暂停机制：紧急情况下可暂停
+     * - 输入验证：确保网格ID格式正确
+     * - 重复检查：防止同一用户重复认领同一网格
      */
-    function claimMint(string memory _meshID) 
+    function ClaimMesh(string memory _meshID) 
         external 
         nonReentrant 
         whenNotPaused 
@@ -318,16 +524,24 @@ contract Meshes is ERC20, ReentrancyGuard, Pausable {
             activeMeshes++;
         }
 
-        if (burnSwitch && _len > 0) {
-            uint256 _amount = (baseBurnAmount *
-                degreeHeats[_meshID] *
-                degreeHeats[_meshID]) / maxMeshHeats;
+        if (burnScaleMilli > 0 && _len > 0) {
+            uint256 denom = maxMeshHeats == 0 ? 1 : maxMeshHeats;
+            uint256 heatForCost = degreeHeats[_meshID];
+            if (heatForCost == 0) {
+                heatForCost = calculateDegreeHeat(_len);
+            }
+            // heat 为 1e18 定点，成本按 base * (heat^2/1e18) / max
+            uint256 scaledHeatSq = (heatForCost * heatForCost) / 1 ether;
+            uint256 _amount = (baseBurnAmount * scaledHeatSq) / denom;
+            // 应用缩放（千分位），允许 <1x 或 >1x
+            _amount = (_amount * burnScaleMilli) / 1000;
             // 前端预换：仅检查余额足够
             require(balanceOf(msg.sender) >= _amount, "Insufficient to burn");
 
             totalBurn += _amount;
             _burn(msg.sender, _amount);
             emit TokensBurned(_amount, 1);
+            emit ClaimCostBurned(msg.sender, _meshID, _amount);
         }
 
         // 在增加权重之前，先把历史未领（按天）结算到昨天，确保新权重只影响今天及以后
@@ -355,16 +569,12 @@ contract Meshes is ERC20, ReentrancyGuard, Pausable {
         userWeightSum[msg.sender] += _degreeHeat;
         emit UserWeightUpdated(msg.sender, userWeightSum[msg.sender], userClaimCounts[msg.sender]);
 
-        // 更新用户首次认领的上次提现日，避免追溯罚没
+        // 记录用户第一次claim的时间戳，用于24小时提取限制
         if (userClaimCounts[msg.sender] == 1) {
-            uint256 cd = _currentDayIndex();
-            if (cd > 0) {
-                lastWithdrawDay[msg.sender] = cd - 1;
-                lastProcessedDay[msg.sender] = cd - 1;
-            } else {
-                lastWithdrawDay[msg.sender] = 0;
-                lastProcessedDay[msg.sender] = 0;
-            }
+            firstClaimTimestamp[msg.sender] = block.timestamp;
+            // 初始化处理进度
+            uint256 currentDay = _currentDayIndex();
+            lastProcessedDay[msg.sender] = currentDay;
         }
 
         // 递增网格申请计数
@@ -379,7 +589,9 @@ contract Meshes is ERC20, ReentrancyGuard, Pausable {
             lat100,
             uint32(_len + 1),
             _degreeHeat,
-            burnSwitch && _len > 0 ? (baseBurnAmount * _degreeHeat * _degreeHeat) / (maxMeshHeats == 0 ? 1 : maxMeshHeats) : 0
+            burnScaleMilli > 0 && _len > 0
+                ? ((((baseBurnAmount * ((_degreeHeat * _degreeHeat) / 1 ether)) / (maxMeshHeats == 0 ? 1 : maxMeshHeats)) * burnScaleMilli) / 1000)
+                : 0
         );
 
         if (!minters[msg.sender]) {
@@ -389,7 +601,7 @@ contract Meshes is ERC20, ReentrancyGuard, Pausable {
 
         claimMints++;
 
-        emit ClaimMint(msg.sender, _meshID, block.timestamp);
+        //emit ClaimMint(msg.sender, _meshID, block.timestamp);
 
         // 触发按小时基金会转出（用户发起，承担 gas）
         _maybePayoutFoundation();
@@ -412,8 +624,6 @@ contract Meshes is ERC20, ReentrancyGuard, Pausable {
         }
     }
 
-    // 已移除 Pancake 自动换币逻辑（前端预换）
-
     /**
      * @dev 铸造代币（内部函数）
      */
@@ -424,15 +634,44 @@ contract Meshes is ERC20, ReentrancyGuard, Pausable {
     }
 
     /**
-     * @dev 提取收益（添加重入保护）
+     * @dev 提取收益 - 用户提取代币奖励的核心函数
+     * 
+     * 功能说明：
+     * 1. 验证用户是否有认领记录
+     * 2. 检查提取时间限制（新用户24小时限制，旧用户日限制）
+     * 3. 应用未认领代币的日衰减（50%）
+     * 4. 计算并发放今日应得代币
+     * 5. 更新用户状态和下次提取时间
+     * 6. 触发基金会转账（如果满足条件）
+     * 
+     * 时间限制机制：
+     * - 新用户：第一次claim后24小时内可提取，提取后设置下次提取时间为24小时后
+     * - 旧用户：使用原有的日限制机制（每天只能提取一次）
+     * 
+     * 代币计算：
+     * - 今日应得 = dailyMintFactor * userWeightSum / 1e10
+     * - 总发放 = 结转余额 + 今日应得
+     * - 结转余额会在日衰减中减少
+     * 
+     * 安全特性：
+     * - 重入保护：防止重入攻击
+     * - 暂停机制：紧急情况下可暂停
+     * - 时间限制：防止频繁提取
+     * - 余额检查：确保有足够的代币可提取
      */
     function withdraw() public nonReentrant whenNotPaused {
-        uint256 elapsedTime = block.timestamp - genesisTs;
-        require(elapsedTime <= totalMintDuration, "Minting period over");
-
         uint256 dayIndex = _currentDayIndex();
         require(userClaimCounts[msg.sender] > 0, "No claims");
-        require(dayIndex > lastWithdrawDay[msg.sender], "Daily receive");
+        
+        // 新用户24小时提取限制逻辑
+        uint256 firstClaimTime = firstClaimTimestamp[msg.sender];
+        if (firstClaimTime > 0) {
+            // 检查是否在第一次claim后24小时内
+            require(block.timestamp <= firstClaimTime + 24 * HOUR_SECONDS, "First claim 24h limit exceeded");
+        } else {
+            // 兼容旧用户：使用原来的日限制
+            require(dayIndex > lastWithdrawDay[msg.sender], "Daily receive");
+        }
 
         // 更新今日 dailyMintFactor（与创世对齐）
         if (dayIndex != lastUpdatedDay) {
@@ -456,7 +695,15 @@ contract Meshes is ERC20, ReentrancyGuard, Pausable {
         mint(user, payout);
         carryBalance[user] = 0;
         lastProcessedDay[user] = dayIndex;
-        lastWithdrawDay[user] = dayIndex;
+        
+        // 设置下次提取时间：24小时后
+        if (firstClaimTime > 0) {
+            // 新用户：设置下次提取时间为24小时后
+            firstClaimTimestamp[user] = block.timestamp + 24 * HOUR_SECONDS;
+        } else {
+            // 兼容旧用户：使用原来的日限制
+            lastWithdrawDay[user] = dayIndex;
+        }
 
         emit UserMint(user, payout);
         userTotalMint[user] += payout;
@@ -464,6 +711,31 @@ contract Meshes is ERC20, ReentrancyGuard, Pausable {
         emit WithdrawProcessed(user, payout, 0, 0, carryBalance[user], dayIndex);
 
         _maybePayoutFoundation();
+    }
+
+    /**
+     * @dev 检查用户是否可以提取
+     * @param user 用户地址
+     * @return canWithdraw 是否可以提取
+     * @return nextWithdrawTime 下次可提取时间（0表示使用日限制）
+     */
+    function canUserWithdraw(address user) public view returns (bool canWithdraw, uint256 nextWithdrawTime) {
+        if (userClaimCounts[user] == 0) {
+            return (false, 0);
+        }
+        
+        uint256 firstClaimTime = firstClaimTimestamp[user];
+        if (firstClaimTime > 0) {
+            // 新用户：检查是否在24小时内
+            uint256 timeLimit = firstClaimTime + 24 * HOUR_SECONDS;
+            canWithdraw = block.timestamp <= timeLimit;
+            nextWithdrawTime = timeLimit;
+        } else {
+            // 旧用户：使用日限制
+            uint256 dayIndex = _currentDayIndex();
+            canWithdraw = dayIndex > lastWithdrawDay[user];
+            nextWithdrawTime = 0; // 表示使用日限制
+        }
     }
 
     function _maybePayoutFoundation() private {
@@ -513,6 +785,7 @@ contract Meshes is ERC20, ReentrancyGuard, Pausable {
         if (burnedTotal > 0) {
             mint(address(this), burnedTotal);
             _burn(address(this), burnedTotal);
+            totalBurn += burnedTotal;
             emit TokensBurned(burnedTotal, 2);
         }
         if (foundationTotal > 0) {
@@ -523,28 +796,6 @@ contract Meshes is ERC20, ReentrancyGuard, Pausable {
         carryBalance[user] = carry;
         lastProcessedDay[user] = upToDay - 1;
         emit UnclaimedDecayApplied(user, daysProcessed, burnedTotal, foundationTotal, carry);
-    }
-
-    /**
-     * @dev 验证多签签名
-     */
-    // Legacy multi-sig validation removed in favor of Safe-based governance
-
-    // Legacy ecrecover helpers removed
-
-    /**
-     * @dev 获取消费nonce（仅限所有者）
-     */
-    function getSpendNonce() external pure returns (uint256) {
-        return 0;
-    }
-
-    // ===================== Developer-friendly VIEWs (skeletons) =====================
-    function getCurrentDayYear() external view returns (uint256 dayIndex, uint256 yearIndex, uint256 factor1e10) {
-        dayIndex = _currentDayIndex();
-        yearIndex = dayIndex / 365;
-        // placeholder: current linear factor; will switch to yearly-decay factor in next phase
-        factor1e10 = dailyMintFactor;
     }
 
     function getMeshInfo(string calldata _meshID) external view returns (
@@ -562,20 +813,24 @@ contract Meshes is ERC20, ReentrancyGuard, Pausable {
         uint32 cnt = meshApplyCount[_meshID];
         heat = calculateDegreeHeat(cnt);
         uint256 denom = maxMeshHeats == 0 ? 1 : maxMeshHeats;
-        costBurned = burnSwitch && cnt > 0 ? (baseBurnAmount * heat * heat) / denom : 0;
+        if (cnt == 0 || burnScaleMilli == 0) {
+            costBurned = 0;
+        } else {
+            uint256 baseCost = (baseBurnAmount * heat * heat) / denom;
+            costBurned = (baseCost * burnScaleMilli) / 1000;
+        }
     }
 
     function getUserState(address _user) external view returns (
         uint256 weight,
         uint32 claimCount,
-        uint256 carryBalance,
-        uint256 lastProcessedDay
+        uint256 carryBalance_,
+        uint256 lastProcessedDay_
     ) {
         weight = userWeightSum[_user];
         claimCount = userClaimCounts[_user];
-        // carryBalance & lastProcessedDay are placeholders for next-phase accounting
-        carryBalance = 0;
-        lastProcessedDay = lastWithdrawDay[_user];
+        carryBalance_ = carryBalance[_user];
+        lastProcessedDay_ = lastProcessedDay[_user];
     }
 
     function previewWithdraw(address _user) external view returns (
@@ -629,27 +884,6 @@ contract Meshes is ERC20, ReentrancyGuard, Pausable {
     }
 
     /**
-     * @dev 增加消费nonce（仅限所有者）
-     */
-    // legacy addSpendNonce removed
-
-    /**
-     * @dev 获取用户认领数量
-     */
-    function getUserClaimCount(address _user) external view returns (uint256) {
-        return userClaimCounts[_user];
-    }
-
-    /**
-     * @dev 获取用户所有网格ID
-     */
-    function getUserMeshes(address _user) external view returns (string[] memory) {
-        // 存储结构已变更：兼容返回空数组
-        string[] memory empty;
-        return empty;
-    }
-
-    /**
      * @dev 获取网格数据统计
      */
     function getMeshData()
@@ -690,9 +924,9 @@ contract Meshes is ERC20, ReentrancyGuard, Pausable {
     }
 
     /**
-     * @dev 获取地球仪表板数据
+     * @dev 获取仪表板数据
      */
-    function getEarthDashboard()
+    function getDashboard()
         external
         view
         returns (
@@ -706,21 +940,8 @@ contract Meshes is ERC20, ReentrancyGuard, Pausable {
         _totalSupply = totalSupply();
         _liquidSupply = _totalSupply - balanceOf(address(this));
         _destruction = totalBurn;
-        _treasury = 0; // 已移除质押相关
+        _treasury = balanceOf(address(this));
         _foundation = balanceOf(FoundationAddr);
-    }
-
-    /**
-     * @dev 获取用户认领时间戳和金额
-     */
-    function getClaimTsAmount(address _user, string calldata _meshID)
-        public
-        view
-        returns (int256 count, uint256 _amount)
-    {
-        // 兼容：返回当前网格已有申请次数与固定比例
-        count = int256(uint256(meshApplyCount[_meshID]));
-            _amount = degreeHeats[_meshID] / 10;
     }
 
     /**

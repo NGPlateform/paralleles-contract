@@ -1,0 +1,181 @@
+[2025-09-07T14:16:21.911Z] Start single-user TUI: user=0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC
+[2025-09-07T14:16:22.672Z] withdraw MESH +1.5
+[2025-09-07T14:16:23.399Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:16:24.850Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:16:26.722Z] claim W483N7462
+[2025-09-07T14:16:30.475Z] claim W970N8459
+[2025-09-07T14:16:32.531Z] withdraw MESH +5.40625
+[2025-09-07T14:16:33.305Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:16:35.385Z] claim E390N7914
+[2025-09-07T14:16:36.675Z] withdraw MESH +6.75
+[2025-09-07T14:16:39.175Z] claim W658N1905
+[2025-09-07T14:16:40.423Z] withdraw MESH +9.25
+[2025-09-07T14:16:41.818Z] claim E573N1161
+[2025-09-07T14:16:42.658Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:16:44.380Z] withdraw MESH +9.0
+[2025-09-07T14:16:45.678Z] claim E60S3333
+[2025-09-07T14:16:48.458Z] claim W393N1372
+[2025-09-07T14:16:49.346Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:16:50.899Z] claim E777N2745
+[2025-09-07T14:16:53.151Z] claim W705S6370
+[2025-09-07T14:16:54.194Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:16:55.042Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:16:55.834Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:16:57.878Z] claim E40S144
+[2025-09-07T14:16:59.151Z] withdraw MESH +21.693359375
+[2025-09-07T14:17:00.486Z] withdraw MESH +16.5
+[2025-09-07T14:17:01.196Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:17:01.910Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:17:03.810Z] withdraw MESH +16.5
+[2025-09-07T14:17:06.637Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:17:10.064Z] claim W366N4687
+[2025-09-07T14:17:12.201Z] withdraw MESH +23.0625
+[2025-09-07T14:17:13.774Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:17:14.595Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:17:15.801Z] withdraw MESH +25.5
+[2025-09-07T14:17:18.084Z] claim E336N8084
+[2025-09-07T14:17:18.857Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:17:21.035Z] withdraw MESH +21.3
+[2025-09-07T14:17:22.505Z] claim E513S8491
+[2025-09-07T14:17:23.274Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:17:24.150Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:17:24.911Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:17:26.464Z] claim E454S7738
+[2025-09-07T14:17:27.195Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:17:27.970Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:17:28.715Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:17:30.621Z] claim E361S3328
+[2025-09-07T14:17:32.971Z] claim W649S5600
+[2025-09-07T14:17:34.270Z] withdraw MESH +35.50625
+[2025-09-07T14:17:34.961Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:17:36.496Z] claim W941N924
+[2025-09-07T14:17:38.064Z] claim W457S6298
+[2025-09-07T14:17:39.487Z] withdraw MESH +37.375
+[2025-09-07T14:17:40.212Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:17:42.483Z] claim W271S6995
+[2025-09-07T14:17:43.899Z] withdraw MESH +39.625
+[2025-09-07T14:17:44.651Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:17:45.431Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:17:46.182Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:17:47.696Z] claim E251S8486
+[2025-09-07T14:17:49.161Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:17:49.965Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:17:52.218Z] withdraw MESH +33.3
+[2025-09-07T14:17:52.907Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:17:55.053Z] withdraw MESH +38.85
+[2025-09-07T14:17:55.752Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:17:56.450Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:17:57.836Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:17:59.259Z] withdraw MESH +33.3
+[2025-09-07T14:18:01.563Z] withdraw MESH +38.85
+[2025-09-07T14:18:03.094Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:18:04.608Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:18:06.072Z] withdraw MESH +33.3
+[2025-09-07T14:18:06.778Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:18:07.592Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:18:08.312Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:18:10.498Z] withdraw MESH +33.3
+[2025-09-07T14:18:12.137Z] withdraw MESH +33.3
+[2025-09-07T14:18:14.270Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:18:15.491Z] claim E874S542
+[2025-09-07T14:18:16.973Z] withdraw MESH +34.8
+[2025-09-07T14:18:17.710Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:18:19.175Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:18:22.676Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:18:24.238Z] claim E799S4502
+[2025-09-07T14:18:25.549Z] error: Transaction ran out of gas
+[2025-09-07T14:18:26.406Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:18:27.079Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:18:29.050Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:18:29.743Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:18:34.350Z] claim W856S1369
+[2025-09-07T14:18:36.306Z] claim W807N5054
+[2025-09-07T14:18:37.002Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:18:38.815Z] claim E564S6944
+[2025-09-07T14:18:40.888Z] withdraw MESH +53.937890625
+[2025-09-07T14:18:42.504Z] claim E95S4198
+[2025-09-07T14:18:44.447Z] claim W48N5504
+[2025-09-07T14:18:46.540Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:18:47.215Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:18:49.349Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:18:50.018Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:18:51.512Z] withdraw MESH +58.109375
+[2025-09-07T14:18:52.238Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:18:53.002Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:18:54.424Z] claim E186S919
+[2025-09-07T14:18:55.102Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:18:55.850Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:18:58.152Z] claim W496N3342
+[2025-09-07T14:18:58.819Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:19:00.298Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:19:03.297Z] claim E685S8213
+[2025-09-07T14:19:04.762Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:19:06.127Z] withdraw MESH +63.646875
+[2025-09-07T14:19:07.182Z] error: Transaction ran out of gas
+[2025-09-07T14:19:07.892Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:19:09.474Z] claim E351N7796
+[2025-09-07T14:19:10.175Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:19:10.871Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:19:12.837Z] withdraw MESH +64.1375
+[2025-09-07T14:19:13.518Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:19:15.355Z] withdraw MESH +49.8
+[2025-09-07T14:19:16.160Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:19:16.954Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:19:18.280Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:19:21.009Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:19:23.224Z] claim W838N7936
+[2025-09-07T14:19:25.585Z] claim W337S8582
+[2025-09-07T14:19:27.051Z] withdraw MESH +69.9578125
+[2025-09-07T14:19:28.843Z] claim W567S3434
+[2025-09-07T14:19:31.043Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:19:31.728Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:19:33.011Z] withdraw MESH +67.75
+[2025-09-07T14:19:33.706Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:19:35.260Z] claim W438N8105
+[2025-09-07T14:19:36.464Z] withdraw MESH +55.8
+[2025-09-07T14:19:37.252Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:19:37.944Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:19:38.660Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:19:39.869Z] withdraw MESH +65.1
+[2025-09-07T14:19:41.074Z] withdraw MESH +55.8
+[2025-09-07T14:19:43.537Z] withdraw MESH +55.8
+[2025-09-07T14:19:44.937Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:19:47.032Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:19:49.664Z] claim W291S1730
+[2025-09-07T14:19:50.941Z] withdraw MESH +73.575
+[2025-09-07T14:19:52.196Z] claim W856N6208
+[2025-09-07T14:19:54.794Z] withdraw MESH +68.6
+[2025-09-07T14:19:55.480Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:19:56.185Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:19:56.881Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:19:57.582Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:20:01.044Z] claim W825N3194
+[2025-09-07T14:20:02.415Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:20:03.162Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:20:04.546Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:20:05.865Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:20:07.757Z] withdraw MESH +60.3
+[2025-09-07T14:20:08.467Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:20:09.274Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:20:09.964Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:20:12.757Z] claim E806S6689
+[2025-09-07T14:20:14.734Z] withdraw MESH +80.89375
+[2025-09-07T14:20:15.411Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:20:16.166Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:20:17.493Z] withdraw MESH +72.1
+[2025-09-07T14:20:18.208Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:20:19.027Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:20:19.718Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:20:21.290Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:20:22.952Z] claim W565N5062
+[2025-09-07T14:20:26.084Z] claim W547S318
+[2025-09-07T14:20:26.804Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:20:28.239Z] withdraw MESH +85.6
+[2025-09-07T14:20:30.263Z] withdraw MESH +64.8
+[2025-09-07T14:20:30.948Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:20:32.437Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:20:33.659Z] withdraw MESH +75.6
+[2025-09-07T14:20:37.753Z] claim W6S6796
+[2025-09-07T14:20:38.533Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:20:39.251Z] error: cannot estimate gas; transaction may fail or may require manual gas limit [ See:
+[2025-09-07T14:20:41.819Z] claim E33N5388

@@ -1,0 +1,111 @@
+[2025-09-07T05:45:49.948Z] Start single-user TUI: user=0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC
+[2025-09-07T05:45:50.016Z] claim W483N7462
+[2025-09-07T05:45:50.743Z] error: VM Exception while processing transaction: reverted with reason string 'Daily re
+[2025-09-07T05:45:51.460Z] reward withdraw +2.5
+[2025-09-07T05:45:51.461Z] reward set +5.0
+[2025-09-07T05:45:52.191Z] reward withdraw +3.25
+[2025-09-07T05:45:52.192Z] reward set +4.0
+[2025-09-07T05:45:52.870Z] reward withdraw +3.625
+[2025-09-07T05:45:52.871Z] reward set +4.0
+[2025-09-07T05:45:53.558Z] withdraw MESH +1.75
+[2025-09-07T05:45:54.330Z] error: VM Exception while processing transaction: reverted with reason string 'Daily re
+[2025-09-07T05:45:55.101Z] error: VM Exception while processing transaction: reverted with reason string 'Daily re
+[2025-09-07T05:45:55.832Z] error: VM Exception while processing transaction: reverted with reason string 'Already 
+[2025-09-07T05:45:56.634Z] reward withdraw +2.3125
+[2025-09-07T05:45:56.634Z] reward set +1.0
+[2025-09-07T05:45:57.412Z] claim E573N1161
+[2025-09-07T05:45:58.148Z] withdraw MESH +3.0
+[2025-09-07T05:45:58.905Z] claim W704N1354
+[2025-09-07T05:45:59.599Z] reward withdraw +1.65625
+[2025-09-07T05:45:59.600Z] reward set +1.0
+[2025-09-07T05:46:00.254Z] reward set +1.0
+[2025-09-07T05:46:00.964Z] withdraw MESH +4.5
+[2025-09-07T05:46:01.612Z] error: VM Exception while processing transaction: reverted with reason string 'Daily re
+[2025-09-07T05:46:02.299Z] claim E100N100
+[2025-09-07T05:46:03.011Z] claim W970N8459
+[2025-09-07T05:46:03.677Z] error: VM Exception while processing transaction: reverted with reason string 'Already 
+[2025-09-07T05:46:04.392Z] reward withdraw +3.328125
+[2025-09-07T05:46:04.392Z] reward set +4.0
+[2025-09-07T05:46:05.185Z] claim E226S4708
+[2025-09-07T05:46:06.018Z] claim E20N6053
+[2025-09-07T05:46:06.760Z] reward withdraw +4.1640625
+[2025-09-07T05:46:06.760Z] reward set +5.0
+[2025-09-07T05:46:07.639Z] claim E777N2745
+[2025-09-07T05:46:08.333Z] error: VM Exception while processing transaction: reverted with reason string 'Already 
+[2025-09-07T05:46:09.006Z] reward withdraw +4.08203125
+[2025-09-07T05:46:09.006Z] reward set +4.0
+[2025-09-07T05:46:09.660Z] error: VM Exception while processing transaction: reverted with reason string 'Already 
+[2025-09-07T05:46:10.312Z] error: VM Exception while processing transaction: reverted with reason string 'Already 
+[2025-09-07T05:46:11.013Z] withdraw MESH +15.7578125
+[2025-09-07T05:46:11.705Z] reward withdraw +4.541015625
+[2025-09-07T05:46:11.705Z] reward set +5.0
+[2025-09-07T05:46:12.375Z] reward withdraw +4.2705078125
+[2025-09-07T05:46:12.376Z] reward set +4.0
+[2025-09-07T05:46:13.109Z] error: VM Exception while processing transaction: reverted with reason string 'Already 
+[2025-09-07T05:46:13.893Z] claim E58N7063
+[2025-09-07T05:46:14.630Z] error: VM Exception while processing transaction: reverted with reason string 'Already 
+[2025-09-07T05:46:15.435Z] claim W985S2788
+[2025-09-07T05:46:16.118Z] withdraw MESH +19.125
+[2025-09-07T05:46:16.843Z] claim E957S8666
+[2025-09-07T05:46:17.581Z] error: VM Exception while processing transaction: reverted with reason string 'Already 
+[2025-09-07T05:46:18.254Z] error: VM Exception while processing transaction: reverted with reason string 'Already 
+[2025-09-07T05:46:18.922Z] reward set +5.0
+[2025-09-07T05:46:19.605Z] reward withdraw +7.13525390625
+[2025-09-07T05:46:19.605Z] reward set +5.0
+[2025-09-07T05:46:20.263Z] error: VM Exception while processing transaction: reverted with reason string 'Already 
+[2025-09-07T05:46:20.908Z] error: VM Exception while processing transaction: reverted with reason string 'Already 
+[2025-09-07T05:46:21.551Z] reward set +2.0
+[2025-09-07T05:46:22.193Z] error: VM Exception while processing transaction: reverted with reason string 'Daily re
+[2025-09-07T05:46:22.834Z] error: VM Exception while processing transaction: reverted with reason string 'Daily re
+[2025-09-07T05:46:23.477Z] error: VM Exception while processing transaction: reverted with reason string 'Daily re
+[2025-09-07T05:46:24.177Z] reward withdraw +6.067626953125
+[2025-09-07T05:46:24.178Z] reward set +3.0
+[2025-09-07T05:46:24.834Z] error: VM Exception while processing transaction: reverted with reason string 'Already 
+[2025-09-07T05:46:25.489Z] error: VM Exception while processing transaction: reverted with reason string 'Daily re
+[2025-09-07T05:46:26.156Z] claim W50S1467
+[2025-09-07T05:46:26.800Z] error: VM Exception while processing transaction: reverted with reason string 'Daily re
+[2025-09-07T05:46:27.466Z] reward withdraw +3.5338134765625
+[2025-09-07T05:46:27.467Z] reward set +1.0
+[2025-09-07T05:46:28.116Z] error: VM Exception while processing transaction: reverted with reason string 'Already 
+[2025-09-07T05:46:28.831Z] error: VM Exception while processing transaction: reverted with reason string 'Already 
+[2025-09-07T05:46:29.508Z] claim E41N4611
+[2025-09-07T05:46:30.257Z] reward withdraw +2.76690673828125
+[2025-09-07T05:46:30.258Z] reward set +2.0
+[2025-09-07T05:46:30.902Z] error: VM Exception while processing transaction: reverted with reason string 'Already 
+[2025-09-07T05:46:31.574Z] withdraw MESH +24.25
+[2025-09-07T05:46:32.271Z] error: VM Exception while processing transaction: reverted with reason string 'Already 
+[2025-09-07T05:46:32.912Z] error: VM Exception while processing transaction: reverted with reason string 'Daily re
+[2025-09-07T05:46:33.556Z] error: VM Exception while processing transaction: reverted with reason string 'Already 
+[2025-09-07T05:46:34.234Z] reward withdraw +2.883453369140625
+[2025-09-07T05:46:34.235Z] reward set +3.0
+[2025-09-07T05:46:35.030Z] error: VM Exception while processing transaction: reverted with reason string 'Already 
+[2025-09-07T05:46:35.725Z] claim W952N7259
+[2025-09-07T05:46:36.372Z] error: VM Exception while processing transaction: reverted with reason string 'Daily re
+[2025-09-07T05:46:37.036Z] claim E658S3280
+[2025-09-07T05:46:37.715Z] reward set +1.0
+[2025-09-07T05:46:38.438Z] error: VM Exception while processing transaction: reverted with reason string 'Already 
+[2025-09-07T05:46:39.115Z] withdraw MESH +22.5
+[2025-09-07T05:46:39.755Z] error: VM Exception while processing transaction: reverted with reason string 'Daily re
+[2025-09-07T05:46:40.438Z] claim W923N8098
+[2025-09-07T05:46:41.153Z] withdraw MESH +27.75
+[2025-09-07T05:46:41.803Z] error: VM Exception while processing transaction: reverted with reason string 'Already 
+[2025-09-07T05:46:42.450Z] error: VM Exception while processing transaction: reverted with reason string 'Already 
+[2025-09-07T05:46:43.091Z] error: VM Exception while processing transaction: reverted with reason string 'Daily re
+[2025-09-07T05:46:43.740Z] error: VM Exception while processing transaction: reverted with reason string 'Already 
+[2025-09-07T05:46:44.380Z] reward set +2.0
+[2025-09-07T05:46:45.021Z] reward set +3.0
+[2025-09-07T05:46:45.661Z] reward set +5.0
+[2025-09-07T05:46:46.299Z] reward set +3.0
+[2025-09-07T05:46:46.945Z] error: VM Exception while processing transaction: reverted with reason string 'Already 
+[2025-09-07T05:46:47.593Z] error: VM Exception while processing transaction: reverted with reason string 'Daily re
+[2025-09-07T05:46:48.251Z] error: VM Exception while processing transaction: reverted with reason string 'Daily re
+[2025-09-07T05:46:48.922Z] reward withdraw +10.9417266845703125
+[2025-09-07T05:46:48.923Z] reward set +5.0
+[2025-09-07T05:46:49.609Z] withdraw MESH +24.0
+[2025-09-07T05:46:50.276Z] error: VM Exception while processing transaction: reverted with reason string 'Already 
+[2025-09-07T05:46:51.001Z] reward set +3.0
+[2025-09-07T05:46:51.668Z] claim E133N4461
+[2025-09-07T05:46:52.312Z] error: VM Exception while processing transaction: reverted with reason string 'Already 
+[2025-09-07T05:46:52.956Z] error: VM Exception while processing transaction: reverted with reason string 'Already 
+[2025-09-07T05:46:53.601Z] error: VM Exception while processing transaction: reverted with reason string 'Already 
+[2025-09-07T05:46:54.246Z] error: VM Exception while processing transaction: reverted with reason string 'Already 

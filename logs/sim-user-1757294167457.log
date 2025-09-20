@@ -1,0 +1,141 @@
+[2025-09-08T01:16:07.473Z] Start single-user TUI: user=0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC
+[2025-09-08T01:16:07.939Z] CALL ClaimMesh(E632N7677) ok | gas=310978 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1628334.902298369636018621->1628334.902298369636018621 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=699.928266882639589134 totalBurn=6113322.955216680664359262
+[2025-09-08T01:16:09.100Z] CALL ClaimMesh(W782S8222) ok | gas=311170 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1628334.902298369636018621->1628334.902298369636018621 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=700.222619139302073285 totalBurn=6114023.177835819966432547
+[2025-09-08T01:16:09.874Z] CALL ClaimMesh(E860N78) fail | costQuote=499.999999999999999968 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-08T01:16:10.686Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:16:11.387Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:16:12.187Z] CALL ClaimMesh(W620S6969) ok | gas=285030 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1628334.902298369636018621->1628334.902298369636018621 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=350.371421487667961194 totalBurn=6115424.33899423838322645
+[2025-09-08T01:16:13.062Z] CALL ClaimMesh(E934N7131) ok | gas=317218 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1628334.902298369636018621->1628334.902298369636018621 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=1051.563564675225882045 totalBurn=6116475.902558913609108495
+[2025-09-08T01:16:14.015Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:16:14.778Z] CALL ClaimMesh(E494S6519) fail | costQuote=347.222222222222222208 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-08T01:16:15.649Z] CALL ClaimMesh(E701N2722) ok | gas=329698 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1628334.902298369636018621->1628334.902298369636018621 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=1753.426520012713328178 totalBurn=6118229.329078926322436673
+[2025-09-08T01:16:16.388Z] CALL ClaimMesh(E860N78) fail | costQuote=499.999999999999999968 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-08T01:16:17.398Z] CALL ClaimMesh(E847S8907) ok | gas=311062 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1628334.902298369636018621->1628334.902298369636018621 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=701.595574075793747231 totalBurn=6118930.924653002116183904
+[2025-09-08T01:16:18.237Z] CALL ClaimMesh(W441S8771) fail | costQuote=720.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-08T01:16:18.956Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:16:19.790Z] CALL ClaimMesh(E823S765) ok | gas=322316 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1628334.902298369636018621->1628334.902298369636018621 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=1403.77491763615044201 totalBurn=6120334.699570638266625914
+[2025-09-08T01:16:20.619Z] CALL ClaimMesh(W846N851) fail | costQuote=1036.8 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-08T01:16:21.638Z] CALL ClaimMesh(E691N4044) ok | gas=310978 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1628334.902298369636018621->1628334.902298369636018621 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=702.125114334162133301 totalBurn=6121036.824684972428759215
+[2025-09-08T01:16:22.325Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:16:23.069Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:16:23.926Z] CALL ClaimMesh(W420S319) ok | gas=328664 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1628334.902298369636018621->1628334.902298369636018621 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=1756.085617265871727546 totalBurn=6122792.910302238300486761
+[2025-09-08T01:16:24.711Z] CALL ClaimMesh(W269N1219) fail | costQuote=499.999999999999999968 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-08T01:16:25.474Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:16:26.223Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:16:26.951Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:16:27.656Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:16:28.400Z] CALL ClaimMesh(W441S8771) fail | costQuote=720.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-08T01:16:29.238Z] CALL ClaimMesh(E725N651) ok | gas=340952 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1628334.902298369636018621->1628334.902298369636018621 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=2459.54590378260825654 totalBurn=6125252.456206020908743301
+[2025-09-08T01:16:30.168Z] CALL ClaimMesh(W16S5758) ok | gas=309563 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1628334.902298369636018621->1628334.902298369636018621 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=702.932682260955777264 totalBurn=6125955.388888281864520565
+[2025-09-08T01:16:30.926Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:16:31.760Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:16:32.491Z] CALL ClaimMesh(E615N4369) fail | costQuote=347.222222222222222208 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-08T01:16:33.194Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:16:33.940Z] CALL ClaimMesh(E494S6519) fail | costQuote=347.222222222222222208 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-08T01:16:34.636Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:16:35.403Z] CALL ClaimMesh(E810S2888) fail | costQuote=499.999999999999999968 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-08T01:16:36.088Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:16:36.879Z] CALL ClaimMesh(W565N49) ok | gas=352314 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1628334.902298369636018621->1628334.902298369636018621 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=3164.685052100974054004 totalBurn=6129120.073940382838574569
+[2025-09-08T01:16:37.602Z] CALL ClaimMesh(E860N78) fail | costQuote=499.999999999999999968 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-08T01:16:38.307Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:16:39.174Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:16:40.001Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:16:40.872Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:16:41.580Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:16:42.282Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:16:43.262Z] CALL ClaimMesh(W83N5210) ok | gas=359399 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1628334.902298369636018621->1628334.902298369636018621 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=3519.020325360127842005 totalBurn=6133694.328081885623373024
+[2025-09-08T01:16:43.998Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:16:45.032Z] CALL ClaimMesh(W313S5761) fail | costQuote=499.999999999999999968 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-08T01:16:45.779Z] CALL ClaimMesh(E810S2888) fail | costQuote=499.999999999999999968 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-08T01:16:46.481Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:16:47.157Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:16:47.890Z] CALL ClaimMesh(E494S6519) fail | costQuote=347.222222222222222208 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-08T01:16:48.619Z] CALL ClaimMesh(W80N555) fail | costQuote=347.222222222222222208 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-08T01:16:49.379Z] CALL ClaimMesh(E526N525) ok | gas=328472 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1628334.902298369636018621->1628334.902298369636018621 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=1760.781996569599614841 totalBurn=6136863.186657617522560085
+[2025-09-08T01:16:50.078Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:16:50.839Z] CALL ClaimMesh(E713S4065) fail | costQuote=347.222222222222222208 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-08T01:16:51.699Z] CALL ClaimMesh(W450N6982) ok | gas=317326 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1628334.902298369636018405->1628334.902298369636018405 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=1057.276988752376190642 totalBurn=6138977.294881034861812072
+[2025-09-08T01:16:52.471Z] CALL ClaimMesh(W237S3211) ok | gas=311170 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1628334.902298369636018405->1628334.902298369636018405 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=705.104916392541407855 totalBurn=6139682.399797427403219927
+[2025-09-08T01:16:53.200Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:16:53.929Z] CALL ClaimMesh(E272N607) fail | costQuote=347.222222222222222208 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-08T01:16:54.851Z] CALL ClaimMesh(W367S4696) ok | gas=323650 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1628334.902298369636018405->1628334.902298369636018405 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=1410.815334660886085955 totalBurn=6141093.215132088289305882
+[2025-09-08T01:16:55.621Z] CALL ClaimMesh(E810S2888) fail | costQuote=499.999999999999999968 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-08T01:16:56.354Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:16:57.041Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:16:57.759Z] CALL ClaimMesh(W606S2996) fail | costQuote=347.222222222222222208 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-08T01:16:58.464Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:16:59.151Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:16:59.845Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:17:00.582Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:17:01.284Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:17:02.066Z] CALL ClaimMesh(W54S5574) ok | gas=353243 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1628334.902298369636018405->1628334.902298369636018405 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=3175.754828299374428323 totalBurn=6144268.969960387663734205
+[2025-09-08T01:17:02.830Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:17:03.521Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:17:04.261Z] CALL ClaimMesh(E689N8329) fail | costQuote=499.999999999999999968 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-08T01:17:04.953Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:17:05.633Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:17:06.399Z] CALL ClaimMesh(E860N78) fail | costQuote=499.999999999999999968 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-08T01:17:07.278Z] CALL ClaimMesh(E253N3874) ok | gas=335938 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1628334.902298369636018405->1628334.902298369636018405 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=2118.727273494186098859 totalBurn=6147799.616109141939366886
+[2025-09-08T01:17:08.056Z] CALL ClaimMesh(E160S246) ok | gas=309836 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1628334.902298369636018405->1628334.902298369636018405 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=706.454054382300441749 totalBurn=6148506.070163524239808635
+[2025-09-08T01:17:08.755Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:17:09.487Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:17:10.205Z] CALL ClaimMesh(W606S2996) fail | costQuote=347.222222222222222208 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-08T01:17:10.966Z] CALL ClaimMesh(E747S6527) ok | gas=311062 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1628334.902298369636018405->1628334.902298369636018405 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=706.697119574089286437 totalBurn=6149212.767283098329095072
+[2025-09-08T01:17:11.654Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:17:12.342Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:17:13.048Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:17:13.917Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:17:14.736Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:17:15.584Z] CALL ClaimMesh(W781N8524) ok | gas=329806 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1628334.902298369636018405->1628334.902298369636018405 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=1767.553849408475537413 totalBurn=6150980.321132506804632485
+[2025-09-08T01:17:16.400Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:17:17.202Z] CALL ClaimMesh(E846S7155) ok | gas=317302 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1628334.902298369636018405->1628334.902298369636018405 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=1060.912893171654687976 totalBurn=6152041.234025678459320461
+[2025-09-08T01:17:18.168Z] CALL ClaimMesh(W548N4282) ok | gas=284946 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1628334.902298369636018405->1628334.902298369636018405 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=353.736169654416093713 totalBurn=6152394.970195332875414174
+[2025-09-08T01:17:18.852Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:17:19.535Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:17:20.223Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:17:20.900Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:17:21.671Z] CALL ClaimMesh(E554N277) ok | gas=328472 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1628334.902298369636018405->1628334.902298369636018405 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=1769.522601708222438785 totalBurn=6154164.492797041097852959
+[2025-09-08T01:17:22.568Z] CALL ClaimMesh(W253S3553) ok | gas=285030 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1628334.902298369636018405->1628334.902298369636018405 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=354.008422824845179464 totalBurn=6154518.501219865943032423
+[2025-09-08T01:17:23.314Z] CALL ClaimMesh(W986S33) fail | costQuote=720.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-08T01:17:24.254Z] CALL ClaimMesh(W976S6731) ok | gas=317410 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1628334.902298369636018405->1628334.902298369636018405 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=1062.457469654087948032 totalBurn=6155580.958689520030980455
+[2025-09-08T01:17:25.003Z] CALL ClaimMesh(E22S7387) ok | gas=309455 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1628334.902298369636018405->1628334.902298369636018405 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=708.797664559536617788 totalBurn=6156644.02216262211178196
+[2025-09-08T01:17:25.690Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:17:26.415Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:17:27.134Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:17:27.808Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:17:28.587Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:17:29.334Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:17:30.099Z] CALL ClaimMesh(E57S2887) ok | gas=340655 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1628334.902298369636018405->1628334.902298369636018405 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=2482.099278903503663323 totalBurn=6159126.121441525615445283
+[2025-09-08T01:17:30.781Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'
+[2025-09-08T01:17:31.583Z] CALL ClaimMesh(E372N695) ok | gas=309752 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1628334.902298369636018405->1628334.902298369636018405 (Δ0.0)
+  burn: claim=0.0 decay=0.0 totalΔ=709.389806250610198956 totalBurn=6159835.511247776225644239
+[2025-09-08T01:17:32.277Z] CALL withdraw fail | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Minting period over'

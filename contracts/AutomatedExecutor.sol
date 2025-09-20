@@ -7,40 +7,95 @@ import "@openzeppelin/contracts/security/Pausable.sol";
 import "./SafeManager.sol";
 
 /**
- * @title AutomatedExecutor
- * @dev 自动化执行器，用于自动执行Safe操作
+ * @title AutomatedExecutor - 自动化执行器合约
+ * @dev 自动化执行器，用于自动执行Safe操作，支持批量处理和重试机制
+ * 
+ * 核心功能：
+ * 1. 操作队列：管理待执行的操作队列
+ * 2. 批量执行：支持批量执行多个操作
+ * 3. 重试机制：失败操作自动重试
+ * 4. 规则配置：可配置执行规则和限制
+ * 5. 权限管理：基于角色的访问控制
+ * 
+ * 执行规则：
+ * - 最小执行间隔：防止过于频繁的执行
+ * - 最大Gas价格：控制执行成本
+ * - 最大批量大小：控制单次执行的操作数量
+ * - 重试限制：防止无限重试
+ * 
+ * 安全特性：
+ * - 重入保护：防止重入攻击
+ * - 暂停机制：紧急情况下可暂停
+ * - 访问控制：基于角色的权限管理
+ * - 队列限制：防止队列溢出
+ * 
+ * @author Parallels Team
+ * @notice 本合约实现了Safe操作的自动化执行系统
  */
 contract AutomatedExecutor is AccessControl, ReentrancyGuard, Pausable {
     
+    // ============ 角色权限常量 ============
+    /** @dev 执行者角色，可以执行操作 */
     bytes32 public constant EXECUTOR_ROLE = keccak256("EXECUTOR_ROLE");
+    
+    /** @dev 管理员角色，可以管理执行规则 */
     bytes32 public constant ADMIN_ROLE = keccak256("ADMIN_ROLE");
     
+    // ============ 合约地址配置 ============
+    /** @dev SafeManager合约地址 */
     SafeManager public safeManager;
     
-    // 执行规则配置
+    // ============ 执行规则配置 ============
+    /**
+     * @dev 执行规则配置结构体
+     * @param enabled 是否启用该规则
+     * @param minInterval 最小执行间隔（秒）
+     * @param maxGasPrice 最大Gas价格（wei）
+     * @param maxBatchSize 最大批量大小
+     * @param lastExecution 上次执行时间戳
+     */
     struct ExecutionRule {
-        bool enabled;           // 是否启用
-        uint256 minInterval;    // 最小执行间隔
-        uint256 maxGasPrice;    // 最大Gas价格
+        bool enabled;           // 是否启用该规则
+        uint256 minInterval;    // 最小执行间隔（秒）
+        uint256 maxGasPrice;    // 最大Gas价格（wei）
         uint256 maxBatchSize;   // 最大批量大小
-        uint256 lastExecution;  // 上次执行时间
+        uint256 lastExecution;  // 上次执行时间戳
     }
     
-    // 操作队列
+    // ============ 操作队列管理 ============
+    /**
+     * @dev 队列操作结构体
+     * @param operationId 操作ID
+     * @param priority 优先级（1-10，10最高）
+     * @param timestamp 入队时间戳
+     * @param executed 是否已执行
+     * @param retryCount 重试次数
+     * @param maxRetries 最大重试次数
+     */
     struct QueuedOperation {
-        bytes32 operationId;
-        uint256 priority;       // 优先级 (1-10, 10最高)
-        uint256 timestamp;      // 入队时间
+        bytes32 operationId;    // 操作ID
+        uint256 priority;       // 优先级（1-10，10最高）
+        uint256 timestamp;      // 入队时间戳
         bool executed;          // 是否已执行
         uint256 retryCount;     // 重试次数
         uint256 maxRetries;     // 最大重试次数
     }
     
+    // ============ 数据映射 ============
+    /** @dev 执行规则映射：规则ID => 执行规则 */
     mapping(bytes32 => ExecutionRule) public executionRules;
+    
+    /** @dev 队列操作映射：操作ID => 队列操作 */
     mapping(bytes32 => QueuedOperation) public queuedOperations;
+    
+    /** @dev 操作队列数组，按优先级排序 */
     bytes32[] public operationQueue;
     
+    // ============ 系统常量 ============
+    /** @dev 最大重试次数 */
     uint256 public constant MAX_RETRIES = 3;
+    
+    /** @dev 最大队列大小 */
     uint256 public constant MAX_QUEUE_SIZE = 1000;
     
     event OperationQueued(bytes32 indexed operationId, uint256 priority);

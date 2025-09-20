@@ -5,11 +5,48 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
+/**
+ * @title IFoundationManage - 基金会管理接口
+ * @dev 用于从基金会合约转移代币到质押合约
+ */
 interface IFoundationManage {
     function transferTo(address to, uint256 amount) external;
 }
 
+/**
+ * @title Stake - 质押合约
+ * @dev 管理用户代币质押和利息计算，支持固定期限质押
+ * 
+ * 核心功能：
+ * 1. 质押代币：用户质押代币获得利息
+ * 2. 利息计算：基于APY和质押期限计算利息
+ * 3. 提取本金：质押到期后可提取本金和利息
+ * 4. 自动补充：当余额不足时自动从基金会补充
+ * 
+ * 质押机制：
+ * - 固定期限：用户选择质押天数
+ * - 线性APY：利息按时间线性增长
+ * - 到期提取：只有到期后才能提取本金
+ * - 提前提取：可以提前提取，但只能获得部分利息
+ * 
+ * 安全特性：
+ * - 重入保护：防止重入攻击
+ * - 访问控制：关键功能仅限治理地址
+ * - 余额检查：确保有足够的代币进行分发
+ * - 时间验证：确保质押期限合理
+ * 
+ * @author Parallels Team
+ * @notice 本合约实现了固定期限的代币质押系统
+ */
 contract Stake is ReentrancyGuard {
+    /**
+     * @dev 用户质押信息结构体
+     * @param term 质押天数
+     * @param maturityTs 到期时间戳
+     * @param amount 质押金额
+     * @param startTime 开始时间戳
+     * @param lastClaimTime 最后领取时间
+     */
     struct StakeInfo {
         uint256 term;           // 质押天数
         uint256 maturityTs;     // 到期时间戳
@@ -18,22 +55,45 @@ contract Stake is ReentrancyGuard {
         uint256 lastClaimTime;  // 最后领取时间
     }
     
+    /**
+     * @dev 质押统计信息结构体
+     * @param totalStaked 总质押数量
+     * @param totalEarned 总收益数量
+     * @param activeStakes 活跃质押数量
+     * @param totalStakers 总质押者数量
+     */
     struct StakeStats {
-        uint256 totalStaked;
-        uint256 totalEarned;
-        uint256 activeStakes;
-        uint256 totalStakers;
+        uint256 totalStaked;    // 总质押数量
+        uint256 totalEarned;    // 总收益数量
+        uint256 activeStakes;   // 活跃质押数量
+        uint256 totalStakers;   // 总质押者数量
     }
 
+    // ============ 合约地址配置 ============
+    /** @dev Mesh代币合约地址 */
     IERC20 public meshToken;
-    address public foundationAddr;
-    address public foundationManager; // FoundationManage 合约地址
-    address public governanceSafe;     // Gnosis Safe 地址（用于管理操作）
     
-    uint256 public apy;                    // 年化收益率 (基点，如1000表示10%)
+    /** @dev 基金会地址，用于接收剩余代币 */
+    address public foundationAddr;
+    
+    /** @dev 基金会管理合约地址，用于代币转移 */
+    address public foundationManager;
+    
+    /** @dev 治理安全地址（Gnosis Safe），用于管理操作 */
+    address public governanceSafe;
+    
+    // ============ 质押参数配置 ============
+    /** @dev 年化收益率（基点，如1000表示10%） */
+    uint256 public apy;
+    
+    /** @dev 一天的秒数常量 */
     uint256 public constant SECONDS_IN_DAY = 86400;
-    uint256 public constant APY_BASE = 10000; // APY基数，10000 = 100%
-    uint256 public minContractBalance; // 低于该值则触发申请
+    
+    /** @dev APY基数，10000 = 100% */
+    uint256 public constant APY_BASE = 10000;
+    
+    /** @dev 最低合约余额，低于该值则触发申请 */
+    uint256 public minContractBalance;
     
     mapping(address => StakeInfo) public userStakes;
     mapping(address => uint256) public userTotalEarned;
@@ -41,10 +101,7 @@ contract Stake is ReentrancyGuard {
     
     StakeStats public stakeStats;
     
-    uint256 private spendNonce;
-    mapping(address => bool) private isOwner;
-    address[] private owners;
-    uint256 private signRequired;
+    // 旧 owners 多签已移除
     
     // 质押相关事件
     event Staked(address indexed user, uint256 amount, uint256 term, uint256 maturityTs);
@@ -56,11 +113,7 @@ contract Stake is ReentrancyGuard {
     event MinContractBalanceUpdated(uint256 oldValue, uint256 newValue);
     event AutoTopUpRequested(address indexed manager, uint256 requestedAmount);
     
-    modifier isOnlyOwner() {
-        require(isOwner[msg.sender], "Not owner");
-        _;
-    }
-
+    // 仅 Safe 可执行管理操作
     modifier onlySafe() {
         require(msg.sender == governanceSafe, "Only Safe");
         _;
@@ -77,38 +130,28 @@ contract Stake is ReentrancyGuard {
     }
     
     constructor(
-        address[] memory _owners,
         address _meshToken,
         address _foundationAddr,
+        address _governanceSafe,
         uint256 _apy
     ) {
         require(_meshToken != address(0), "Invalid mesh token address");
         require(_foundationAddr != address(0), "Invalid foundation address");
+        require(_governanceSafe != address(0), "Invalid safe address");
         require(_apy > 0, "APY must be greater than 0");
-        
-        for (uint256 i = 0; i < _owners.length; i++) {
-            address _owner = _owners[i];
-            if (isOwner[_owner] || _owner == address(0)) {
-                revert("Invalid owner address");
-            }
-            
-            isOwner[_owner] = true;
-            owners.push(_owner);
-        }
         
         meshToken = IERC20(_meshToken);
         foundationAddr = _foundationAddr;
         apy = _apy;
-        signRequired = _owners.length / 2 + 1;
-        // 初始 Safe 地址留空，由旧多签设置或部署后设置
-        governanceSafe = address(0);
+        governanceSafe = _governanceSafe;
     }
 
     /**
      * @dev 设置/更新治理 Safe 地址（由旧多签所有者发起一次性迁移）
      */
-    function setGovernanceSafe(address _safe) external isOnlyOwner {
+    function setGovernanceSafe(address _safe) external onlySafe {
         require(_safe != address(0), "Invalid safe");
+        require(_safe != governanceSafe, "Same safe");
         governanceSafe = _safe;
     }
     
@@ -428,62 +471,5 @@ contract Stake is ReentrancyGuard {
         return apy;
     }
     
-    // 多签验证相关函数
-    function validSignature(
-        address _sender,
-        uint8[] memory vs,
-        bytes32[] memory rs,
-        bytes32[] memory ss
-    ) public view returns (bool) {
-        require(vs.length == rs.length, "vs.length == rs.length");
-        require(rs.length == ss.length, "rs.length == ss.length");
-        require(vs.length <= owners.length, "vs.length <= owners.length");
-        require(vs.length >= signRequired, "vs.length >= signRequired");
-        
-        bytes32 message = _messageToRecover(_sender);
-        address[] memory addrs = new address[](vs.length);
-        
-        for (uint256 i = 0; i < vs.length; i++) {
-            addrs[i] = ecrecover(message, vs[i] + 27, rs[i], ss[i]);
-        }
-        
-        return _distinctOwners(addrs);
-    }
-    
-    function _messageToRecover(address _sender) private view returns (bytes32) {
-        bytes32 hashedUnsignedMessage = generateMessageToSign(_sender);
-        bytes memory prefix = "\x19Ethereum Signed Message:\n32";
-        return keccak256(abi.encodePacked(prefix, hashedUnsignedMessage));
-    }
-    
-    function generateMessageToSign(address _sender) private view returns (bytes32) {
-        return keccak256(abi.encodePacked(_sender, block.chainid, spendNonce));
-    }
-    
-    function _distinctOwners(address[] memory addrs) private view returns (bool) {
-        if (addrs.length > owners.length) {
-            return false;
-        }
-        
-        for (uint256 i = 0; i < addrs.length; i++) {
-            if (!isOwner[addrs[i]]) {
-                return false;
-            }
-            
-            for (uint256 j = 0; j < i; j++) {
-                if (addrs[i] == addrs[j]) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-    
-    function getSpendNonce() external view returns (uint256) {
-        return spendNonce;
-    }
-    
-    function addSpendNonce() external onlySafe {
-        spendNonce++;
-    }
+    // 旧 owners 多签相关逻辑已移除
 }

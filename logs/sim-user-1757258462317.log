@@ -1,0 +1,435 @@
+[2025-09-07T15:21:02.322Z] Start single-user TUI: user=0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC
+[2025-09-07T15:21:02.892Z] CALL ClaimMesh(W118S6886) ok | gas=342651 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 0.0->0.0 (Δ0.0) | burn Δ=0.0 totalBurn=0.8
+[2025-09-07T15:21:03.717Z] CALL withdraw ok | gas=203518 | myMESH 0.0->1.5 (Δ1.5) | burn Δ=0.4 totalBurn=1.2
+[2025-09-07T15:21:04.502Z] SKIP withdraw | ineligible (weight=1.0 lastDay=0.000000000000000002 curDay=0.000000000000000002)
+[2025-09-07T15:21:05.290Z] SKIP withdraw | ineligible (weight=1.0 lastDay=0.000000000000000002 curDay=0.000000000000000002)
+[2025-09-07T15:21:06.191Z] CALL ClaimMesh(W47N8561) ok | gas=308541 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1.5->1.5 (Δ0.0) | burn Δ=0.4 totalBurn=1.6
+[2025-09-07T15:21:07.174Z] CALL ClaimMesh(E573N1161) ok | gas=271114 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1.5->1.5 (Δ0.0) | burn Δ=2.7 totalBurn=4.3
+[2025-09-07T15:21:07.974Z] CALL ClaimMesh(E573N1161) fail | costQuote=1036.8 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:21:08.833Z] CALL withdraw ok | gas=148203 | myMESH 1.5->7.0625 (Δ5.5625) | burn Δ=3.75 totalBurn=10.75
+[2025-09-07T15:21:09.669Z] CALL ClaimMesh(W970N8459) ok | gas=239820 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 7.0625->7.0625 (Δ0.0) | burn Δ=0.0 totalBurn=10.75
+[2025-09-07T15:21:10.438Z] CALL withdraw ok | gas=166950 | myMESH 7.0625->13.0625 (Δ6.0) | burn Δ=1.6 totalBurn=14.8
+[2025-09-07T15:21:11.332Z] CALL ClaimMesh(E100N100) ok | gas=212824 | costQuote=1036.8 | applyCount 1->2 | heat 1.0->1.2 | myMESH 13.0625->13.06249999999999928 (Δ-0.00000000000000072) | burn Δ=0.00000000000000072 totalBurn=14.80000000000000072
+[2025-09-07T15:21:12.186Z] CALL ClaimMesh(W437N8829) ok | gas=225494 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 13.06249999999999928->13.06249999999999928 (Δ0.0) | burn Δ=0.0 totalBurn=14.80000000000000072
+[2025-09-07T15:21:12.983Z] CALL ClaimMesh(E100N100) fail | costQuote=1244.16 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:21:13.786Z] CALL ClaimMesh(E573N1161) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:21:14.575Z] CALL ClaimMesh(E777N2745) ok | gas=300982 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 13.06249999999999928->13.06249999999999928 (Δ0.0) | burn Δ=6.2 totalBurn=23.85000000000000072
+[2025-09-07T15:21:15.411Z] CALL ClaimMesh(E573N1161) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:21:16.410Z] CALL ClaimMesh(W242N3284) ok | gas=297090 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 13.06249999999999928->13.06249999999999928 (Δ0.0) | burn Δ=9.99 totalBurn=36.29000000000000072
+[2025-09-07T15:21:17.205Z] CALL ClaimMesh(E100N100) fail | costQuote=1244.16 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:21:18.063Z] CALL ClaimMesh(W870S5680) ok | gas=309548 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 13.06249999999999928->13.06249999999999928 (Δ0.0) | burn Δ=12.1375 totalBurn=51.65250000000000072
+[2025-09-07T15:21:18.984Z] CALL withdraw ok | gas=112761 | myMESH 13.06249999999999928->32.61015624999999928 (Δ19.54765625) | burn Δ=7.478125 totalBurn=71.53000000000000072
+[2025-09-07T15:21:19.844Z] CALL ClaimMesh(E961N1028) ok | gas=225386 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 32.61015624999999928->32.61015624999999928 (Δ0.0) | burn Δ=0.0 totalBurn=71.53000000000000072
+[2025-09-07T15:21:20.678Z] CALL withdraw ok | gas=155489 | myMESH 32.61015624999999928->49.41015624999999928 (Δ16.8) | burn Δ=4.48 totalBurn=82.84750000000000072
+[2025-09-07T15:21:21.396Z] SKIP withdraw | ineligible (weight=11.2 lastDay=0.00000000000000001 curDay=0.00000000000000001)
+[2025-09-07T15:21:22.106Z] CALL ClaimMesh(E777N2745) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:21:22.869Z] CALL withdraw ok | gas=142196 | myMESH 49.41015624999999928->66.21015624999999928 (Δ16.8) | burn Δ=4.48 totalBurn=98.13687500000000072
+[2025-09-07T15:21:23.618Z] SKIP withdraw | ineligible (weight=11.2 lastDay=0.000000000000000011 curDay=0.000000000000000011)
+[2025-09-07T15:21:24.420Z] CALL withdraw ok | gas=183236 | myMESH 66.21015624999999928->83.01015624999999928 (Δ16.8) | burn Δ=4.48 totalBurn=109.81765625000000072
+[2025-09-07T15:21:25.203Z] CALL ClaimMesh(E777N2745) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:21:26.016Z] CALL ClaimMesh(E66S7192) ok | gas=320891 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 83.01015624999999928->83.01015624999999928 (Δ0.0) | burn Δ=4.48 totalBurn=115.99765625000000072
+[2025-09-07T15:21:26.889Z] CALL ClaimMesh(W378N7740) ok | gas=275948 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 83.01015624999999928->83.01015624999999928 (Δ0.0) | burn Δ=7.12 totalBurn=123.11765625000000072
+[2025-09-07T15:21:27.866Z] CALL withdraw ok | gas=112761 | myMESH 83.01015624999999928->107.26015624999999928 (Δ24.25) | burn Δ=8.84 totalBurn=132.95765625000000072
+[2025-09-07T15:21:28.705Z] CALL withdraw ok | gas=142196 | myMESH 107.26015624999999928->127.06015624999999928 (Δ19.8) | burn Δ=5.28 totalBurn=138.23765625000000072
+[2025-09-07T15:21:29.386Z] SKIP withdraw | ineligible (weight=13.2 lastDay=0.000000000000000014 curDay=0.000000000000000014)
+[2025-09-07T15:21:30.179Z] CALL ClaimMesh(E777N2745) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:21:30.884Z] SKIP withdraw | ineligible (weight=13.2 lastDay=0.000000000000000014 curDay=0.000000000000000014)
+[2025-09-07T15:21:31.608Z] CALL ClaimMesh(E777N2745) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:21:32.570Z] CALL ClaimMesh(W514N8810) ok | gas=322522 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 127.06015624999999928->127.06015624999999928 (Δ0.0) | burn Δ=15.680048828125 totalBurn=166.73059570312500072
+[2025-09-07T15:21:33.536Z] CALL withdraw ok | gas=139086 | myMESH 127.06015624999999928->153.56015624999999928 (Δ26.5) | burn Δ=18.16 totalBurn=184.89059570312500072
+[2025-09-07T15:21:34.461Z] CALL ClaimMesh(E573N1161) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:21:35.375Z] CALL ClaimMesh(E100N100) fail | costQuote=1244.16 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:21:36.068Z] SKIP withdraw | ineligible (weight=14.2 lastDay=0.000000000000000016 curDay=0.000000000000000016)
+[2025-09-07T15:21:36.918Z] CALL withdraw ok | gas=158095 | myMESH 153.56015624999999928->174.86015624999999928 (Δ21.3) | burn Δ=5.68 totalBurn=201.84872070312500072
+[2025-09-07T15:21:37.703Z] SKIP withdraw | ineligible (weight=14.2 lastDay=0.000000000000000017 curDay=0.000000000000000017)
+[2025-09-07T15:21:38.405Z] SKIP withdraw | ineligible (weight=14.2 lastDay=0.000000000000000017 curDay=0.000000000000000017)
+[2025-09-07T15:21:39.257Z] CALL ClaimMesh(E100N100) fail | costQuote=1244.16 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:21:40.013Z] SKIP withdraw | ineligible (weight=14.2 lastDay=0.000000000000000017 curDay=0.000000000000000017)
+[2025-09-07T15:21:41.326Z] CALL ClaimMesh(E201N4630) ok | gas=310040 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 174.86015624999999928->174.86015624999999928 (Δ0.0) | burn Δ=5.68 totalBurn=218.47950195312500072
+[2025-09-07T15:21:42.091Z] CALL ClaimMesh(W970N8459) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:21:42.913Z] CALL withdraw ok | gas=117487 | myMESH 174.86015624999999928->204.73515624999999928 (Δ29.875) | burn Δ=10.94 totalBurn=239.33950195312500072
+[2025-09-07T15:21:43.641Z] SKIP withdraw | ineligible (weight=16.2 lastDay=0.000000000000000019 curDay=0.000000000000000019)
+[2025-09-07T15:21:44.545Z] CALL ClaimMesh(W483N7462) ok | gas=225494 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 229.03515624999999928->229.03515624999999928 (Δ0.0) | burn Δ=7.22495269775390625 totalBurn=253.04445465087890697
+[2025-09-07T15:21:45.400Z] CALL withdraw ok | gas=158095 | myMESH 229.03515624999999928->254.83515624999999928 (Δ25.8) | burn Δ=6.88 totalBurn=268.63382965087890697
+[2025-09-07T15:21:46.285Z] CALL ClaimMesh(E777N2745) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:21:47.349Z] CALL ClaimMesh(W483N7462) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:21:48.199Z] CALL ClaimMesh(W483N7462) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:21:49.039Z] CALL withdraw ok | gas=185223 | myMESH 254.83515624999999928->287.08515624999999928 (Δ32.25) | burn Δ=29.24 totalBurn=336.22812652587890697
+[2025-09-07T15:21:49.741Z] CALL ClaimMesh(E777N2745) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:21:50.576Z] CALL ClaimMesh(W970N8459) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:21:51.437Z] CALL ClaimMesh(W616N311) ok | gas=321296 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 287.08515624999999928->287.08515624999999928 (Δ0.0) | burn Δ=6.88 totalBurn=348.20812652587890697
+[2025-09-07T15:21:52.269Z] CALL ClaimMesh(E794N1462) ok | gas=275840 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 287.08515624999999928->287.08515624999999928 (Δ0.0) | burn Δ=10.72 totalBurn=370.15161285400390697
+[2025-09-07T15:21:53.172Z] CALL ClaimMesh(E120N7020) ok | gas=309356 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 287.08515624999999928->287.08515624999999928 (Δ0.0) | burn Δ=45.594052734375 totalBurn=421.80816558837890697
+[2025-09-07T15:21:54.219Z] CALL ClaimMesh(E504S3340) ok | gas=301066 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 287.08515624999999928->287.08515624999999928 (Δ0.0) | burn Δ=30.85 totalBurn=466.25894836425781322
+[2025-09-07T15:21:55.328Z] CALL ClaimMesh(W938S7054) ok | gas=305506 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 287.08515624999999928->287.08515624999999928 (Δ0.0) | burn Δ=16.315 totalBurn=489.79743469238281322
+[2025-09-07T15:21:56.285Z] CALL ClaimMesh(E926N4485) ok | gas=296982 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 287.08515624999999928->287.08515624999999928 (Δ0.0) | burn Δ=34.43625 totalBurn=527.23368469238281322
+[2025-09-07T15:21:57.670Z] CALL ClaimMesh(W417S5965) ok | gas=271306 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 287.08515624999999928->287.08515624999999928 (Δ0.0) | burn Δ=24.3809375 totalBurn=579.608375267982483632
+[2025-09-07T15:21:58.751Z] CALL withdraw ok | gas=112761 | myMESH 287.08515624999999928->334.62226562499999928 (Δ47.537109375) | burn Δ=18.6696875 totalBurn=603.628062767982483632
+[2025-09-07T15:21:59.587Z] SKIP withdraw | ineligible (weight=24.2 lastDay=0.000000000000000027 curDay=0.000000000000000027)
+[2025-09-07T15:22:00.411Z] CALL ClaimMesh(E573N1161) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:22:01.231Z] CALL ClaimMesh(E100N100) fail | costQuote=1244.16 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:22:02.291Z] CALL ClaimMesh(W483N7462) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:22:03.391Z] CALL ClaimMesh(E391S4076) ok | gas=288298 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 334.62226562499999928->334.62226562499999928 (Δ0.0) | burn Δ=16.8175 totalBurn=655.519023157656193504
+[2025-09-07T15:22:04.609Z] CALL ClaimMesh(W978S395) ok | gas=295948 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 334.62226562499999928->334.62226562499999928 (Δ0.0) | burn Δ=32.46 totalBurn=692.235273157656193504
+[2025-09-07T15:22:05.470Z] CALL withdraw ok | gas=117487 | myMESH 334.62226562499999928->384.88476562499999928 (Δ50.2625) | burn Δ=19.25 totalBurn=713.085273157656193504
+[2025-09-07T15:22:06.192Z] SKIP withdraw | ineligible (weight=26.2 lastDay=0.000000000000000029 curDay=0.000000000000000029)
+[2025-09-07T15:22:07.122Z] CALL ClaimMesh(E100N100) fail | costQuote=1244.16 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:22:08.155Z] CALL withdraw ok | gas=158095 | myMESH 384.88476562499999928->424.18476562499999928 (Δ39.3) | burn Δ=10.48 totalBurn=772.414750544130802879
+[2025-09-07T15:22:09.139Z] CALL ClaimMesh(E777N2745) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:22:10.063Z] CALL withdraw ok | gas=142196 | myMESH 424.18476562499999928->463.48476562499999928 (Δ39.3) | burn Δ=17.703486328125 totalBurn=820.518238398134709129
+[2025-09-07T15:22:10.877Z] SKIP withdraw | ineligible (weight=26.2 lastDay=0.000000000000000031 curDay=0.000000000000000031)
+[2025-09-07T15:22:11.588Z] SKIP withdraw | ineligible (weight=26.2 lastDay=0.000000000000000031 curDay=0.000000000000000031)
+[2025-09-07T15:22:12.440Z] CALL ClaimMesh(E573N1161) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:22:13.612Z] CALL ClaimMesh(E490S7690) ok | gas=225470 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 463.48476562499999928->463.48476562499999928 (Δ0.0) | burn Δ=0.0 totalBurn=857.557962937448174486
+[2025-09-07T15:22:14.333Z] SKIP withdraw | ineligible (weight=27.2 lastDay=0.000000000000000031 curDay=0.000000000000000031)
+[2025-09-07T15:22:15.295Z] CALL ClaimMesh(W571S1469) ok | gas=297132 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 463.48476562499999928->463.48476562499999928 (Δ0.0) | burn Δ=10.88 totalBurn=896.034447312448174486
+[2025-09-07T15:22:16.044Z] CALL ClaimMesh(W970N8459) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:22:16.804Z] CALL withdraw ok | gas=158095 | myMESH 512.58476562499999928->554.88476562499999928 (Δ42.3) | burn Δ=11.28 totalBurn=929.754759812448174486
+[2025-09-07T15:22:17.469Z] SKIP withdraw | ineligible (weight=28.2 lastDay=0.000000000000000033 curDay=0.000000000000000033)
+[2025-09-07T15:22:18.544Z] CALL ClaimMesh(W970N8459) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:22:19.761Z] CALL ClaimMesh(W673S8585) ok | gas=288406 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 554.88476562499999928->554.88476562499999928 (Δ0.0) | burn Δ=12.98 totalBurn=963.734759812448174486
+[2025-09-07T15:22:20.740Z] CALL ClaimMesh(E777N2745) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:22:21.898Z] CALL ClaimMesh(E22N7180) ok | gas=274233 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 554.88476562499999928->554.88476562499999928 (Δ0.0) | burn Δ=17.32 totalBurn=985.861009812448174486
+[2025-09-07T15:22:22.673Z] CALL withdraw ok | gas=146961 | myMESH 554.88476562499999928->611.00976562499999928 (Δ56.125) | burn Δ=20.74 totalBurn=1006.601009812448174486
+[2025-09-07T15:22:23.590Z] CALL withdraw ok | gas=158095 | myMESH 611.00976562499999928->656.30976562499999928 (Δ45.3) | burn Δ=12.08 totalBurn=1032.293508310411126148
+[2025-09-07T15:22:24.332Z] CALL ClaimMesh(W970N8459) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:22:25.220Z] CALL withdraw ok | gas=158095 | myMESH 656.30976562499999928->701.60976562499999928 (Δ45.3) | burn Δ=12.08 totalBurn=1055.273508310411126148
+[2025-09-07T15:22:26.461Z] CALL ClaimMesh(W339N3131) ok | gas=225494 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 701.60976562499999928->701.60976562499999928 (Δ0.0) | burn Δ=0.0 totalBurn=1084.875071573350579273
+[2025-09-07T15:22:27.145Z] SKIP withdraw | ineligible (weight=31.2 lastDay=0.000000000000000036 curDay=0.000000000000000036)
+[2025-09-07T15:22:28.209Z] CALL ClaimMesh(W282S6797) ok | gas=225578 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 701.60976562499999928->701.60976562499999928 (Δ0.0) | burn Δ=0.0 totalBurn=1104.512669229600579273
+[2025-09-07T15:22:28.957Z] CALL ClaimMesh(E777N2745) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:22:30.015Z] CALL ClaimMesh(W84N722) ok | gas=307315 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 701.60976562499999928->701.60976562499999928 (Δ0.0) | burn Δ=12.88 totalBurn=1153.405755167100579273
+[2025-09-07T15:22:30.953Z] CALL withdraw ok | gas=117487 | myMESH 701.60976562499999928->759.45976562499999928 (Δ57.85) | burn Δ=19.72 totalBurn=1182.077635049913079273
+[2025-09-07T15:22:31.618Z] SKIP withdraw | ineligible (weight=33.2 lastDay=0.000000000000000038 curDay=0.000000000000000038)
+[2025-09-07T15:22:32.381Z] CALL ClaimMesh(E573N1161) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:22:33.095Z] CALL ClaimMesh(E573N1161) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:22:33.880Z] CALL ClaimMesh(W970N8459) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:22:34.808Z] CALL ClaimMesh(E989N5865) ok | gas=288214 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 809.25976562499999928->809.25976562499999928 (Δ0.0) | burn Δ=13.28 totalBurn=1258.981385049913079273
+[2025-09-07T15:22:35.744Z] CALL withdraw ok | gas=151460 | myMESH 809.25976562499999928->873.25976562499999928 (Δ64.0) | burn Δ=63.3601953125 totalBurn=1337.554470964316279423
+[2025-09-07T15:22:36.854Z] CALL ClaimMesh(W525N4118) ok | gas=225494 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 873.25976562499999928->873.25976562499999928 (Δ0.0) | burn Δ=0.0 totalBurn=1341.566970964316279423
+[2025-09-07T15:22:37.845Z] CALL ClaimMesh(E49N4140) ok | gas=238105 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 873.25976562499999928->873.25976562499999928 (Δ0.0) | burn Δ=0.0 totalBurn=1343.566873308066279423
+[2025-09-07T15:22:38.774Z] CALL ClaimMesh(W970N8459) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:22:39.590Z] CALL ClaimMesh(W970N8459) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:22:40.504Z] CALL withdraw ok | gas=118018 | myMESH 873.25976562499999928->927.55976562499999928 (Δ54.3) | burn Δ=14.48 totalBurn=1388.915622551087290777
+[2025-09-07T15:22:41.260Z] SKIP withdraw | ineligible (weight=36.2 lastDay=0.000000000000000041 curDay=0.000000000000000041)
+[2025-09-07T15:22:42.044Z] CALL withdraw ok | gas=142196 | myMESH 927.55976562499999928->981.85976562499999928 (Δ54.3) | burn Δ=14.48 totalBurn=1439.695045768860728277
+[2025-09-07T15:22:42.743Z] SKIP withdraw | ineligible (weight=36.2 lastDay=0.000000000000000042 curDay=0.000000000000000042)
+[2025-09-07T15:22:43.506Z] SKIP withdraw | ineligible (weight=36.2 lastDay=0.000000000000000042 curDay=0.000000000000000042)
+[2025-09-07T15:22:44.196Z] SKIP withdraw | ineligible (weight=36.2 lastDay=0.000000000000000042 curDay=0.000000000000000042)
+[2025-09-07T15:22:45.105Z] CALL ClaimMesh(E690S7533) ok | gas=225470 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 981.85976562499999928->981.85976562499999928 (Δ0.0) | burn Δ=0.0 totalBurn=1468.422999869724736348
+[2025-09-07T15:22:45.837Z] CALL ClaimMesh(W970N8459) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:22:46.651Z] CALL withdraw ok | gas=155489 | myMESH 981.85976562499999928->1039.15976562499999928 (Δ57.3) | burn Δ=15.28 totalBurn=1501.315499869724736348
+[2025-09-07T15:22:47.483Z] CALL withdraw ok | gas=142196 | myMESH 1039.15976562499999928->1096.45976562499999928 (Δ57.3) | burn Δ=15.28 totalBurn=1518.995499869724736348
+[2025-09-07T15:22:48.518Z] CALL ClaimMesh(W228N3804) ok | gas=239820 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1096.45976562499999928->1096.45976562499999928 (Δ0.0) | burn Δ=0.0 totalBurn=1553.851749869724736348
+[2025-09-07T15:22:49.212Z] SKIP withdraw | ineligible (weight=39.2 lastDay=0.000000000000000044 curDay=0.000000000000000044)
+[2025-09-07T15:22:49.995Z] CALL withdraw ok | gas=169556 | myMESH 1096.45976562499999928->1155.25976562499999928 (Δ58.8) | burn Δ=15.68 totalBurn=1599.200600571958348887
+[2025-09-07T15:22:50.764Z] SKIP withdraw | ineligible (weight=39.2 lastDay=0.000000000000000045 curDay=0.000000000000000045)
+[2025-09-07T15:22:51.575Z] CALL withdraw ok | gas=142196 | myMESH 1155.25976562499999928->1214.05976562499999928 (Δ58.8) | burn Δ=15.68 totalBurn=1622.880600571958348887
+[2025-09-07T15:22:52.372Z] CALL ClaimMesh(E777N2745) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:22:53.071Z] CALL ClaimMesh(E777N2745) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:22:53.826Z] CALL ClaimMesh(E573N1161) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:22:54.773Z] CALL ClaimMesh(E777N2745) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:22:55.530Z] CALL ClaimMesh(E100N100) fail | costQuote=1244.16 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:22:56.267Z] CALL ClaimMesh(E777N2745) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:22:57.064Z] CALL ClaimMesh(E100N100) fail | costQuote=1244.16 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:22:57.842Z] CALL ClaimMesh(E777N2745) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:22:58.743Z] CALL withdraw ok | gas=159088 | myMESH 1214.05976562499999928->1282.65976562499999928 (Δ68.6) | burn Δ=39.2 totalBurn=1767.351123786135577399
+[2025-09-07T15:22:59.480Z] SKIP withdraw | ineligible (weight=39.2 lastDay=0.000000000000000048 curDay=0.000000000000000048)
+[2025-09-07T15:23:00.460Z] CALL ClaimMesh(W408N6670) ok | gas=322522 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1282.65976562499999928->1282.65976562499999928 (Δ0.0) | burn Δ=15.68 totalBurn=1833.631123786135577399
+[2025-09-07T15:23:01.208Z] CALL withdraw ok | gas=146961 | myMESH 1282.65976562499999928->1352.75976562499999928 (Δ70.1) | burn Δ=23.92 totalBurn=1859.951123786135577399
+[2025-09-07T15:23:02.213Z] CALL ClaimMesh(E917S2594) ok | gas=297024 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1352.75976562499999928->1352.75976562499999928 (Δ0.0) | burn Δ=16.08 totalBurn=1878.481123786135577399
+[2025-09-07T15:23:03.232Z] CALL ClaimMesh(W822S465) ok | gas=295948 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1352.75976562499999928->1352.75976562499999928 (Δ0.0) | burn Δ=53.26 totalBurn=1940.241123786135577399
+[2025-09-07T15:23:04.193Z] CALL ClaimMesh(E161N1886) ok | gas=300982 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1352.75976562499999928->1352.75976562499999928 (Δ0.0) | burn Δ=63.755 totalBurn=2014.833623786135577399
+[2025-09-07T15:23:05.086Z] CALL ClaimMesh(W453N7405) ok | gas=225494 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1437.87539062499999928->1437.87539062499999928 (Δ0.0) | burn Δ=0.0 totalBurn=2048.366123786135577399
+[2025-09-07T15:23:05.797Z] CALL ClaimMesh(E777N2745) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:23:06.748Z] CALL ClaimMesh(E231S6366) ok | gas=314124 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1437.87539062499999928->1437.87539062499999928 (Δ0.0) | burn Δ=17.68 totalBurn=2074.707891364260577399
+[2025-09-07T15:23:07.690Z] CALL withdraw ok | gas=112761 | myMESH 1437.87539062499999928->1516.72539062499999928 (Δ78.85) | burn Δ=49.320048828125 totalBurn=2125.227940192385577399
+[2025-09-07T15:23:08.505Z] SKIP withdraw | ineligible (weight=45.2 lastDay=0.000000000000000053 curDay=0.000000000000000053)
+[2025-09-07T15:23:09.607Z] CALL ClaimMesh(E83N3568) ok | gas=225890 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1584.52539062499999928->1584.52539062499999928 (Δ0.0) | burn Δ=0.0 totalBurn=2191.308428473635577399
+[2025-09-07T15:23:10.337Z] CALL ClaimMesh(E100N100) fail | costQuote=1244.16 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:23:10.993Z] SKIP withdraw | ineligible (weight=46.2 lastDay=0.000000000000000055 curDay=0.000000000000000055)
+[2025-09-07T15:23:11.898Z] CALL ClaimMesh(W723N6273) ok | gas=310148 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1653.82539062499999928->1653.82539062499999928 (Δ0.0) | burn Δ=18.48 totalBurn=2257.156673102541827399
+[2025-09-07T15:23:12.704Z] CALL ClaimMesh(E100N100) fail | costQuote=1244.16 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:23:13.571Z] CALL ClaimMesh(W970N8459) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:23:14.358Z] CALL withdraw ok | gas=112761 | myMESH 1653.82539062499999928->1736.17539062499999928 (Δ82.35) | burn Δ=28.12 totalBurn=2365.516516852541827399
+[2025-09-07T15:23:15.103Z] CALL ClaimMesh(E100N100) fail | costQuote=1244.16 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:23:15.893Z] CALL ClaimMesh(W483N7462) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:23:16.700Z] CALL ClaimMesh(W483N7462) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:23:17.656Z] CALL ClaimMesh(W970N8459) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:23:18.557Z] CALL withdraw ok | gas=155489 | myMESH 1736.17539062499999928->1806.97539062499999928 (Δ70.8) | burn Δ=18.88 totalBurn=2567.179765754281543931
+[2025-09-07T15:23:19.539Z] CALL ClaimMesh(W840N1991) ok | gas=225494 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1806.97539062499999928->1806.97539062499999928 (Δ0.0) | burn Δ=0.0 totalBurn=2567.179765754281543931
+[2025-09-07T15:23:20.307Z] CALL withdraw ok | gas=166950 | myMESH 1806.97539062499999928->1879.27539062499999928 (Δ72.3) | burn Δ=19.28 totalBurn=2592.459765754281543931
+[2025-09-07T15:23:21.184Z] CALL ClaimMesh(E347S3102) ok | gas=322498 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1879.27539062499999928->1879.27539062499999928 (Δ0.0) | burn Δ=19.28 totalBurn=2630.939411750375293931
+[2025-09-07T15:23:22.123Z] CALL ClaimMesh(E434S4785) ok | gas=301066 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1879.27539062499999928->1879.27539062499999928 (Δ0.0) | burn Δ=63.66 totalBurn=2741.300681281625293931
+[2025-09-07T15:23:22.885Z] CALL ClaimMesh(W483N7462) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:23:23.693Z] CALL ClaimMesh(E777N2745) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:23:24.789Z] CALL ClaimMesh(E82S287) ok | gas=299475 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1879.27539062499999928->1879.27539062499999928 (Δ0.0) | burn Δ=115.3875 totalBurn=2906.237229133187793931
+[2025-09-07T15:23:25.566Z] CALL withdraw ok | gas=116018 | myMESH 1879.27539062499999928->1980.72070312499999928 (Δ101.4453125) | burn Δ=40.19625 totalBurn=2966.495979133187793931
+[2025-09-07T15:23:26.323Z] CALL ClaimMesh(E777N2745) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:23:27.010Z] SKIP withdraw | ineligible (weight=51.2 lastDay=0.000000000000000062 curDay=0.000000000000000062)
+[2025-09-07T15:23:27.965Z] CALL ClaimMesh(W329N4536) ok | gas=314148 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 1980.72070312499999928->1980.72070312499999928 (Δ0.0) | burn Δ=20.48 totalBurn=3030.488201423226856431
+[2025-09-07T15:23:28.749Z] CALL withdraw ok | gas=116018 | myMESH 1980.72070312499999928->2071.82070312499999928 (Δ91.1) | burn Δ=31.12 totalBurn=3064.008201423226856431
+[2025-09-07T15:23:29.570Z] SKIP withdraw | ineligible (weight=52.2 lastDay=0.000000000000000063 curDay=0.000000000000000063)
+[2025-09-07T15:23:30.235Z] SKIP withdraw | ineligible (weight=52.2 lastDay=0.000000000000000063 curDay=0.000000000000000063)
+[2025-09-07T15:23:31.026Z] CALL ClaimMesh(E573N1161) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:23:31.775Z] CALL ClaimMesh(W970N8459) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:23:32.518Z] CALL ClaimMesh(E777N2745) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:23:33.418Z] CALL ClaimMesh(E861N2257) ok | gas=326456 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 2071.82070312499999928->2071.82070312499999928 (Δ0.0) | burn Δ=52.2 totalBurn=3306.624809852601029717
+[2025-09-07T15:23:34.129Z] CALL ClaimMesh(W483N7462) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:23:34.853Z] CALL ClaimMesh(E100N100) fail | costQuote=1244.16 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:23:35.621Z] CALL withdraw ok | gas=156869 | myMESH 2071.82070312499999928->2174.70820312499999928 (Δ102.8875) | burn Δ=76.69 totalBurn=3416.405132299424149835
+[2025-09-07T15:23:36.333Z] SKIP withdraw | ineligible (weight=53.2 lastDay=0.000000000000000066 curDay=0.000000000000000066)
+[2025-09-07T15:23:37.122Z] CALL ClaimMesh(E100N100) fail | costQuote=1244.16 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:23:38.092Z] CALL ClaimMesh(W817N191) ok | gas=321296 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 2174.70820312499999928->2174.70820312499999928 (Δ0.0) | burn Δ=21.28 totalBurn=3506.387677846909501398
+[2025-09-07T15:23:38.821Z] CALL withdraw ok | gas=112761 | myMESH 2174.70820312499999928->2269.30820312499999928 (Δ94.6) | burn Δ=32.32 totalBurn=3580.997091918946244563
+[2025-09-07T15:23:39.571Z] CALL ClaimMesh(W483N7462) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:23:40.349Z] SKIP withdraw | ineligible (weight=54.2 lastDay=0.000000000000000067 curDay=0.000000000000000067)
+[2025-09-07T15:23:41.063Z] SKIP withdraw | ineligible (weight=54.2 lastDay=0.000000000000000067 curDay=0.000000000000000067)
+[2025-09-07T15:23:41.841Z] CALL ClaimMesh(E573N1161) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:23:42.923Z] CALL withdraw ok | gas=170549 | myMESH 2269.30820312499999928->2364.15820312499999928 (Δ94.85) | burn Δ=54.2 totalBurn=3734.890915161133744563
+[2025-09-07T15:23:43.595Z] SKIP withdraw | ineligible (weight=54.2 lastDay=0.000000000000000069 curDay=0.000000000000000069)
+[2025-09-07T15:23:44.405Z] CALL ClaimMesh(E100N100) fail | costQuote=1244.16 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:23:45.368Z] CALL withdraw ok | gas=158095 | myMESH 2364.15820312499999928->2445.45820312499999928 (Δ81.3) | burn Δ=21.68 totalBurn=3776.194401489258744563
+[2025-09-07T15:23:46.196Z] CALL ClaimMesh(W970N8459) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:23:46.942Z] SKIP withdraw | ineligible (weight=54.2 lastDay=0.00000000000000007 curDay=0.00000000000000007)
+[2025-09-07T15:23:47.614Z] SKIP withdraw | ineligible (weight=54.2 lastDay=0.00000000000000007 curDay=0.00000000000000007)
+[2025-09-07T15:23:48.329Z] CALL ClaimMesh(W483N7462) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:23:49.042Z] CALL ClaimMesh(E573N1161) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:23:49.855Z] CALL withdraw ok | gas=158095 | myMESH 2445.45820312499999928->2526.75820312499999928 (Δ81.3) | burn Δ=21.68 totalBurn=3843.265026489258744563
+[2025-09-07T15:23:50.672Z] CALL ClaimMesh(W970N8459) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:23:51.606Z] CALL ClaimMesh(E725S7311) ok | gas=225470 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 2526.75820312499999928->2526.75820312499999928 (Δ0.0) | burn Δ=5.78121337890625 totalBurn=3886.649334469796159115
+[2025-09-07T15:23:52.375Z] CALL ClaimMesh(W483N7462) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:23:53.383Z] CALL withdraw ok | gas=169556 | myMESH 2526.75820312499999928->2609.55820312499999928 (Δ82.8) | burn Δ=22.08 totalBurn=3939.930115528828874465
+[2025-09-07T15:23:54.191Z] SKIP withdraw | ineligible (weight=55.2 lastDay=0.000000000000000072 curDay=0.000000000000000072)
+[2025-09-07T15:23:54.889Z] SKIP withdraw | ineligible (weight=55.2 lastDay=0.000000000000000072 curDay=0.000000000000000072)
+[2025-09-07T15:23:55.658Z] SKIP withdraw | ineligible (weight=55.2 lastDay=0.000000000000000072 curDay=0.000000000000000072)
+[2025-09-07T15:23:56.513Z] CALL ClaimMesh(W970N8459) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:23:57.416Z] CALL withdraw ok | gas=184229 | myMESH 2609.55820312499999928->2706.15820312499999928 (Δ96.6) | burn Δ=55.2 totalBurn=4251.988709287769571183
+[2025-09-07T15:23:58.174Z] SKIP withdraw | ineligible (weight=55.2 lastDay=0.000000000000000074 curDay=0.000000000000000074)
+[2025-09-07T15:23:58.889Z] SKIP withdraw | ineligible (weight=55.2 lastDay=0.000000000000000074 curDay=0.000000000000000074)
+[2025-09-07T15:23:59.767Z] CALL ClaimMesh(W970N8459) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:24:00.459Z] SKIP withdraw | ineligible (weight=55.2 lastDay=0.000000000000000074 curDay=0.000000000000000074)
+[2025-09-07T15:24:01.281Z] CALL ClaimMesh(E777N2745) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:24:02.310Z] CALL ClaimMesh(W629N4920) ok | gas=322522 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 2706.15820312499999928->2706.15820312499999928 (Δ0.0) | burn Δ=37.329267577949993325 totalBurn=4459.631453316460855555
+[2025-09-07T15:24:03.304Z] CALL ClaimMesh(W870N886) ok | gas=274722 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 2706.15820312499999928->2706.15820312499999928 (Δ0.0) | burn Δ=33.52 totalBurn=4509.726453316460855555
+[2025-09-07T15:24:04.286Z] CALL withdraw ok | gas=151460 | myMESH 2706.15820312499999928->2816.73320312499999928 (Δ110.575) | burn Δ=82.34 totalBurn=4615.317234566460855555
+[2025-09-07T15:24:05.310Z] CALL ClaimMesh(W266S5824) ok | gas=225578 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 2816.73320312499999928->2816.73320312499999928 (Δ0.0) | burn Δ=0.0 totalBurn=4624.279697945358355221
+[2025-09-07T15:24:06.149Z] CALL withdraw ok | gas=183236 | myMESH 2816.73320312499999928->2904.03320312499999928 (Δ87.3) | burn Δ=23.28 totalBurn=4666.0157770404015972
+[2025-09-07T15:24:06.844Z] SKIP withdraw | ineligible (weight=58.2 lastDay=0.000000000000000077 curDay=0.000000000000000077)
+[2025-09-07T15:24:08.057Z] CALL ClaimMesh(E225S8261) ok | gas=310124 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 2904.03320312499999928->2904.03320312499999928 (Δ0.0) | burn Δ=23.28 totalBurn=4725.7645270404015972
+[2025-09-07T15:24:08.864Z] CALL withdraw ok | gas=116018 | myMESH 2904.03320312499999928->3007.38320312499999928 (Δ103.35) | burn Δ=35.32 totalBurn=4816.2388422259484722
+[2025-09-07T15:24:09.909Z] CALL ClaimMesh(E674S734) ok | gas=224244 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 3007.38320312499999928->3007.38320312499999928 (Δ0.0) | burn Δ=0.0 totalBurn=4832.152894044793576271
+[2025-09-07T15:24:10.645Z] CALL ClaimMesh(W483N7462) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:24:11.455Z] CALL withdraw ok | gas=155489 | myMESH 3007.38320312499999928->3097.68320312499999928 (Δ90.3) | burn Δ=24.08 totalBurn=5073.382161766016289865
+[2025-09-07T15:24:12.253Z] CALL withdraw ok | gas=142196 | myMESH 3097.68320312499999928->3187.98320312499999928 (Δ90.3) | burn Δ=24.08 totalBurn=5097.462161766016289865
+[2025-09-07T15:24:13.261Z] CALL ClaimMesh(E931N1997) ok | gas=288214 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 3187.98320312499999928->3187.98320312499999928 (Δ0.0) | burn Δ=24.08 totalBurn=5155.973997703516289865
+[2025-09-07T15:24:14.128Z] CALL ClaimMesh(E777N2745) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:24:14.997Z] CALL withdraw ok | gas=117487 | myMESH 3187.98320312499999928->3294.83320312499999928 (Δ106.85) | burn Δ=36.52 totalBurn=5254.894290672266289865
+[2025-09-07T15:24:15.732Z] CALL withdraw ok | gas=155489 | myMESH 3294.83320312499999928->3386.63320312499999928 (Δ91.8) | burn Δ=24.48 totalBurn=5296.374290672266289865
+[2025-09-07T15:24:16.803Z] CALL ClaimMesh(E341N2125) ok | gas=225386 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 3386.63320312499999928->3386.63320312499999928 (Δ0.0) | burn Δ=0.0 totalBurn=5328.474290672266289865
+[2025-09-07T15:24:17.598Z] CALL ClaimMesh(W970N8459) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:24:18.384Z] CALL ClaimMesh(E573N1161) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:24:19.172Z] SKIP withdraw | ineligible (weight=62.2 lastDay=0.000000000000000082 curDay=0.000000000000000082)
+[2025-09-07T15:24:20.084Z] CALL ClaimMesh(E100N100) fail | costQuote=1244.16 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:24:21.045Z] CALL withdraw ok | gas=158095 | myMESH 3386.63320312499999928->3479.93320312499999928 (Δ93.3) | burn Δ=102.439426307678222657 totalBurn=5532.626813598596856272
+[2025-09-07T15:24:22.226Z] CALL ClaimMesh(W989S774) ok | gas=224352 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 3479.93320312499999928->3479.93320312499999928 (Δ0.0) | burn Δ=0.0 totalBurn=5536.626813598596856272
+[2025-09-07T15:24:23.106Z] CALL ClaimMesh(E777N2745) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:24:24.143Z] CALL ClaimMesh(E41N8857) ok | gas=291333 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 3479.93320312499999928->3479.93320312499999928 (Δ0.0) | burn Δ=25.28 totalBurn=5600.181813598596856272
+[2025-09-07T15:24:24.881Z] CALL withdraw ok | gas=154264 | myMESH 3479.93320312499999928->3600.18320312499999928 (Δ120.25) | burn Δ=83.16 totalBurn=5800.741892944299981272
+[2025-09-07T15:24:25.612Z] CALL ClaimMesh(W970N8459) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:24:26.342Z] CALL ClaimMesh(E777N2745) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:24:26.998Z] SKIP withdraw | ineligible (weight=64.2 lastDay=0.000000000000000085 curDay=0.000000000000000085)
+[2025-09-07T15:24:27.722Z] CALL ClaimMesh(E100N100) fail | costQuote=1244.16 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:24:28.455Z] CALL ClaimMesh(E100N100) fail | costQuote=1244.16 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:24:29.185Z] CALL withdraw ok | gas=158095 | myMESH 3600.18320312499999928->3696.48320312499999928 (Δ96.3) | burn Δ=25.68 totalBurn=5870.921892944299981272
+[2025-09-07T15:24:29.848Z] SKIP withdraw | ineligible (weight=64.2 lastDay=0.000000000000000086 curDay=0.000000000000000086)
+[2025-09-07T15:24:30.610Z] CALL ClaimMesh(W970N8459) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:24:31.844Z] CALL ClaimMesh(E744S8180) ok | gas=322498 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 3696.48320312499999928->3696.48320312499999928 (Δ0.0) | burn Δ=25.68 totalBurn=6135.348030217611596627
+[2025-09-07T15:24:32.604Z] CALL ClaimMesh(E777N2745) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:24:33.421Z] CALL withdraw ok | gas=148203 | myMESH 3696.48320312499999928->3818.60820312499999928 (Δ122.125) | burn Δ=84.46 totalBurn=6267.533030217611596627
+[2025-09-07T15:24:34.162Z] CALL ClaimMesh(E573N1161) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:24:35.018Z] CALL withdraw ok | gas=118018 | myMESH 3818.60820312499999928->3916.40820312499999928 (Δ97.8) | burn Δ=26.08 totalBurn=6442.321245567524240061
+[2025-09-07T15:24:35.744Z] CALL ClaimMesh(W970N8459) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:24:36.406Z] SKIP withdraw | ineligible (weight=65.2 lastDay=0.000000000000000089 curDay=0.000000000000000089)
+[2025-09-07T15:24:37.186Z] SKIP withdraw | ineligible (weight=65.2 lastDay=0.000000000000000089 curDay=0.000000000000000089)
+[2025-09-07T15:24:38.154Z] CALL withdraw ok | gas=183236 | myMESH 3916.40820312499999928->4014.20820312499999928 (Δ97.8) | burn Δ=26.08 totalBurn=6564.919995567524240061
+[2025-09-07T15:24:38.849Z] SKIP withdraw | ineligible (weight=65.2 lastDay=0.00000000000000009 curDay=0.00000000000000009)
+[2025-09-07T15:24:39.543Z] SKIP withdraw | ineligible (weight=65.2 lastDay=0.00000000000000009 curDay=0.00000000000000009)
+[2025-09-07T15:24:40.435Z] CALL withdraw ok | gas=142196 | myMESH 4014.20820312499999928->4112.00820312499999928 (Δ97.8) | burn Δ=37.304999999999999657 totalBurn=6631.380455148839757144
+[2025-09-07T15:24:41.253Z] CALL ClaimMesh(W970N8459) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:24:42.169Z] CALL ClaimMesh(E777N2745) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:24:43.006Z] CALL withdraw ok | gas=142196 | myMESH 4112.00820312499999928->4209.80820312499999928 (Δ97.8) | burn Δ=26.08 totalBurn=6746.670904367589757144
+[2025-09-07T15:24:43.776Z] SKIP withdraw | ineligible (weight=65.2 lastDay=0.000000000000000092 curDay=0.000000000000000092)
+[2025-09-07T15:24:44.490Z] CALL ClaimMesh(E100N100) fail | costQuote=1244.16 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:24:45.220Z] CALL withdraw ok | gas=142196 | myMESH 4209.80820312499999928->4307.60820312499999928 (Δ97.8) | burn Δ=26.08 totalBurn=6889.501246164464757144
+[2025-09-07T15:24:45.873Z] SKIP withdraw | ineligible (weight=65.2 lastDay=0.000000000000000093 curDay=0.000000000000000093)
+[2025-09-07T15:24:46.550Z] SKIP withdraw | ineligible (weight=65.2 lastDay=0.000000000000000093 curDay=0.000000000000000093)
+[2025-09-07T15:24:47.487Z] CALL withdraw ok | gas=183236 | myMESH 4307.60820312499999928->4405.40820312499999928 (Δ97.8) | burn Δ=26.08 totalBurn=7013.357259348058507135
+[2025-09-07T15:24:48.187Z] SKIP withdraw | ineligible (weight=65.2 lastDay=0.000000000000000094 curDay=0.000000000000000094)
+[2025-09-07T15:24:48.950Z] CALL ClaimMesh(E100N100) fail | costQuote=1244.16 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:24:49.809Z] CALL ClaimMesh(W970N8459) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:24:50.652Z] CALL ClaimMesh(E777N2745) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:24:51.582Z] CALL withdraw ok | gas=159088 | myMESH 4405.40820312499999928->4519.50820312499999928 (Δ114.1) | burn Δ=65.2 totalBurn=7220.101397012337476305
+[2025-09-07T15:24:52.324Z] SKIP withdraw | ineligible (weight=65.2 lastDay=0.000000000000000096 curDay=0.000000000000000096)
+[2025-09-07T15:24:53.243Z] CALL withdraw ok | gas=183236 | myMESH 4519.50820312499999928->4617.30820312499999928 (Δ97.8) | burn Δ=77.108125 totalBurn=7376.418115762337476305
+[2025-09-07T15:24:54.026Z] CALL ClaimMesh(E777N2745) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:24:54.985Z] CALL withdraw ok | gas=158095 | myMESH 4617.30820312499999928->4715.10820312499999928 (Δ97.8) | burn Δ=26.08 totalBurn=7481.662236245735913805
+[2025-09-07T15:24:55.726Z] CALL ClaimMesh(W970N8459) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:24:56.504Z] SKIP withdraw | ineligible (weight=65.2 lastDay=0.000000000000000098 curDay=0.000000000000000098)
+[2025-09-07T15:24:57.432Z] CALL ClaimMesh(W483N7462) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:24:58.482Z] CALL ClaimMesh(W296S7654) ok | gas=288406 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 4715.10820312499999928->4715.10820312499999928 (Δ0.0) | burn Δ=26.08 totalBurn=7720.933259690865308337
+[2025-09-07T15:24:59.591Z] CALL ClaimMesh(W496S7268) ok | gas=271306 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 4715.10820312499999928->4715.10820312499999928 (Δ0.0) | burn Δ=39.52 totalBurn=7775.328259690865308337
+[2025-09-07T15:25:00.629Z] CALL ClaimMesh(W331S2056) ok | gas=301174 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 4715.10820312499999928->4715.10820312499999928 (Δ0.0) | burn Δ=96.84 totalBurn=7947.623533128365308337
+[2025-09-07T15:25:01.388Z] CALL ClaimMesh(E573N1161) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:25:02.257Z] CALL withdraw ok | gas=146961 | myMESH 4715.10820312499999928->4848.78320312499999928 (Δ133.675) | burn Δ=52.38 totalBurn=8061.604754499062329822
+[2025-09-07T15:25:03.055Z] CALL ClaimMesh(E777N2745) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:25:03.708Z] SKIP withdraw | ineligible (weight=68.2 lastDay=0.000000000000000101 curDay=0.000000000000000101)
+[2025-09-07T15:25:04.495Z] CALL ClaimMesh(W483N7462) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:25:05.269Z] CALL withdraw ok | gas=155489 | myMESH 4951.08320312499999928->5053.38320312499999928 (Δ102.3) | burn Δ=27.28 totalBurn=8160.389746923311978871
+[2025-09-07T15:25:06.082Z] SKIP withdraw | ineligible (weight=68.2 lastDay=0.000000000000000102 curDay=0.000000000000000102)
+[2025-09-07T15:25:06.907Z] SKIP withdraw | ineligible (weight=68.2 lastDay=0.000000000000000102 curDay=0.000000000000000102)
+[2025-09-07T15:25:07.633Z] SKIP withdraw | ineligible (weight=68.2 lastDay=0.000000000000000102 curDay=0.000000000000000102)
+[2025-09-07T15:25:08.865Z] CALL ClaimMesh(W736N6166) ok | gas=225494 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 5053.38320312499999928->5053.38320312499999928 (Δ0.0) | burn Δ=0.0 totalBurn=8276.483724279269010121
+[2025-09-07T15:25:09.575Z] SKIP withdraw | ineligible (weight=69.2 lastDay=0.000000000000000102 curDay=0.000000000000000102)
+[2025-09-07T15:25:10.572Z] CALL ClaimMesh(W970N8459) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:25:11.416Z] CALL withdraw ok | gas=184229 | myMESH 5053.38320312499999928->5174.48320312499999928 (Δ121.1) | burn Δ=69.2 totalBurn=8379.186849279269010121
+[2025-09-07T15:25:12.153Z] CALL ClaimMesh(W483N7462) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:25:12.919Z] CALL withdraw ok | gas=183236 | myMESH 5174.48320312499999928->5278.28320312499999928 (Δ103.8) | burn Δ=27.68 totalBurn=8418.866849279269010121
+[2025-09-07T15:25:13.769Z] CALL ClaimMesh(E341N1044) ok | gas=225386 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 5278.28320312499999928->5278.28320312499999928 (Δ0.0) | burn Δ=0.0 totalBurn=8594.065629340247616468
+[2025-09-07T15:25:14.577Z] CALL withdraw ok | gas=142196 | myMESH 5278.28320312499999928->5383.58320312499999928 (Δ105.3) | burn Δ=28.08 totalBurn=8672.374437933997616468
+[2025-09-07T15:25:15.228Z] SKIP withdraw | ineligible (weight=70.2 lastDay=0.000000000000000106 curDay=0.000000000000000106)
+[2025-09-07T15:25:15.877Z] SKIP withdraw | ineligible (weight=70.2 lastDay=0.000000000000000106 curDay=0.000000000000000106)
+[2025-09-07T15:25:16.762Z] CALL ClaimMesh(W175N2337) ok | gas=297048 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 5383.58320312499999928->5383.58320312499999928 (Δ0.0) | burn Δ=28.08 totalBurn=8849.237752448157772718
+[2025-09-07T15:25:17.488Z] CALL withdraw ok | gas=154264 | myMESH 5383.58320312499999928->5516.95820312499999928 (Δ133.375) | burn Δ=92.26 totalBurn=8985.503776868419155777
+[2025-09-07T15:25:18.219Z] CALL withdraw ok | gas=142196 | myMESH 5516.95820312499999928->5623.75820312499999928 (Δ106.8) | burn Δ=28.48 totalBurn=9024.983776868419155777
+[2025-09-07T15:25:18.870Z] SKIP withdraw | ineligible (weight=71.2 lastDay=0.000000000000000109 curDay=0.000000000000000109)
+[2025-09-07T15:25:19.607Z] SKIP withdraw | ineligible (weight=71.2 lastDay=0.000000000000000109 curDay=0.000000000000000109)
+[2025-09-07T15:25:20.311Z] CALL ClaimMesh(W970N8459) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:25:21.195Z] CALL ClaimMesh(E718N2696) ok | gas=322414 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 5623.75820312499999928->5623.75820312499999928 (Δ0.0) | burn Δ=28.48 totalBurn=9207.640221875743374527
+[2025-09-07T15:25:22.015Z] CALL withdraw ok | gas=148203 | myMESH 5623.75820312499999928->5759.00820312499999928 (Δ135.25) | burn Δ=93.56 totalBurn=9312.200221875743374527
+[2025-09-07T15:25:22.667Z] SKIP withdraw | ineligible (weight=72.2 lastDay=0.000000000000000111 curDay=0.000000000000000111)
+[2025-09-07T15:25:23.466Z] CALL ClaimMesh(E573N1161) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:25:24.163Z] CALL ClaimMesh(E573N1161) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:25:24.929Z] CALL withdraw ok | gas=167944 | myMESH 5759.00820312499999928->5885.35820312499999928 (Δ126.35) | burn Δ=72.2 totalBurn=9610.058539441661343277
+[2025-09-07T15:25:25.697Z] SKIP withdraw | ineligible (weight=72.2 lastDay=0.000000000000000113 curDay=0.000000000000000113)
+[2025-09-07T15:25:26.432Z] CALL ClaimMesh(E100N100) fail | costQuote=1244.16 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:25:27.098Z] SKIP withdraw | ineligible (weight=72.2 lastDay=0.000000000000000113 curDay=0.000000000000000113)
+[2025-09-07T15:25:27.759Z] SKIP withdraw | ineligible (weight=72.2 lastDay=0.000000000000000113 curDay=0.000000000000000113)
+[2025-09-07T15:25:28.612Z] CALL withdraw ok | gas=142196 | myMESH 5885.35820312499999928->5993.65820312499999928 (Δ108.3) | burn Δ=28.88 totalBurn=9903.988664182261929214
+[2025-09-07T15:25:29.262Z] SKIP withdraw | ineligible (weight=72.2 lastDay=0.000000000000000114 curDay=0.000000000000000114)
+[2025-09-07T15:25:30.167Z] CALL withdraw ok | gas=142196 | myMESH 5993.65820312499999928->6101.95820312499999928 (Δ108.3) | burn Δ=28.88 totalBurn=10101.168697751597866714
+[2025-09-07T15:25:30.818Z] SKIP withdraw | ineligible (weight=72.2 lastDay=0.000000000000000115 curDay=0.000000000000000115)
+[2025-09-07T15:25:31.490Z] SKIP withdraw | ineligible (weight=72.2 lastDay=0.000000000000000115 curDay=0.000000000000000115)
+[2025-09-07T15:25:32.324Z] CALL ClaimMesh(W483N7462) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:25:33.205Z] CALL withdraw ok | gas=158095 | myMESH 6101.95820312499999928->6210.25820312499999928 (Δ108.3) | burn Δ=28.88 totalBurn=10331.663341611461147964
+[2025-09-07T15:25:33.863Z] SKIP withdraw | ineligible (weight=72.2 lastDay=0.000000000000000116 curDay=0.000000000000000116)
+[2025-09-07T15:25:34.565Z] CALL ClaimMesh(W483N7462) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:25:35.713Z] CALL ClaimMesh(E989S3305) ok | gas=310124 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 6210.25820312499999928->6210.25820312499999928 (Δ0.0) | burn Δ=28.88 totalBurn=10615.337062241668246988
+[2025-09-07T15:25:36.651Z] CALL ClaimMesh(E856S2309) ok | gas=275924 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 6210.25820312499999928->6210.25820312499999928 (Δ0.0) | burn Δ=43.72 totalBurn=10671.757062241668246988
+[2025-09-07T15:25:37.350Z] CALL ClaimMesh(W970N8459) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:25:38.090Z] CALL ClaimMesh(E573N1161) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:25:38.946Z] CALL withdraw ok | gas=154264 | myMESH 6210.25820312499999928->6353.77070312499999928 (Δ143.5125) | burn Δ=106.99 totalBurn=10840.99080485069229484
+[2025-09-07T15:25:39.776Z] CALL ClaimMesh(E777N2745) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:25:40.729Z] CALL ClaimMesh(E777N2745) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:25:41.884Z] CALL ClaimMesh(W324S5829) ok | gas=293132 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 6353.77070312499999928->6353.77070312499999928 (Δ0.0) | burn Δ=29.68 totalBurn=11014.180179847738256049
+[2025-09-07T15:25:42.812Z] CALL ClaimMesh(E573N1161) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:25:43.713Z] CALL withdraw ok | gas=149445 | myMESH 6353.77070312499999928->6499.40820312499999928 (Δ145.6375) | burn Δ=153.81 totalBurn=11300.704435016027202203
+[2025-09-07T15:25:44.534Z] SKIP withdraw | ineligible (weight=75.2 lastDay=0.000000000000000121 curDay=0.000000000000000121)
+[2025-09-07T15:25:45.218Z] SKIP withdraw | ineligible (weight=75.2 lastDay=0.000000000000000121 curDay=0.000000000000000121)
+[2025-09-07T15:25:46.069Z] CALL ClaimMesh(W483N7462) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:25:46.872Z] SKIP withdraw | ineligible (weight=75.2 lastDay=0.000000000000000121 curDay=0.000000000000000121)
+[2025-09-07T15:25:47.816Z] CALL withdraw ok | gas=158095 | myMESH 6499.40820312499999928->6612.20820312499999928 (Δ112.8) | burn Δ=30.08 totalBurn=11835.574478352180232599
+[2025-09-07T15:25:48.730Z] CALL withdraw ok | gas=155489 | myMESH 6612.20820312499999928->6725.00820312499999928 (Δ112.8) | burn Δ=30.08 totalBurn=11925.369322102180232599
+[2025-09-07T15:25:49.439Z] SKIP withdraw | ineligible (weight=75.2 lastDay=0.000000000000000123 curDay=0.000000000000000123)
+[2025-09-07T15:25:50.388Z] CALL ClaimMesh(E777N2745) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:25:51.104Z] SKIP withdraw | ineligible (weight=75.2 lastDay=0.000000000000000123 curDay=0.000000000000000123)
+[2025-09-07T15:25:52.030Z] CALL withdraw ok | gas=169556 | myMESH 6725.00820312499999928->6837.80820312499999928 (Δ112.8) | burn Δ=30.08 totalBurn=12075.574322102180232599
+[2025-09-07T15:25:52.808Z] SKIP withdraw | ineligible (weight=75.2 lastDay=0.000000000000000124 curDay=0.000000000000000124)
+[2025-09-07T15:25:53.756Z] CALL withdraw ok | gas=158095 | myMESH 6837.80820312499999928->6950.60820312499999928 (Δ112.8) | burn Δ=30.08 totalBurn=12300.041833546272029474
+[2025-09-07T15:25:54.747Z] CALL ClaimMesh(W559N2374) ok | gas=225494 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 6950.60820312499999928->6950.60820312499999928 (Δ0.0) | burn Δ=0.0 totalBurn=12355.266821720710506037
+[2025-09-07T15:25:55.460Z] CALL ClaimMesh(E573N1161) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:25:56.312Z] CALL ClaimMesh(W729S4083) ok | gas=225578 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 6950.60820312499999928->6950.60820312499999928 (Δ0.0) | burn Δ=0.0 totalBurn=12406.716821720710506037
+[2025-09-07T15:25:57.188Z] CALL ClaimMesh(E285S3500) ok | gas=322498 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 6950.60820312499999928->6950.60820312499999928 (Δ0.0) | burn Δ=30.88 totalBurn=12443.196821720710506037
+[2025-09-07T15:25:57.922Z] CALL withdraw ok | gas=117487 | myMESH 6950.60820312499999928->7087.20820312499999928 (Δ136.6) | burn Δ=46.72 totalBurn=12489.916821720710506037
+[2025-09-07T15:25:58.624Z] CALL ClaimMesh(W970N8459) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:25:59.642Z] CALL ClaimMesh(W387S7682) ok | gas=310232 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 7087.20820312499999928->7087.20820312499999928 (Δ0.0) | burn Δ=50.88 totalBurn=12590.415571720710506037
+[2025-09-07T15:26:00.631Z] CALL withdraw ok | gas=112761 | myMESH 7087.20820312499999928->7225.55820312499999928 (Δ138.35) | burn Δ=47.32 totalBurn=12661.935571720710506037
+[2025-09-07T15:26:01.869Z] CALL ClaimMesh(E259N7282) ok | gas=239712 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 7225.55820312499999928->7225.55820312499999928 (Δ0.0) | burn Δ=0.0 totalBurn=12698.285571720710506037
+[2025-09-07T15:26:02.688Z] CALL ClaimMesh(E777N2745) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:26:03.443Z] CALL ClaimMesh(E100N100) fail | costQuote=1244.16 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:26:04.457Z] CALL ClaimMesh(W873S3744) ok | gas=322606 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 7225.55820312499999928->7225.55820312499999928 (Δ0.0) | burn Δ=32.08 totalBurn=12834.053071720710506037
+[2025-09-07T15:26:05.237Z] CALL withdraw ok | gas=139086 | myMESH 7225.55820312499999928->7377.68320312499999928 (Δ152.125) | burn Δ=105.26 totalBurn=13061.713099186530818537
+[2025-09-07T15:26:05.893Z] SKIP withdraw | ineligible (weight=81.2 lastDay=0.000000000000000129 curDay=0.000000000000000129)
+[2025-09-07T15:26:06.547Z] SKIP withdraw | ineligible (weight=81.2 lastDay=0.000000000000000129 curDay=0.000000000000000129)
+[2025-09-07T15:26:07.228Z] SKIP withdraw | ineligible (weight=81.2 lastDay=0.000000000000000129 curDay=0.000000000000000129)
+[2025-09-07T15:26:08.364Z] CALL ClaimMesh(W411N8071) ok | gas=225494 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 7377.68320312499999928->7377.68320312499999928 (Δ0.0) | burn Δ=0.0 totalBurn=13384.796713894734640914
+[2025-09-07T15:26:09.296Z] CALL withdraw ok | gas=142196 | myMESH 7377.68320312499999928->7500.98320312499999928 (Δ123.3) | burn Δ=32.88 totalBurn=13426.872417019734640914
+[2025-09-07T15:26:10.032Z] CALL ClaimMesh(W970N8459) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:26:11.012Z] CALL ClaimMesh(W970N8459) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:26:11.730Z] SKIP withdraw | ineligible (weight=82.2 lastDay=0.00000000000000013 curDay=0.00000000000000013)
+[2025-09-07T15:26:12.413Z] SKIP withdraw | ineligible (weight=82.2 lastDay=0.00000000000000013 curDay=0.00000000000000013)
+[2025-09-07T15:26:13.165Z] SKIP withdraw | ineligible (weight=82.2 lastDay=0.00000000000000013 curDay=0.00000000000000013)
+[2025-09-07T15:26:13.852Z] SKIP withdraw | ineligible (weight=82.2 lastDay=0.00000000000000013 curDay=0.00000000000000013)
+[2025-09-07T15:26:14.953Z] CALL ClaimMesh(W508N176) ok | gas=224268 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 7500.98320312499999928->7500.98320312499999928 (Δ0.0) | burn Δ=0.0 totalBurn=13690.444754551778097946
+[2025-09-07T15:26:15.667Z] CALL ClaimMesh(E100N100) fail | costQuote=1244.16 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:26:16.479Z] CALL ClaimMesh(E573N1161) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:26:17.247Z] CALL withdraw ok | gas=155489 | myMESH 7500.98320312499999928->7625.78320312499999928 (Δ124.8) | burn Δ=33.28 totalBurn=13751.724754551778097946
+[2025-09-07T15:26:17.904Z] SKIP withdraw | ineligible (weight=83.2 lastDay=0.000000000000000131 curDay=0.000000000000000131)
+[2025-09-07T15:26:18.714Z] CALL ClaimMesh(W651N8095) ok | gas=225494 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 7625.78320312499999928->7625.78320312499999928 (Δ0.0) | burn Δ=0.0 totalBurn=13794.316942051778097946
+[2025-09-07T15:26:19.457Z] CALL ClaimMesh(E573N1161) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:26:20.108Z] SKIP withdraw | ineligible (weight=84.2 lastDay=0.000000000000000132 curDay=0.000000000000000132)
+[2025-09-07T15:26:20.818Z] SKIP withdraw | ineligible (weight=84.2 lastDay=0.000000000000000132 curDay=0.000000000000000132)
+[2025-09-07T15:26:21.515Z] CALL ClaimMesh(E100N100) fail | costQuote=1244.16 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:26:22.285Z] CALL withdraw ok | gas=158095 | myMESH 7752.08320312499999928->7878.38320312499999928 (Δ126.3) | burn Δ=33.68 totalBurn=13931.318152989278097946
+[2025-09-07T15:26:22.987Z] CALL ClaimMesh(W970N8459) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:26:23.792Z] CALL ClaimMesh(W799S128) ok | gas=224352 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 7878.38320312499999928->7878.38320312499999928 (Δ0.0) | burn Δ=0.0 totalBurn=14023.690027989278097946
+[2025-09-07T15:26:24.774Z] CALL ClaimMesh(W970N8459) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:26:25.465Z] SKIP withdraw | ineligible (weight=85.2 lastDay=0.000000000000000133 curDay=0.000000000000000133)
+[2025-09-07T15:26:26.188Z] SKIP withdraw | ineligible (weight=85.2 lastDay=0.000000000000000133 curDay=0.000000000000000133)
+[2025-09-07T15:26:26.937Z] CALL ClaimMesh(E573N1161) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:26:27.712Z] CALL withdraw ok | gas=166950 | myMESH 7878.38320312499999928->8006.18320312499999928 (Δ127.8) | burn Δ=81.7175 totalBurn=14242.420027989278097946
+[2025-09-07T15:26:28.668Z] CALL withdraw ok | gas=166950 | myMESH 8006.18320312499999928->8133.98320312499999928 (Δ127.8) | burn Δ=34.08 totalBurn=14305.950027989278097946
+[2025-09-07T15:26:29.415Z] CALL withdraw ok | gas=155489 | myMESH 8133.98320312499999928->8261.78320312499999928 (Δ127.8) | burn Δ=34.08 totalBurn=14482.231785801778097946
+[2025-09-07T15:26:30.240Z] CALL ClaimMesh(E777N2745) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:26:30.927Z] SKIP withdraw | ineligible (weight=85.2 lastDay=0.000000000000000136 curDay=0.000000000000000136)
+[2025-09-07T15:26:31.638Z] SKIP withdraw | ineligible (weight=85.2 lastDay=0.000000000000000136 curDay=0.000000000000000136)
+[2025-09-07T15:26:32.306Z] SKIP withdraw | ineligible (weight=85.2 lastDay=0.000000000000000136 curDay=0.000000000000000136)
+[2025-09-07T15:26:33.001Z] SKIP withdraw | ineligible (weight=85.2 lastDay=0.000000000000000136 curDay=0.000000000000000136)
+[2025-09-07T15:26:33.790Z] CALL withdraw ok | gas=155489 | myMESH 8261.78320312499999928->8389.58320312499999928 (Δ127.8) | burn Δ=34.08 totalBurn=14799.477412517969862748
+[2025-09-07T15:26:34.474Z] SKIP withdraw | ineligible (weight=85.2 lastDay=0.000000000000000137 curDay=0.000000000000000137)
+[2025-09-07T15:26:35.186Z] CALL ClaimMesh(W483N7462) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:26:36.180Z] CALL withdraw ok | gas=155489 | myMESH 8389.58320312499999928->8517.38320312499999928 (Δ127.8) | burn Δ=94.75734375 totalBurn=14946.434756267969862748
+[2025-09-07T15:26:36.867Z] SKIP withdraw | ineligible (weight=85.2 lastDay=0.000000000000000138 curDay=0.000000000000000138)
+[2025-09-07T15:26:37.922Z] CALL ClaimMesh(W922N1427) ok | gas=322522 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 8517.38320312499999928->8517.38320312499999928 (Δ0.0) | burn Δ=34.08 totalBurn=15013.389756267969862748
+[2025-09-07T15:26:39.025Z] CALL ClaimMesh(E626N2065) ok | gas=275840 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 8517.38320312499999928->8517.38320312499999928 (Δ0.0) | burn Δ=51.52 totalBurn=15064.909756267969862748
+[2025-09-07T15:26:39.784Z] CALL ClaimMesh(W483N7462) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:26:40.715Z] CALL ClaimMesh(E573N1161) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:26:41.574Z] CALL withdraw ok | gas=112761 | myMESH 8517.38320312499999928->8680.38320312499999928 (Δ163.0) | burn Δ=60.64 totalBurn=15279.185954693262831498
+[2025-09-07T15:26:42.253Z] SKIP withdraw | ineligible (weight=87.2 lastDay=0.000000000000000139 curDay=0.000000000000000139)
+[2025-09-07T15:26:43.070Z] CALL withdraw ok | gas=155489 | myMESH 8680.38320312499999928->8811.18320312499999928 (Δ130.8) | burn Δ=34.88 totalBurn=15385.041491802637831498
+[2025-09-07T15:26:44.350Z] CALL ClaimMesh(W393S984) ok | gas=313006 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 8811.18320312499999928->8811.18320312499999928 (Δ0.0) | burn Δ=34.88 totalBurn=15527.853022564356581498
+[2025-09-07T15:26:45.266Z] CALL ClaimMesh(E605N3253) ok | gas=275840 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 8811.18320312499999928->8811.18320312499999928 (Δ0.0) | burn Δ=52.72 totalBurn=15607.773022564356581498
+[2025-09-07T15:26:46.014Z] CALL withdraw ok | gas=112761 | myMESH 8811.18320312499999928->8977.93320312499999928 (Δ166.75) | burn Δ=62.04 totalBurn=15804.018100689356581498
+[2025-09-07T15:26:46.778Z] CALL withdraw ok | gas=142196 | myMESH 8977.93320312499999928->9111.73320312499999928 (Δ133.8) | burn Δ=35.68 totalBurn=15874.991890934412733841
+[2025-09-07T15:26:47.444Z] SKIP withdraw | ineligible (weight=89.2 lastDay=0.000000000000000142 curDay=0.000000000000000142)
+[2025-09-07T15:26:48.249Z] CALL ClaimMesh(E573N1161) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:26:49.133Z] CALL withdraw ok | gas=158095 | myMESH 9111.73320312499999928->9245.53320312499999928 (Δ133.8) | burn Δ=35.68 totalBurn=15981.134390934412733841
+[2025-09-07T15:26:49.844Z] CALL ClaimMesh(W970N8459) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:26:50.624Z] CALL withdraw ok | gas=169556 | myMESH 9245.53320312499999928->9379.33320312499999928 (Δ133.8) | burn Δ=35.68 totalBurn=16174.517448032801405716
+[2025-09-07T15:26:51.361Z] CALL ClaimMesh(W483N7462) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:26:52.066Z] CALL ClaimMesh(E100N100) fail | costQuote=1244.16 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:26:52.843Z] CALL withdraw ok | gas=126904 | myMESH 9379.33320312499999928->9535.43320312499999928 (Δ156.1) | burn Δ=89.2 totalBurn=16368.571154726450697709
+[2025-09-07T15:26:53.616Z] CALL withdraw ok | gas=166950 | myMESH 9535.43320312499999928->9669.23320312499999928 (Δ133.8) | burn Δ=35.68 totalBurn=16435.570881288950697709
+[2025-09-07T15:26:54.323Z] CALL ClaimMesh(E777N2745) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:26:55.217Z] CALL ClaimMesh(E385S5926) ok | gas=322498 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 9669.23320312499999928->9669.23320312499999928 (Δ0.0) | burn Δ=35.68 totalBurn=16645.043068788950697709
+[2025-09-07T15:26:56.008Z] CALL withdraw ok | gas=112761 | myMESH 9669.23320312499999928->9826.83320312499999928 (Δ157.6) | burn Δ=53.92 totalBurn=16717.963068788950697709
+[2025-09-07T15:26:56.916Z] CALL ClaimMesh(W977N3830) ok | gas=310148 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 9826.83320312499999928->9826.83320312499999928 (Δ0.0) | burn Δ=36.08 totalBurn=16818.243068788950697709
+[2025-09-07T15:26:57.723Z] CALL withdraw ok | gas=112761 | myMESH 9826.83320312499999928->9986.18320312499999928 (Δ159.35) | burn Δ=54.52 totalBurn=17015.959563082163588334
+[2025-09-07T15:26:58.429Z] CALL ClaimMesh(E573N1161) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:26:59.154Z] SKIP withdraw | ineligible (weight=91.2 lastDay=0.000000000000000149 curDay=0.000000000000000149)
+[2025-09-07T15:26:59.947Z] CALL ClaimMesh(W970N8459) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:27:00.795Z] CALL withdraw ok | gas=158095 | myMESH 9986.18320312499999928->10122.98320312499999928 (Δ136.8) | burn Δ=36.48 totalBurn=17304.157629488413588334
+[2025-09-07T15:27:01.669Z] CALL ClaimMesh(E891N3550) ok | gas=225386 | costQuote=0.0 | applyCount 0->1 | heat 0.0->1.0 | myMESH 10122.98320312499999928->10122.98320312499999928 (Δ0.0) | burn Δ=0.0 totalBurn=17351.431652925913588334
+[2025-09-07T15:27:02.349Z] SKIP withdraw | ineligible (weight=92.2 lastDay=0.00000000000000015 curDay=0.00000000000000015)
+[2025-09-07T15:27:03.120Z] CALL ClaimMesh(W483N7462) fail | costQuote=864.0 | gas=? | reason=Error: VM Exception while processing transaction: reverted with reason string 'Already claim'
+[2025-09-07T15:27:03.901Z] CALL withdraw ok | gas=155489 | myMESH 10122.98320312499999928->10261.28320312499999928 (Δ138.3) | burn Δ=36.88 totalBurn=17579.636656073038832476
