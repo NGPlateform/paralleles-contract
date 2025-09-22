@@ -13,7 +13,7 @@ const contracts = [
 ];
 
 // 输出目录
-const outputDir = path.join(__dirname, '../management/src/lib/contracts/artifacts');
+const outputDir = path.join(__dirname, '../../management/src/lib/contracts/artifacts');
 
 // 确保输出目录存在
 if (!fs.existsSync(outputDir)) {

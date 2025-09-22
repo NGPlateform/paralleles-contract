@@ -5,6 +5,7 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/security/Pausable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
 /**
  * @title Meshes - 基于地理网格的ERC20代币系统
@@ -25,7 +26,7 @@ import "@openzeppelin/contracts/security/Pausable.sol";
  * @author Parallels Team
  * @notice 本合约实现了基于地理网格的代币经济系统
  */
-contract Meshes is ERC20, ReentrancyGuard, Pausable {
+contract Meshes is ERC20, ReentrancyGuard, Pausable, Ownable {
     /**
      * @dev 用户认领信息结构体
      * @param user 认领用户地址
@@ -120,6 +121,13 @@ contract Meshes is ERC20, ReentrancyGuard, Pausable {
     
     /** @dev 治理安全地址（Gnosis Safe），用于管理合约 */
     address public governanceSafe;
+    
+    // ============ 治理模式切换 ============
+    /** @dev 治理模式：true=Safe治理，false=Owner治理 */
+    bool public isSafeGovernance = false;
+    
+    /** @dev 治理模式切换锁定：一旦切换到Safe模式，无法回退到Owner模式 */
+    bool public governanceLocked = false;
 
     // ============ 基金会分配机制 ============
     /** @dev 基金会待转池，累积待转给基金会的代币 */
@@ -217,11 +225,33 @@ contract Meshes is ERC20, ReentrancyGuard, Pausable {
     
     /** @dev 治理安全地址更新事件：当治理地址变更时触发 */
     event GovernanceSafeUpdated(address indexed oldSafe, address indexed newSafe);
+    
+    /** @dev 治理模式切换事件：当治理模式变更时触发 */
+    event GovernanceModeSwitched(bool indexed isSafeGovernance, address indexed caller, uint256 timestamp);
+    
+    /** @dev 治理模式锁定事件：当治理模式被锁定时触发 */
+    event GovernanceModeLocked(bool indexed isSafeGovernance, address indexed caller, uint256 timestamp);
 
     // ============ 访问控制修饰符 ============
     /** @dev 仅限治理安全地址调用的修饰符 */
     modifier onlySafe() {
         require(msg.sender == governanceSafe, "Only Safe");
+        _;
+    }
+    
+    /** @dev 仅限当前治理者调用的修饰符（Owner或Safe） */
+    modifier onlyGovernance() {
+        if (isSafeGovernance) {
+            require(msg.sender == governanceSafe, "Only Safe governance");
+        } else {
+            require(msg.sender == owner(), "Only Owner governance");
+        }
+        _;
+    }
+    
+    /** @dev 仅限Owner调用的修饰符（无论治理模式） */
+    modifier onlyContractOwner() {
+        require(msg.sender == owner(), "Only Owner");
         _;
     }
 
@@ -368,7 +398,7 @@ contract Meshes is ERC20, ReentrancyGuard, Pausable {
      * - 暂停时不可调用
      * - 范围检查防止异常值
      */
-    function setBurnScale(uint256 _milli) external onlySafe whenNotPaused {
+    function setBurnScale(uint256 _milli) external onlyGovernance whenNotPaused {
         require(_milli <= 1_000_000, "Scale too large");
         uint256 old = burnScaleMilli;
         burnScaleMilli = _milli;
@@ -395,7 +425,7 @@ contract Meshes is ERC20, ReentrancyGuard, Pausable {
      */
     function setFoundationAddress(
         address _newFoundationAddr
-    ) external onlySafe whenNotPaused {
+    ) external onlyGovernance whenNotPaused {
         require(_newFoundationAddr != address(0), "Invalid foundation address");
         require(_newFoundationAddr != FoundationAddr, "Same foundation address");
         
@@ -423,25 +453,67 @@ contract Meshes is ERC20, ReentrancyGuard, Pausable {
     }
 
     /**
-     * @dev 紧急暂停合约（仅限Safe）
+     * @dev 紧急暂停合约（仅限当前治理者）
      */
-    function pause() external onlySafe {
+    function pause() external onlyGovernance {
         _pause();
     }
 
     /**
-     * @dev 恢复合约（仅限Safe）
+     * @dev 恢复合约（仅限当前治理者）
      */
-    function unpause() external onlySafe {
+    function unpause() external onlyGovernance {
         _unpause();
     }
 
-    function setGovernanceSafe(address _newSafe) external onlySafe whenNotPaused {
+    function setGovernanceSafe(address _newSafe) external onlyGovernance whenNotPaused {
         require(_newSafe != address(0), "Invalid safe");
         require(_newSafe != governanceSafe, "Same safe");
         address old = governanceSafe;
         governanceSafe = _newSafe;
         emit GovernanceSafeUpdated(old, _newSafe);
+    }
+    
+    /**
+     * @dev 切换到Safe治理模式（仅限Owner，且只能切换一次）
+     * 
+     * 功能说明：
+     * - 将治理权限从Owner切换到Safe
+     * - 一旦切换，无法回退到Owner模式
+     * - 确保治理的去中心化和安全性
+     * 
+     * 安全特性：
+     * - 仅限Owner调用
+     * - 只能切换一次，防止重复切换
+     * - 暂停时不可调用
+     * - 事件记录：便于追踪治理模式变更
+     */
+    function switchToSafeGovernance() external onlyContractOwner whenNotPaused {
+        require(!governanceLocked, "Governance already locked");
+        require(governanceSafe != address(0), "Safe address not set");
+        require(!isSafeGovernance, "Already in Safe governance");
+        
+        isSafeGovernance = true;
+        governanceLocked = true;
+        
+        emit GovernanceModeSwitched(true, msg.sender, block.timestamp);
+        emit GovernanceModeLocked(true, msg.sender, block.timestamp);
+    }
+    
+    /**
+     * @dev 获取当前治理信息
+     * @return _isSafeGovernance 是否为Safe治理模式
+     * @return _governanceLocked 治理模式是否已锁定
+     * @return _currentGovernance 当前治理者地址
+     */
+    function getGovernanceInfo() external view returns (
+        bool _isSafeGovernance,
+        bool _governanceLocked,
+        address _currentGovernance
+    ) {
+        _isSafeGovernance = isSafeGovernance;
+        _governanceLocked = governanceLocked;
+        _currentGovernance = isSafeGovernance ? governanceSafe : owner();
     }
 
     /**
