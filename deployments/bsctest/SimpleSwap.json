@@ -1,0 +1,22 @@
+{
+  "network": "bsctest",
+  "timestamp": "2025-09-28T17:26:32.611Z",
+  "deployer": "0xC526637BD81eCC36354e6414E3b556170470b27B",
+  "contracts": {
+    "meshes": {
+      "name": "Meshes",
+      "address": "0x58d740f45Ec1043071A0fFF004176377188180C6",
+      "note": "使用现有合约"
+    },
+    "simpleSwap": {
+      "name": "SimpleSwap",
+      "address": "0x7f193eBAFdf17959FFee32b5F601FEEc3759c9EB",
+      "transactionHash": "0x047c45445033a46c01226dd8c3c43de97bfc8e8195eeafc7a2b99d4fd843c7f2",
+      "meshToken": "0x58d740f45Ec1043071A0fFF004176377188180C6"
+    }
+  },
+  "liquidity": {
+    "bnb": "0.1",
+    "mesh": "0.0"
+  }
+}

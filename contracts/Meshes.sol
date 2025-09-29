@@ -68,7 +68,7 @@ contract Meshes is ERC20, ReentrancyGuard, Pausable, Ownable {
      * @notice 0 表示关闭燃烧；1000 表示 1.000x；1000000 表示 1000.000x
      * @notice 范围 [0, 1_000_000]，用于动态调整燃烧成本
      */
-    uint256 public burnScaleMilli = 0;
+    uint256 public burnScaleMilli = 1000;
 
     // ============ 用户数据映射 ============
     /** @dev 用户认领信息映射：用户地址 => 网格ID => 认领信息 */
@@ -148,6 +148,8 @@ contract Meshes is ERC20, ReentrancyGuard, Pausable, Ownable {
     
     /** @dev 新用户第一次claim的时间戳，用于24小时提取限制 */
     mapping(address => uint256) public firstClaimTimestamp;
+    /** @dev 用户是否已完成首次提现（用于区分首提24小时规则与旧用户日限制） */
+    mapping(address => bool) public hasWithdrawn;
 
     // ============ 历史记录映射 ============
     /** @dev 每日铸造数量记录：日索引 => 铸造数量 */
@@ -755,13 +757,11 @@ contract Meshes is ERC20, ReentrancyGuard, Pausable, Ownable {
         uint256 dayIndex = _currentDayIndex();
         require(userClaimCounts[msg.sender] > 0, "No claims");
         
-        // 新用户24小时提取限制逻辑
-        uint256 firstClaimTime = firstClaimTimestamp[msg.sender];
-        if (firstClaimTime > 0) {
-            // 检查是否在第一次claim后24小时内
-            require(block.timestamp <= firstClaimTime + 24 * HOUR_SECONDS, "First claim 24h limit exceeded");
+        // 首次提现需满足：距首次认领已满24小时；之后按“每天一次”限制
+        if (!hasWithdrawn[msg.sender]) {
+            uint256 firstClaimTime = firstClaimTimestamp[msg.sender];
+            require(firstClaimTime > 0 && block.timestamp >= firstClaimTime + 24 * HOUR_SECONDS, "First claim cooldown");
         } else {
-            // 兼容旧用户：使用原来的日限制
             require(dayIndex > lastWithdrawDay[msg.sender], "Daily receive");
         }
 
@@ -788,14 +788,11 @@ contract Meshes is ERC20, ReentrancyGuard, Pausable, Ownable {
         carryBalance[user] = 0;
         lastProcessedDay[user] = dayIndex;
         
-        // 设置下次提取时间：24小时后
-        if (firstClaimTime > 0) {
-            // 新用户：设置下次提取时间为24小时后
-            firstClaimTimestamp[user] = block.timestamp + 24 * HOUR_SECONDS;
-        } else {
-            // 兼容旧用户：使用原来的日限制
-            lastWithdrawDay[user] = dayIndex;
+        // 标记已完成首次提现，并记录本日已提现（用于日限制）
+        if (!hasWithdrawn[user]) {
+            hasWithdrawn[user] = true;
         }
+        lastWithdrawDay[user] = dayIndex;
 
         emit UserMint(user, payout);
         userTotalMint[user] += payout;
@@ -816,18 +813,21 @@ contract Meshes is ERC20, ReentrancyGuard, Pausable, Ownable {
             return (false, 0);
         }
         
-        uint256 firstClaimTime = firstClaimTimestamp[user];
-        if (firstClaimTime > 0) {
-            // 新用户：检查是否在24小时内
+        if (!hasWithdrawn[user]) {
+            uint256 firstClaimTime = firstClaimTimestamp[user];
+            if (firstClaimTime == 0) {
+                return (false, 0);
+            }
             uint256 timeLimit = firstClaimTime + 24 * HOUR_SECONDS;
-            canWithdraw = block.timestamp <= timeLimit;
+            canWithdraw = block.timestamp >= timeLimit;
             nextWithdrawTime = timeLimit;
-        } else {
-            // 旧用户：使用日限制
-            uint256 dayIndex = _currentDayIndex();
-            canWithdraw = dayIndex > lastWithdrawDay[user];
-            nextWithdrawTime = 0; // 表示使用日限制
+            return (canWithdraw, nextWithdrawTime);
         }
+        
+        uint256 dayIndex = _currentDayIndex();
+        canWithdraw = dayIndex > lastWithdrawDay[user];
+        nextWithdrawTime = 0;
+        return (canWithdraw, nextWithdrawTime);
     }
 
     function _maybePayoutFoundation() private {

@@ -74,8 +74,8 @@ const config: any = {
       accounts: hardhat_prikeys.length ? hardhat_prikeys : undefined,
     },
     bsctest: {
-      url: "https://bsc.getblock.io/aa12cf51-66b0-40a0-acef-68c538b3aacc/testnet/",
-      // url: "https://bsc-testnet.nodereal.io/v1/c92486b30c634586b6864cd4f4361440",
+      url: "https://bsc-testnet.nodereal.io/v1/c92486b30c634586b6864cd4f4361440",
+      // url: "https://data-seed-prebsc-1-s1.binance.org:8545/",
       accounts: onlykeys,
       chainId: 97,
       live: true,
