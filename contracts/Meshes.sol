@@ -422,7 +422,8 @@ contract Meshes is ERC20, ReentrancyGuard, Pausable, Ownable {
      * - 地址验证：不能为零地址
      * - 重复检查：不能设置为相同地址
      * - 首次设置：从 address(0) 设置时跳过白名单检查
-     * - 后续修改：需要白名单检查
+     * - Owner治理模式：Owner可以多次修改，无需白名单检查
+     * - Safe治理模式：需要白名单检查
      * - 事件记录：便于追踪地址变更
      */
     function setFoundationAddress(
@@ -431,19 +432,26 @@ contract Meshes is ERC20, ReentrancyGuard, Pausable, Ownable {
         require(_newFoundationAddr != address(0), "Invalid foundation address");
         require(_newFoundationAddr != FoundationAddr, "Same foundation address");
         
+        address oldFoundation = FoundationAddr;
+        
         // 如果是首次设置（从 address(0) 设置），跳过白名单检查
         if (FoundationAddr == address(0)) {
-            address oldFoundation = FoundationAddr;
             FoundationAddr = _newFoundationAddr;
             emit FoundationAddressUpdated(oldFoundation, _newFoundationAddr);
             return;
         }
         
-        // 后续修改仍需白名单检查
+        // 如果当前是Owner治理模式，允许Owner多次修改，无需白名单检查
+        if (!isSafeGovernance) {
+            FoundationAddr = _newFoundationAddr;
+            emit FoundationAddressUpdated(oldFoundation, _newFoundationAddr);
+            return;
+        }
+        
+        // Safe治理模式下，后续修改需要白名单检查
         require(_isApprovedByCurrentTreasury(_newFoundationAddr), "New foundation not approved by treasury");
-        address oldFoundationAddr = FoundationAddr;
         FoundationAddr = _newFoundationAddr;
-        emit FoundationAddressUpdated(oldFoundationAddr, _newFoundationAddr);
+        emit FoundationAddressUpdated(oldFoundation, _newFoundationAddr);
     }
 
     // 仅用于只读校验：查询当前国库（若为合约且实现方法）对白名单的认可
