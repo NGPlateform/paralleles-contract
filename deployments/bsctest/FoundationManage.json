@@ -1,0 +1,13 @@
+{
+  "network": "bsctest",
+  "timestamp": "2025-10-16T23:11:36.765Z",
+  "deployer": "0xC526637BD81eCC36354e6414E3b556170470b27B",
+  "contracts": {
+    "foundationManage": {
+      "name": "FoundationManage",
+      "address": "0x42BD6f6C1Cd95deebF96f99bC5c8BB0580C7059C",
+      "transactionHash": "0x72ddd50dd8060dca14cbb46572ecfa47531ea9dc463bd750da5278f0d882ba20",
+      "governanceSafe": "0xC526637BD81eCC36354e6414E3b556170470b27B"
+    }
+  }
+}
