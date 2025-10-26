@@ -1,18 +1,18 @@
 {
   "network": "bsctest",
-  "timestamp": "2025-09-28T17:26:32.611Z",
+  "timestamp": "2025-10-23T07:53:10.670Z",
   "deployer": "0xC526637BD81eCC36354e6414E3b556170470b27B",
   "contracts": {
     "meshes": {
       "name": "Meshes",
-      "address": "0x58d740f45Ec1043071A0fFF004176377188180C6",
+      "address": "0x3cbDBd062A22D178Ab7743E967835d86e9356bFd",
       "note": "使用现有合约"
     },
     "simpleSwap": {
       "name": "SimpleSwap",
-      "address": "0x7f193eBAFdf17959FFee32b5F601FEEc3759c9EB",
-      "transactionHash": "0x047c45445033a46c01226dd8c3c43de97bfc8e8195eeafc7a2b99d4fd843c7f2",
-      "meshToken": "0x58d740f45Ec1043071A0fFF004176377188180C6"
+      "address": "0xD01f245Afb7E026b721631Ea199a4e648208Ba96",
+      "transactionHash": "0xcb8956e9cb32649ebc719f6d801da5475da46aa42640fdf2f4547338ae0bea01",
+      "meshToken": "0x3cbDBd062A22D178Ab7743E967835d86e9356bFd"
     }
   },
   "liquidity": {

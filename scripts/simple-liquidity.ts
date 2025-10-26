@@ -9,8 +9,8 @@ async function main() {
   const wallet = new ethers.Wallet(FAUCET_PRIVATE_KEY, provider);
   
   // 合约地址
-  const SIMPLE_SWAP_ADDRESS = "0x7f193eBAFdf17959FFee32b5F601FEEc3759c9EB";
-  const MESH_CONTRACT_ADDRESS = "0x58d740f45Ec1043071A0fFF004176377188180C6";
+  const SIMPLE_SWAP_ADDRESS = "0xD01f245Afb7E026b721631Ea199a4e648208Ba96";
+  const MESH_CONTRACT_ADDRESS = "0x3cbDBd062A22D178Ab7743E967835d86e9356bFd";
   
   console.log("操作账户:", wallet.address);
   console.log("SimpleSwap 合约:", SIMPLE_SWAP_ADDRESS);

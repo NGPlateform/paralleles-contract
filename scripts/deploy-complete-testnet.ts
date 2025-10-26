@@ -28,7 +28,7 @@ async function main() {
   console.log("✅ 余额充足，开始部署...");
   
   // 使用现有的 MESH 合约地址
-  const MESH_CONTRACT_ADDRESS = "0x58d740f45Ec1043071A0fFF004176377188180C6";
+  const MESH_CONTRACT_ADDRESS = "0x3cbDBd062A22D178Ab7743E967835d86e9356bFd";
   console.log("\n=== 使用现有 MESH 合约 ===");
   console.log("MESH 合约地址:", MESH_CONTRACT_ADDRESS);
   
