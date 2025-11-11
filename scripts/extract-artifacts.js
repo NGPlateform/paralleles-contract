@@ -12,8 +12,8 @@ const contracts = [
   'SafeManager'
 ];
 
-// 输出目录
-const outputDir = path.join(__dirname, '../../management/src/lib/contracts/artifacts');
+// 输出目录（修正到 deploy/management）
+const outputDir = path.join(__dirname, '../../deploy/management/src/lib/contracts/artifacts');
 
 // 确保输出目录存在
 if (!fs.existsSync(outputDir)) {
